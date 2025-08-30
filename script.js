@@ -410,123 +410,165 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ----------------- CAROUSEL DATA & SETUP -----------------
-    const studentItems = document.querySelectorAll('#student-data-container .student-card-item');
-    let currentIndex = 0;
-    let interval;
+    // ----------------- STUDENT DATA -----------------
+    const studentsData = [
+{
+  name: "Ramandeep Singh",
+  image: "assets/Students/Ramandeep-Singh.jpeg",
+  quote: `
+    Congratulations Ramandeep Singh 🎉
+    <span class="highlight-text">77.5% in MCA Sem 2</span> </br> Developer of  
+    <span class="highlight-text">Digital Fusion & HMS</span></br>
+ <span class="highlight-text">The Department proudly congratulates Ramandeep Singh for developing the official website</span> 
+    `,
+  course: "Master Of Computer Application"
+},
+        { name: "Sukhchain Singh", image: "assets/Students/sukhchain.jpeg", quote: "Achieved 71.8% in MCA Semester 2, underscoring Sukhchain’s solid grasp of engineering fundamentals and his consistent academic performance.", course: "Master of Computer Application" },
+
+
+        { name: "Avani", image: "assets/Students/avani1.jpeg", quote: "Achieved 77.1% in BTech Semester 2, underscoring Avani’s grasp of engineering fundamentals and her dependable academic performance.", course: "Bachelor Of Technology" },
+            { name: "Ashpreet Kaur", image: "assets/Students/ashpreet.jpeg", quote: "Achieved 89.6% in BCA Semester 4, highlighting Ashpreet’s strong command over core computing concepts and her consistent academic excellence.", course: "Bachelor Of Computer Application" },
+{ 
+  name: "Ramandeep Kaur", 
+  image: "assets/Students/ramandeep.jpeg", 
+  quote: "Secured 85% in PGDCA, highlighting Ramandeep Kaur’s strong foundation in computer applications and her consistent academic performance.", 
+  course: "Post Graduate Diploma in Computer Application" 
+},
+
+        { name: "Khushpreet Singh", image: "assets/Students/khushpreet.png", quote: "MCA Sem 2: 79.1%—reflecting academic rigor, disciplined focus, and core CS proficiency.", course: "Master Of Computer Application" },
+            { name: "Harmandeep Kaur", image: "assets/Students/harmandeep.jpeg", quote: "Achieved 89.3% in BCA Semester 4, showcasing Harmandeep’s solid grasp of computing fundamentals and her dependable academic performance.", course: "Bachelor Of Computer Application" },
+
+        { name: "Baljeet Rupana", image: "assets/Students/baljeet.jpg", quote: "With a 74% score in BCA Semester 2, Baljeet Rupana showcases rising excellence in core computing and a drive for continuous growth.", course: "Bachelor Of Computer Application" },
+
+        { name: "Varish Mehta", image: "assets/Students/varish.jpeg", quote: "Achieved 84.3% in BCA Sem 2—demonstrating strong command over computing fundamentals and consistent performance.", course: "Bachelor Of Computer Application" },
+
+        { name: "Khushpreet Kaur", image: "assets/Students/khushpreet.jpeg", quote: "Scored 83.8% in BCA Sem 2, showcasing academic rigor and core computing strength.", course: "Bachelor Of Computer Application" },
+        { name: "Ajay", image: "assets/Students/ajay.jpg", quote: "Achieved 81.6% in BCA Sem 2—proof of disciplined learning and strong technical grounding.", course: "Bachelor Of Computer Application" },
+
+
+    ];
     const transitionDuration = 300; // milliseconds, should match CSS transition time
 
-    // ----------------- CUSTOM IMAGE VIEWER -----------------
-    // Create the image viewer element and append it to the body
-    const viewer = document.createElement('div');
-    viewer.classList.add('image-viewer');
-    viewer.innerHTML = `<span class="close-btn">&times;</span><img src="" alt="Student Image">`;
-    document.body.appendChild(viewer);
+    // ----------------- IMAGE VIEWER -----------------
+    const viewer = document.createElement('div');
+    viewer.classList.add('image-viewer');
+    viewer.innerHTML = `<span class="close-btn">&times;</span><img src="" alt="Student Image">`;
+    document.body.appendChild(viewer);
 
-    const viewerImg = viewer.querySelector('img');
-    viewer.querySelector('.close-btn').addEventListener('click', closeImageViewer);
-    viewer.addEventListener('click', e => { 
-        if (e.target === viewer) closeImageViewer(); 
-    });
+    const viewerImg = viewer.querySelector('img');
+    viewer.querySelector('.close-btn').addEventListener('click', closeImageViewer);
+    viewer.addEventListener('click', e => { if (e.target === viewer) closeImageViewer(); });
 
-    function openImageViewer(src) {
-        viewerImg.src = src;
-        viewer.classList.add('active');
-        viewerImg.style.opacity = '0';
-        setTimeout(() => (viewerImg.style.opacity = '1'), 50);
-    }
+    function openImageViewer(src) {
+        viewerImg.src = src;
+        viewer.classList.add('active');
+        viewerImg.style.opacity = '0';
+        setTimeout(() => (viewerImg.style.opacity = '1'), 50);
+    }
 
-    function closeImageViewer() {
-        viewerImg.style.opacity = '0';
-        viewer.classList.remove('active');
-    }
+    function closeImageViewer() {
+        viewerImg.style.opacity = '0';
+        viewer.classList.remove('active');
+    }
 
-    // ----------------- STUDENT CAROUSEL LOGIC -----------------
-    const studentCardWrapper = document.querySelector('.student-card-wrapper');
-    const prevBtn = document.getElementById('prev-student');
-    const nextBtn = document.getElementById('next-student');
+    // ----------------- STUDENT CAROUSEL -----------------
+    const studentCardWrapper = document.querySelector('.student-card-wrapper');
+    const prevBtn = document.getElementById('prev-student');
+    const nextBtn = document.getElementById('next-student');
+    let currentIndex = 0;
+    let interval;
 
-    function renderStudent(index) {
-        if (!studentCardWrapper) return;
+    function renderStudent(index) {
+        if (!studentCardWrapper) return;
         const currentCard = studentCardWrapper.querySelector('.student-card');
-        const nextCardContent = studentItems[index].innerHTML;
 
-        // If there's an existing card, fade it out first
+        // If there's a card already, fade it out first
         if (currentCard) {
             currentCard.classList.remove('active');
             setTimeout(() => {
-                updateCardContent(nextCardContent);
-            }, transitionDuration);
+                updateCardContent(index);
+            }, transitionDuration); // Wait for the fade-out to finish
         } else {
-            // This is for the very first render
-            updateCardContent(nextCardContent);
+            // Initial render
+            updateCardContent(index);
         }
-    }
+    }
 
-    function updateCardContent(content) {
-        studentCardWrapper.innerHTML = `<div class="student-card">${content}</div>`;
-        const newCard = studentCardWrapper.querySelector('.student-card');
+    function updateCardContent(index) {
+        studentCardWrapper.innerHTML = '';
+        const student = studentsData[index];
+        const card = document.createElement('div');
+        card.classList.add('student-card'); // 'active' class will be added after content is set
 
-        // Re-attach the click event listener for the image viewer
-        const studentImage = newCard.querySelector('.student-image');
-        if (studentImage) {
-            studentImage.addEventListener('click', () => openImageViewer(studentImage.src));
-        }
+        card.innerHTML = `
+            <img src="${student.image || 'assets/Students/default.png'}" alt="${student.name}" class="student-image">
+            <div class="student-details">
+                <h3>${student.name}</h3>
+                <p class="student-course">${student.course}</p>
+                <p class="student-quote">"${student.quote}"</p>
+            </div>
+        `;
 
-        // Trigger the fade-in
+        if (student.image) {
+            card.querySelector('.student-image').addEventListener('click', () => openImageViewer(student.image));
+        }
+        
+        studentCardWrapper.appendChild(card);
+        // Add the active class to trigger the fade-in
         setTimeout(() => {
-            newCard.classList.add('active');
-        }, 50);
+            card.classList.add('active');
+        }, 50); // A slight delay to ensure the element is in the DOM before animating
     }
 
-    function updateStudent(index) {
-        currentIndex = index;
-        renderStudent(currentIndex);
-    }
+    function updateStudent(index) {
+        currentIndex = index;
+        renderStudent(currentIndex);
+    }
 
-    function startAutoChange() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-            const nextIndex = (currentIndex + 1) % studentItems.length;
-            updateStudent(nextIndex);
-        }, 5000);
-    }
+    function startAutoChange() {
+        clearInterval(interval);
+        interval = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % studentsData.length;
+            updateStudent(nextIndex);
+        }, 5000);
+    }
 
-    function stopAutoChange() {
-        clearInterval(interval);
-    }
+    function stopAutoChange() {
+        clearInterval(interval);
+    }
 
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            updateStudent((currentIndex - 1 + studentItems.length) % studentItems.length);
-            startAutoChange();
-        });
-        nextBtn.addEventListener('click', () => {
-            updateStudent((currentIndex + 1) % studentItems.length);
-            startAutoChange();
-        });
-    }
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            updateStudent((currentIndex - 1 + studentsData.length) % studentsData.length);
+            startAutoChange();
+        });
+        nextBtn.addEventListener('click', () => {
+            updateStudent((currentIndex + 1) % studentsData.length);
+            startAutoChange();
+        });
+    }
 
-    if (studentCardWrapper && studentItems.length > 0) {
-        renderStudent(currentIndex);
-        startAutoChange();
+    if (studentCardWrapper) {
+        renderStudent(currentIndex);
+        startAutoChange();
 
-        studentCardWrapper.addEventListener('mouseenter', stopAutoChange);
-        studentCardWrapper.addEventListener('mouseleave', startAutoChange);
-    }
+        studentCardWrapper.addEventListener('mouseenter', stopAutoChange);
+        studentCardWrapper.addEventListener('mouseleave', startAutoChange);
+    }
 
-    // ----------------- REVEAL ON SCROLL -----------------
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    // ----------------- REVEAL ON SCROLL -----------------
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-    revealElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => observer.observe(el));
+
 });
     // --- Sticky Header with Scroll Behavior ---
     const header = document.getElementById('main-header');
