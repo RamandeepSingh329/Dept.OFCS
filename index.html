@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/skduni.jpg" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculity Of Engineering & Technology</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header class="main-header" id="main-header">
+  <a href="#home" class="logo">
+ <img src="assets/skduni.jpg" alt="Department of Engineering & Technology Logo" class="logo-image">
+  <span class="logo-text">Faculity Of Engineering & Technology</span>
+ </a>
+ <nav class="main-nav">
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#courses" class="nav-link">Courses</a>
+ <a href="#student-spotlight" class="nav-link">Scorecard</a>
+  <a href="#faculty" class="nav-link">Faculty</a>
+  <a href="#research" class="nav-link">Research</a>
+ <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" class="nav-link">Admissions</a>
+  <a href="#facilities" class="nav-link">Facilities</a>
+  </nav>
+ 
+ </header>
+    <main>
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+
+    <!-- Arrows for manual navigation -->
+</section>
+
+        <section id="news-section" class="news-ticker">
+    <div class="news-container">
+<a href="https://www.mis.skduniversity.com/pub/ennochkreadm" class="news-link">
+    <div class="news-item">
+        <span class="news-tag">Academic Notice</span>
+The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. Students are advised to complete the re-admission process by the revised last date of 14 September 2025.    </div>
+</a>     
+   <div class="news-item">
+            <span class="news-tag">📢 Important Academic Update</span>
+            Students must ensure daily attendance and active participation.
+        </div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" class="news-link">
+<div class="news-item">
+    <span class="news-tag">Admissions Open</span>
+    Unlock your future in tech—Enroll now for BCA, MCA, PGDCA, B.Tech, MSc CS & MSc IT and more! 🚀
+</div>
+</a>
+<div class="news-item">
+    <span class="news-tag">⚠️ Student Alert</span>
+    All students must complete admission and re-admission documentation without delay. Failure to do so will result in disqualification from both mid-term and main examinations.
+</div>
+    </div>
+</section>
+
+<section id="news-events" class="container reveal section-3d">
+  <h2>News & Events ✨</h2>
+  <p class="section-lead">
+    Stay updated with the latest announcements, upcoming events, and important academic alerts to ensure you never miss an opportunity.
+  </p>
+
+  <div class="news-slider">
+    <!-- Track where cards will be injected -->
+    <div id="newsTrack" class="news-track"></div>
+    <!-- Optional navigation dots -->
+    <div class="news-dots"></div>
+  </div>
+</section>
+
+<!-- Image Viewer -->
+<div id="imageViewer" class="image-viewer">
+  <span id="closeViewer" class="close-btn">&times;</span>
+  <img id="viewerImg" src="" alt="Full Image">
+</div>
+
+<!-- Image Viewer Modal -->
+<div class="image-viewer" id="imageViewer">
+  <span class="close-btn" id="closeViewer">&times;</span>
+  <img src="" alt="Full View" id="viewerImg">
+</div>
+<section id="placements" class="container reveal section-3d">
+  <h2>Placements & Career Success 💼</h2>
+  <p class="section-lead">
+    Our strong industry connections and dedicated career services ensure students transition from campus to career seamlessly.
+  </p>
+  <div class="placements-grid">
+    <div class="placement-stat">
+      <h3>--</h3>
+      <p>Placement Rate</p>
+    </div>
+    <div class="placement-stat">
+      <h3>--</h3>
+      <p>Average Salary</p>
+    </div>
+    <div class="placement-stat">
+      <h3>--</h3>
+      <p>Highest Salary</p>
+    </div>
+  </div>
+  <div class="recruiters-section">
+    <h3>Top Recruiters</h3>
+    <div class="recruiters-logos">
+      <img src="assets/ceat.webp" alt="ceat" class="company-logo">
+      <img src="assets/piramal.webp" alt="piramal" class="company-logo">
+      <img src="assets/icici.webp" alt="Wipro" class="company-logo">
+      <img src="assets/cognizant_logo.png" alt="Cognizant" class="company-logo">
+      <img src="assets/amazon_logo.png" alt="Amazon" class="company-logo">
+    </div>
+  </div>
+</section>
+<section id="courses" class="container reveal section-3d">
+    <h2>Courses Offered</h2>
+    <div class="courses-container">
+        <div class="courses-sidebar">
+            <ul>
+                <li data-course="bca" class="active">BCA</li>
+                <li data-course="mca">MCA</li>
+                <li data-course="bca-mca-integrated">BCA+MCA Integrated</li>
+                <li data-course="pgdca">PGDCA</li>
+                <li data-course="btech">B.Tech (CSE)</li>
+                <li data-course="msc-cs">M.Sc Computer Science</li>
+                <li data-course="msc-it">M.Sc Information Technology</li>
+                <li data-course="pg-diploma">PG Diploma</li>
+                <li data-course="diploma-cs-eng">Dip. CSE</li>
+                <li data-course="diploma-elec-eng">Dip.EE</li>
+                <li data-course="diploma-ece-eng"> Dip. ECE</li>
+                <li data-course="diploma-mech-eng"> Dip. ME </li>
+                <li data-course="diploma-civil-eng"> Dip. CE </li>
+            </ul>
+        </div>
+
+        <div class="courses-content">
+<div id="bca" class="course-detail active">
+    <h3>Bachelor of Computer Applications (BCA)</h3>
+    
+    <p>The <strong>Bachelor of Computer Applications (BCA)</strong> is a 3-year undergraduate program designed to provide a strong academic foundation in computer science, software development, and IT applications. The course emphasizes both theoretical knowledge and practical exposure to prepare students for diverse roles in the technology-driven world.</p>
+    
+    <h4>Program Objectives</h4>
+    <ul>
+        <li>To develop a solid foundation in core areas of computer science including programming, data structures, operating systems, databases, and networking.</li>
+        <li>To nurture problem-solving, analytical, and logical reasoning skills for real-world IT applications.</li>
+        <li>To foster adaptability to emerging technologies such as Artificial Intelligence, Cloud Computing, Blockchain, and Data Analytics.</li>
+        <li>To encourage innovation, teamwork, and professional ethics for success in the global IT industry.</li>
+    </ul>
+    
+    <h4>Program Outcomes</h4>
+    <ul>
+        <li>Graduates will demonstrate proficiency in software development, web technologies, database management, and system design.</li>
+        <li>Ability to analyze, design, and implement computing solutions for industry and societal needs.</li>
+        <li>Preparedness for diverse career opportunities such as <strong>Software Engineer, Web Developer, System Analyst, IT Consultant, Cybersecurity Analyst, and Data Analyst</strong>.</li>
+        <li>Readiness to pursue higher education including MCA, MBA (IT), or specialized certifications in advanced technologies.</li>
+    </ul>
+    
+    <h4>Salient Features</h4>
+    <ul>
+        <li>Comprehensive curriculum blending theory with hands-on laboratory sessions.</li>
+        <li>Emphasis on project-based learning, coding practices, and industry-relevant skills.</li>
+        <li>Exposure to the latest programming languages, frameworks, and development tools.</li>
+        <li>Regular workshops, seminars, and guest lectures by industry experts.</li>
+        <li>Strong placement assistance and career guidance for students entering the IT workforce.</li>
+    </ul>
+</div>
+<div id="mca" class="course-detail">
+    <h3>Master of Computer Applications (MCA)</h3>
+    
+    <p>The <strong>Master of Computer Applications (MCA)</strong> is a 2-year postgraduate program designed to provide students with advanced theoretical knowledge and practical expertise in computer science and its applications. The program equips learners with specialized skills in software engineering, system design, application development, and modern technologies to meet the evolving needs of the IT industry.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To impart advanced knowledge of computer applications, software development methodologies, and system architecture.</li>
+        <li>To enhance analytical, research, and problem-solving skills to tackle complex IT challenges.</li>
+        <li>To foster innovation and adaptability in emerging areas such as Artificial Intelligence, Cloud Computing, Data Science, and Cybersecurity.</li>
+        <li>To develop leadership qualities, teamwork, and professional ethics for career advancement and industry success.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will demonstrate expertise in advanced programming, software development, and IT management.</li>
+        <li>Ability to design, analyze, and implement enterprise-level solutions to address real-world technological challenges.</li>
+        <li>Preparedness for senior-level positions such as <strong>Senior Software Developer, Data Scientist, Cloud Architect, Systems Analyst, IT Manager, and Cybersecurity Specialist</strong>.</li>
+        <li>Eligibility to pursue higher academic and research opportunities such as a Ph.D. in Computer Science or related fields.</li>
+        <li>Capability to contribute to entrepreneurship, startups, and technological innovations.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Comprehensive curriculum aligned with industry standards and research advancements.</li>
+        <li>Emphasis on project work, case studies, and dissertation to foster practical problem-solving skills.</li>
+        <li>Exposure to cutting-edge technologies, development frameworks, and enterprise tools.</li>
+        <li>Interactive learning through seminars, workshops, and expert talks from industry leaders.</li>
+        <li>Strong placement support with opportunities in top IT companies and multinational corporations.</li>
+    </ul>
+</div>
+<div id="bca-mca-integrated" class="course-detail">
+    <h3>BCA+MCA Integrated Program</h3>
+    
+    <p>The <strong>BCA+MCA Integrated Program</strong> is a 5-year dual-degree course tailored for students who wish to build a strong foundation in computer applications and advance into specialized areas of software development and IT management. This seamless academic pathway integrates undergraduate and postgraduate studies, saving valuable time and eliminating the need for separate entrance processes.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide a comprehensive curriculum that bridges undergraduate fundamentals with postgraduate expertise in computer applications.</li>
+        <li>To enable students to develop strong analytical, problem-solving, and programming skills for advanced IT solutions.</li>
+        <li>To equip learners with knowledge in cutting-edge domains such as Data Science, Cloud Computing, Artificial Intelligence, and Cybersecurity.</li>
+        <li>To foster long-term academic and professional growth by offering a continuous and structured learning path.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will possess both foundational and advanced knowledge in computing, system design, and application development.</li>
+        <li>Ability to seamlessly transition from undergraduate learning to postgraduate-level expertise without academic gaps.</li>
+        <li>Preparedness for diverse career roles including <strong>Software Developer, Full Stack Engineer, Data Analyst, Cloud Architect, IT Consultant, and Project Manager</strong>.</li>
+        <li>Enhanced eligibility for higher studies, research, and innovation, including opportunities to pursue a Ph.D. in Computer Science.</li>
+        <li>Competence in handling leadership roles and contributing to strategic decision-making in the IT sector.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Integrated 5-year dual-degree structure ensuring academic continuity and career readiness.</li>
+        <li>Balanced focus on core computer science fundamentals and advanced application-oriented subjects.</li>
+        <li>Practical learning through industry projects, internships, workshops, and coding competitions.</li>
+        <li>Exposure to the latest tools, frameworks, and research in computer applications.</li>
+        <li>Strong placement opportunities with a competitive edge due to dual qualifications.</li>
+    </ul>
+</div>
+<div id="pgdca" class="course-detail">
+    <h3>Post Graduate Diploma in Computer Applications (PGDCA)</h3>
+    
+    <p>The <strong>Post Graduate Diploma in Computer Applications (PGDCA)</strong> is a 1-year intensive program designed for graduates from any discipline who wish to gain a strong foundation in computer applications and information technology. The course focuses on practical knowledge and technical skills essential for building a career in the IT industry, making it an ideal option for career transition and skill enhancement.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide fundamental knowledge of computer applications, software development, and IT systems to graduates from diverse backgrounds.</li>
+        <li>To develop practical skills in programming, database management, web development, and office automation tools.</li>
+        <li>To prepare students for immediate entry into the IT workforce with industry-relevant competencies.</li>
+        <li>To act as a bridging course for higher studies in computer applications, especially the MCA program.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will demonstrate competency in using computer applications, programming languages, and IT tools for professional tasks.</li>
+        <li>Ability to apply theoretical concepts to practical solutions in areas such as software development, web technologies, and database systems.</li>
+        <li>Preparedness for entry-level IT roles such as <strong>Junior Programmer, Web Developer, Database Administrator, IT Consultant, and System Analyst</strong>.</li>
+        <li>Eligibility and preparedness to pursue advanced education such as the MCA or other specialized certifications in IT.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>One-year intensive program designed for rapid skill acquisition and career readiness.</li>
+        <li>Comprehensive curriculum covering IT fundamentals, software practices, and digital tools.</li>
+        <li>Hands-on training through projects, practical sessions, and workshops.</li>
+        <li>Suitable for graduates from non-technical backgrounds aspiring to enter the IT domain.</li>
+        <li>Provides a strong academic and professional base for higher studies in computer applications.</li>
+    </ul>
+</div>
+<div id="btech" class="course-detail">
+    <h3>Bachelor of Technology in Computer Science (B.Tech CSE)</h3>
+    
+    <p>The <strong>Bachelor of Technology in Computer Science and Engineering (B.Tech CSE)</strong> is a 4-year undergraduate program that offers rigorous training in computer science, engineering principles, and their practical applications. The program prepares students to become innovators, researchers, and leaders in the technology-driven world, equipping them with both strong theoretical knowledge and advanced practical skills.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide students with a solid foundation in core areas of computer science, mathematics, and engineering principles.</li>
+        <li>To develop technical expertise in software engineering, system design, networking, data science, and artificial intelligence.</li>
+        <li>To foster problem-solving, critical thinking, and research capabilities in modern computing systems.</li>
+        <li>To cultivate leadership qualities, teamwork, and professional ethics for success in global IT and engineering domains.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will acquire advanced knowledge in computing, algorithms, and scalable software development.</li>
+        <li>Ability to design, develop, and optimize high-performance applications and engineering solutions.</li>
+        <li>Preparedness for diverse career roles such as <strong>Software Engineer, Data Scientist, AI/ML Specialist, Cybersecurity Analyst, Cloud Architect, and Research Engineer</strong>.</li>
+        <li>Eligibility for higher education opportunities including M.Tech, MBA (Tech), or Ph.D. in Computer Science and related fields.</li>
+        <li>Capability to contribute to entrepreneurship, innovation, and sustainable technological growth in society.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Prestigious 4-year engineering program combining computer science fundamentals with practical engineering applications.</li>
+        <li>Industry-aligned curriculum with a focus on AI, Machine Learning, Data Science, Cloud Computing, and Cybersecurity.</li>
+        <li>Hands-on learning through laboratories, research projects, hackathons, and internships.</li>
+        <li>Opportunities to engage in innovation, patents, and entrepreneurship initiatives.</li>
+        <li>Strong placement record with career opportunities in top IT firms, research labs, and multinational corporations.</li>
+    </ul>
+</div>
+<div id="msc-cs" class="course-detail">
+    <h3>Master of Science in Computer Science (M.Sc CS)</h3>
+    
+    <p>The <strong>Master of Science in Computer Science (M.Sc CS)</strong> is a 2-year postgraduate program designed for students who wish to gain deep theoretical and research-oriented knowledge in computer science. The program emphasizes computational theory, advanced algorithms, and system design, preparing students for careers that demand innovation, critical inquiry, and advanced technical expertise.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide advanced knowledge of computational theory, algorithms, and modern system design.</li>
+        <li>To cultivate research skills and analytical thinking for exploring complex computing problems.</li>
+        <li>To prepare students for careers in data science, artificial intelligence, and high-level research roles.</li>
+        <li>To foster innovation, scientific inquiry, and academic excellence for contributions to computer science research and development.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will demonstrate expertise in algorithmic design, computational models, and emerging technologies.</li>
+        <li>Ability to conduct independent research, publish scientific findings, and contribute to the advancement of computer science.</li>
+        <li>Preparedness for career roles such as <strong>Data Scientist, AI/ML Engineer, Algorithm Specialist, Research Scientist, and Software Architect</strong>.</li>
+        <li>Eligibility to pursue a Ph.D. in Computer Science and contribute to academia, innovation, and research institutions.</li>
+        <li>Capacity to apply advanced computing principles to solve real-world scientific and industrial challenges.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Specialized 2-year postgraduate program with a strong research focus.</li>
+        <li>Balanced curriculum integrating theoretical foundations with advanced applications.</li>
+        <li>Opportunities for dissertation, publications, and participation in conferences and workshops.</li>
+        <li>Exposure to cutting-edge fields such as Artificial Intelligence, Data Science, Machine Learning, and High-Performance Computing.</li>
+        <li>Pathway to academic careers, research institutions, and industry-based R&D roles.</li>
+    </ul>
+</div>
+<div id="msc-it" class="course-detail">
+    <h3>Master of Science in Information Technology (M.Sc IT)</h3>
+    
+    <p>The <strong>Master of Science in Information Technology (M.Sc IT)</strong> is a specialized postgraduate program designed to equip students with advanced skills in managing, securing, and leveraging modern information systems. Unlike traditional computer science degrees, this program emphasizes the practical application of technology in organizational and business contexts, preparing graduates for leadership roles in the dynamic IT industry.</p>
+    
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To develop expertise in information systems management, IT infrastructure, and enterprise technologies.</li>
+        <li>To enhance skills in cybersecurity, cloud computing, data management, and digital transformation strategies.</li>
+        <li>To prepare students for leadership and managerial roles in technology-driven organizations.</li>
+        <li>To foster the ability to bridge the gap between technical IT operations and organizational business goals.</li>
+    </ul>
+    
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will demonstrate proficiency in managing IT systems, networks, and enterprise solutions.</li>
+        <li>Ability to analyze, design, and implement secure and efficient information systems for business and industry needs.</li>
+        <li>Preparedness for career opportunities such as <strong>IT Manager, Cybersecurity Analyst, Cloud Solutions Architect, Database Administrator, and Technology Consultant</strong>.</li>
+        <li>Readiness for executive-level responsibilities, entrepreneurship, or advanced research in information technology.</li>
+        <li>Capability to contribute to organizational growth by aligning IT strategies with business objectives.</li>
+    </ul>
+    
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Specialized postgraduate program with a focus on practical IT applications in organizations.</li>
+        <li>Industry-oriented curriculum covering cybersecurity, cloud solutions, database systems, and IT governance.</li>
+        <li>Case studies, workshops, and projects to strengthen managerial and technical decision-making.</li>
+        <li>Exposure to modern enterprise tools and emerging technologies shaping the IT landscape.</li>
+        <li>Career pathways into leadership, consultancy, and executive roles in technology-driven businesses.</li>
+    </ul>
+</div>
+<div id="pg-diploma" class="course-detail">
+    <h3>Post Graduate Diploma (PG Diploma)</h3>
+
+    <p>The <strong>Post Graduate Diploma (PG Diploma)</strong> is a versatile postgraduate program designed for graduates from any discipline who wish to gain specialized knowledge and practical skills in a focused area. It is ideal for professionals looking to enhance their qualifications, switch career paths, or prepare for advanced studies without committing to a full master’s degree.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide specialized, industry-relevant training in a specific domain.</li>
+        <li>To help graduates transition into new career paths with practical expertise.</li>
+        <li>To serve as a bridge toward advanced academic pursuits such as master’s degrees.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates will gain practical knowledge aligned with industry requirements.</li>
+        <li>Employment opportunities in roles such as <strong>Project Coordinator, Technical Specialist, or Analyst</strong>.</li>
+        <li>Eligibility for academic progression, with many universities offering credit transfers into master’s programs.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Short-term, career-focused postgraduate program.</li>
+        <li>Industry-oriented curriculum with practical exposure.</li>
+        <li>Flexible entry route for non-technical graduates into technical fields.</li>
+        <li>Foundation for higher studies, professional growth, and lifelong learning.</li>
+    </ul>
+</div>
+
+<div id="diploma-cs-eng" class="course-detail">
+    <h3>Diploma in Computer Science & Engineering</h3>
+
+    <p>The <strong>Diploma in Computer Science & Engineering</strong> provides students with the fundamentals of computer hardware, software, and programming. The program emphasizes practical skills in networking, databases, and web development through hands-on labs and projects.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To introduce students to core computing concepts and programming techniques.</li>
+        <li>To provide hands-on skills in web technologies, networking, and databases.</li>
+        <li>To prepare students for entry-level roles in the IT sector or for further studies.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates can take up roles such as <strong>Junior Software Developer, IT Support Specialist, Web Designer, or Network Administrator</strong>.</li>
+        <li>Readiness for lateral entry into the 2nd year of a B.Tech program in Computer Science.</li>
+        <li>Ability to design, develop, and troubleshoot software and network-based solutions.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Practical and lab-focused curriculum.</li>
+        <li>Strong foundation in software and IT fundamentals.</li>
+        <li>Career-oriented program with industry relevance.</li>
+        <li>Direct pathway to higher education (B.Tech lateral entry).</li>
+    </ul>
+</div>
+
+<div id="diploma-elec-eng" class="course-detail">
+    <h3>Diploma in Electrical Engineering</h3>
+
+    <p>The <strong>Diploma in Electrical Engineering</strong> covers core concepts of electricity, electronics, and electromagnetism. Students gain hands-on knowledge in power systems, electrical machines, and control systems, preparing them for technical roles across industries.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To build a solid foundation in electrical engineering concepts and systems.</li>
+        <li>To train students in practical applications such as circuits, machines, and power systems.</li>
+        <li>To prepare students for immediate employment or further studies in electrical engineering.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Employment opportunities as <strong>Electrical Technician, Maintenance Supervisor, Field Engineer, or Power Plant Operator</strong>.</li>
+        <li>Ability to apply knowledge to real-world electrical projects and systems.</li>
+        <li>Eligibility for lateral entry into B.Tech in Electrical Engineering.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Balanced theoretical and hands-on training.</li>
+        <li>Curriculum aligned with industrial needs in power and electrical sectors.</li>
+        <li>Opportunities for direct employment or advanced studies.</li>
+    </ul>
+</div>
+
+<div id="diploma-ece-eng" class="course-detail">
+    <h3>Diploma in Electronics & Communication Engineering</h3>
+
+    <p>The <strong>Diploma in Electronics & Communication Engineering (ECE)</strong> equips students with knowledge in electronic circuits, communication systems, and embedded technologies. The program emphasizes mobile communication, digital systems, and telecommunications with practical lab training.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To develop expertise in electronic devices, circuits, and communication systems.</li>
+        <li>To train students in modern telecommunication and digital technologies.</li>
+        <li>To prepare graduates for roles in electronics, communication, and IT industries.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Career opportunities as <strong>Electronics Technician, Junior Design Engineer, Field Service Engineer, or Broadcast Engineer</strong>.</li>
+        <li>Ability to troubleshoot and maintain electronic and communication systems.</li>
+        <li>Pathway for lateral entry into B.Tech in Electronics & Communication Engineering.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Industry-relevant curriculum in electronics and communication.</li>
+        <li>Hands-on laboratory training in circuits, systems, and embedded devices.</li>
+        <li>High employability in telecommunications and electronics industries.</li>
+    </ul>
+</div>
+
+<div id="diploma-mech-eng" class="course-detail">
+    <h3>Diploma in Mechanical Engineering</h3>
+
+    <p>The <strong>Diploma in Mechanical Engineering</strong> focuses on mechanics, thermodynamics, and materials science. Students gain practical skills in designing, analyzing, and manufacturing mechanical systems through workshops and real-world projects.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide students with a strong understanding of mechanical principles and systems.</li>
+        <li>To train students in design, analysis, and maintenance of mechanical structures.</li>
+        <li>To prepare graduates for immediate employment or higher education in engineering.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Graduates can pursue careers as <strong>Mechanical Technician, Production Supervisor, Quality Control Inspector, or CAD Designer</strong>.</li>
+        <li>Ability to use mechanical tools, machines, and software effectively.</li>
+        <li>Eligibility for lateral entry into the 2nd year of a B.Tech in Mechanical Engineering.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Workshop and project-based learning approach.</li>
+        <li>Strong career prospects in manufacturing, automotive, and energy industries.</li>
+        <li>Clear academic pathway toward advanced mechanical studies.</li>
+    </ul>
+</div>
+
+<div id="diploma-civil-eng" class="course-detail">
+    <h3>Diploma in Civil Engineering</h3>
+
+    <p>The <strong>Diploma in Civil Engineering</strong> focuses on planning, design, and construction of infrastructure such as roads, bridges, and buildings. Students gain hands-on knowledge in surveying, construction management, and structural design with industry-relevant training.</p>
+
+    <h4><strong>Program Objectives</strong></h4>
+    <ul>
+        <li>To provide fundamental knowledge in civil engineering concepts and practices.</li>
+        <li>To equip students with practical skills in construction, surveying, and structural analysis.</li>
+        <li>To prepare students for immediate employment or advanced studies in civil engineering.</li>
+    </ul>
+
+    <h4><strong>Program Outcomes</strong></h4>
+    <ul>
+        <li>Employment opportunities as <strong>Civil Engineering Technician, Site Supervisor, Draftsman, or Surveyor</strong>.</li>
+        <li>Ability to contribute to construction and infrastructure projects effectively.</li>
+        <li>Eligibility for lateral entry into B.Tech in Civil Engineering.</li>
+    </ul>
+
+    <h4><strong>Salient Features</strong></h4>
+    <ul>
+        <li>Practical training through site visits and lab sessions.</li>
+        <li>Curriculum aligned with real-world infrastructure development needs.</li>
+        <li>Direct entry route for higher education and career advancement.</li>
+    </ul>
+</div>
+        </div>
+    </div>
+</section>
+<section id="student-spotlight">
+    <h2>Celebrating Success of Students</h2>
+    <div class="carousel-container">
+        <button id="prev-student" class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <div class="student-card-wrapper">
+            </div>
+        <button id="next-student" class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        
+    </div>
+</section>
+
+
+        <section id="faculty" class="container reveal">
+            <h2>Our Distinguished Faculty</h2>
+            <div class="faculty-container">
+                <div id="faculty-sidebar" class="faculty-sidebar">
+                </div>
+                <div id="faculty-content" class="faculty-content">
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="research" class="container reveal">
+            <h2>Research & Innovation</h2>
+            <div class="research-grid">
+                <div class="research-area reveal">
+                    <h3><i class="fas fa-brain"></i> Artificial Intelligence</h3>
+                    <p>Pioneering new algorithms in machine learning, neural networks, and natural language processing.</p>
+                </div>
+                <div class="research-area reveal">
+                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                    <p>Developing robust solutions for digital security, cryptography, and network forensics.</p>
+                </div>
+                <div class="research-area reveal">
+                    <h3><i class="fas fa-database"></i> Data Science</h3>
+                    <p>Exploring advanced analytics, big data visualization, and predictive modeling.</p>
+                </div>
+                <div class="research-area reveal">
+                    <h3><i class="fas fa-laptop-code"></i> Software Engineering</h3>
+                    <p>Focusing on scalable and reliable software design, development, and maintenance.</p>
+                </div>
+            </div>
+        </section>
+
+<section id="eligibility" class="container">
+    <h2>Check Your Eligibility</h2>
+    <p class="section-lead">Find out instantly if you qualify for your chosen course.</p>
+    <div class="eligibility-box">
+        <form id="eligibility-form">
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <option value="">-- Choose a course --</option>
+                <option value="bca">BCA</option>
+                <option value="bsc-cs">B.Sc Computer Science</option>
+                <option value="bsc-it">B.Sc Information Technology</option>
+                <option value="btech">B.Tech (CSE)</option>
+                <option value="mca">MCA</option>
+                <option value="msc-cs">M.Sc Computer Science</option>
+                <option value="msc-it">M.Sc Information Technology</option>
+                <option value="bca-mca-integrated">BCA + MCA Integrated</option>
+                <option value="pgdca">PGDCA</option>
+                <option value="diploma-cs-eng">Diploma in Computer Science & Engineering</option>
+                <option value="diploma-elec-eng">Diploma in Electrical Engineering</option>
+                <option value="diploma-ece-eng">Diploma in Electronics & Communication</option>
+                <option value="diploma-mech-eng">Diploma in Mechanical Engineering</option>
+                <option value="diploma-civil-eng">Diploma in Civil Engineering</option>
+            </select>
+
+            <label for="qualification">Your Last Qualification:</label>
+            <select id="qualification" name="qualification" required>
+                <option value="">-- Select qualification --</option>
+                <option value="10">10th</option>
+                <option value="12-science">12th (Science Stream)</option>
+                <option value="12-commerce">12th (Commerce Stream)</option>
+                <option value="12-arts">12th (Arts Stream)</option>
+                <option value="graduation-any">Graduation (Any Stream)</option>
+                <option value="graduation-cs">Graduation (CS)</option>
+                <option value="graduation-it">Graduation (IT)</option>
+                <option value="btech">B.Tech / BE</option>
+                <option value="msc">M.Sc</option>
+                <option value="pgdca">PGDCA</option>
+            </select>
+
+            <button type="submit" class="cta-button">Check Eligibility</button>
+        </form>
+    </div>
+    
+    <div id="custom-popup" class="popup-overlay">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <div id="popup-result-message"></div>
+        </div>
+    </div>
+</section>
+
+        <section id="facilities" class="container reveal">
+    <div class="facilities-container">
+        <h2>Our Facilities</h2>
+        <p class="section-lead">Our state-of-the-art facilities provide the perfect environment for learning, research, and collaboration.</p>
+        
+        <div class="facilities-inner">
+            <div id="facilities-sidebar" class="facilities-sidebar">
+            </div>
+
+            <div id="facilities-content" class="facilities-content">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="hod-blog" class="container reveal section-3d">
+<article class="hod-blog-article">
+    <header class="hod-blog-header">
+      <h2 class="main-heading">Sphere of Knowledge</h2>
+      <h3 class="meta-heading">Message from the HOD</h3>
+      <p class="meta-author">
+        Dr. Kulwant Singh<br>
+        Faculty of Computer Science and Engineering,<br>
+        Shri Khushal Das University
+      </p>
+    </header>
+  </article>
+</header>
+
+
+    <!-- Blog content box -->
+    <div class="hod-blog-box">
+      <p>
+        The Faculty of Computer Science and Engineering at 
+        <strong>Shri Khushal Das University</strong> is dedicated to advancing 
+        knowledge, innovation, and research. Our department combines academic 
+        rigor with practical exposure, ensuring students are prepared to meet 
+        the challenges of a rapidly evolving technological landscape.
+      </p>
+      <p>
+        Through state-of-the-art digital classrooms, modern laboratories, and 
+        interdisciplinary projects, students gain both theoretical insights and 
+        hands-on experience. The faculty’s commitment to mentoring enables 
+        learners to grow as critical thinkers, innovators, and problem-solvers.
+      </p>
+      <blockquote>
+        “We aspire to create future leaders in technology — professionals 
+        driven by knowledge, guided by innovation, and committed to excellence.”
+      </blockquote>
+      <p>
+        Over the years, our students have excelled in academics, contributed 
+        to impactful projects, and strengthened the university’s reputation 
+        as a hub of excellence. As a department, we remain committed to 
+        nurturing talent and fostering a culture where learning translates 
+        into real-world achievements.
+      </p>
+    </div>
+  </article>
+</section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-main reveal">
+            <div class="footer-column about-us">
+                <h4>About Us</h4>
+                <p>
+The Faculity of Engineering & Technology at Shri Khushal Das University is dedicated to delivering a world-class education in Computer Science. Through a forward-thinking curriculum and a culture of innovation, the department empowers students to navigate emerging technologies and prepares them to meet the challenges of a rapidly evolving digital landscape.
+                </p>
+                <p class="copyright-mobile">
+                    &copy; 2025 Department of Engineering & Technology
+                </p>
+            </div>
+            <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#student-spotlight">Scorecard</a></li>
+                    <li><a href="#courses">Courses Offered</a></li>
+                    <li><a href="#faculty">Faculty</a></li>
+                    <li><a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE">Admissions</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                </ul>
+            </div>
+<div class="footer-column contact-info">
+  <h4>Contact & Connect</h4>
+  <ul class="contact-list">
+    <li>
+      <i class="fa-solid fa-location-dot"></i>
+      <span>Shri Khushal Das University,<br> Chak 7STG, Khushal Nagar,<br> Suratgarh - Hanumangarh Rd,<br> Near Toll Plaza, Rajasthan 335801</span>
+    </li>
+    <li>
+      <i class="fa-solid fa-phone"></i>
+      <a href="tel:9251667416">Contact</a>
+    </li>
+    <li>
+      <i class="fa-brands fa-whatsapp"></i>
+      <a href="https://wa.me/919251667416" target="_blank">Chat on WhatsApp</a>
+    </li>
+    <li>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:deancsit@skduniversity.com">deancsit@skduniversity.com</a>
+    </li>
+  </ul>
+</div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2025 Department of Engineering & Technology. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
