@@ -443,8 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------- STUDENT CAROUSEL LOGIC -----------------
     const studentCardWrapper = document.querySelector('.student-card-wrapper');
-    const prevBtn = document.getElementById('prev-student');
-    const nextBtn = document.getElementById('next-student');
 
     function renderStudent(index) {
         if (!studentCardWrapper) return;
@@ -494,17 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopAutoChange() {
         clearInterval(interval);
-    }
-
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            updateStudent((currentIndex - 1 + studentItems.length) % studentItems.length);
-            startAutoChange();
-        });
-        nextBtn.addEventListener('click', () => {
-            updateStudent((currentIndex + 1) % studentItems.length);
-            startAutoChange();
-        });
     }
 
     if (studentCardWrapper && studentItems.length > 0) {
