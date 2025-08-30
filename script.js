@@ -423,26 +423,26 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
   course: "Master Of Computer Application"
 },
-        { name: "Sukhchain Singh", image: "assets/students/sukhchain-singh.jpeg", quote: "Achieved 71.8% in MCA Semester 2, underscoring Sukhchain’s solid grasp of engineering fundamentals and his consistent academic performance.", course: "Master of Computer Application" },
+        { name: "Sukhchain Singh", image: "assets/students/sukhchain.jpeg", quote: "Achieved 71.8% in MCA Semester 2, underscoring Sukhchain’s solid grasp of engineering fundamentals and his consistent academic performance.", course: "Master of Computer Application" },
 
 
-        { name: "Avani", image: "assets/students/avani.jpeg", quote: "Achieved 77.1% in BTech Semester 2, underscoring Avani’s grasp of engineering fundamentals and her dependable academic performance.", course: "Bachelor Of Technology" },
-            { name: "Ashpreet Kaur", image: "assets/students/ashpreet-kaur.jpeg", quote: "Achieved 89.6% in BCA Semester 4, highlighting Ashpreet’s strong command over core computing concepts and her consistent academic excellence.", course: "Bachelor Of Computer Application" },
+        { name: "Avani", image: "assets/students/avani1.jpeg", quote: "Achieved 77.1% in BTech Semester 2, underscoring Avani’s grasp of engineering fundamentals and her dependable academic performance.", course: "Bachelor Of Technology" },
+            { name: "Ashpreet Kaur", image: "assets/students/ashpreet.jpeg", quote: "Achieved 89.6% in BCA Semester 4, highlighting Ashpreet’s strong command over core computing concepts and her consistent academic excellence.", course: "Bachelor Of Computer Application" },
 { 
   name: "Ramandeep Kaur", 
-  image: "assets/students/ramandeep-kaur.jpeg", 
+  image: "assets/students/ramandeep.jpeg", 
   quote: "Secured 85% in PGDCA, highlighting Ramandeep Kaur’s strong foundation in computer applications and her consistent academic performance.", 
   course: "Post Graduate Diploma in Computer Application" 
 },
 
         { name: "Khushpreet Singh", image: "assets/Students/khushpreet.png", quote: "MCA Sem 2: 79.1%—reflecting academic rigor, disciplined focus, and core CS proficiency.", course: "Master Of Computer Application" },
-            { name: "Harmandeep Kaur", image: "assets/students/harmandeep-kaur.jpeg", quote: "Achieved 89.3% in BCA Semester 4, showcasing Harmandeep’s solid grasp of computing fundamentals and her dependable academic performance.", course: "Bachelor Of Computer Application" },
+            { name: "Harmandeep Kaur", image: "assets/students/harmandeep.jpeg", quote: "Achieved 89.3% in BCA Semester 4, showcasing Harmandeep’s solid grasp of computing fundamentals and her dependable academic performance.", course: "Bachelor Of Computer Application" },
 
-        { name: "Baljeet Rupana", image: "assets/students/baljeet-rupana.jpg", quote: "With a 74% score in BCA Semester 2, Baljeet Rupana showcases rising excellence in core computing and a drive for continuous growth.", course: "Bachelor Of Computer Application" },
+        { name: "Baljeet Rupana", image: "assets/students/baljeet.jpg", quote: "With a 74% score in BCA Semester 2, Baljeet Rupana showcases rising excellence in core computing and a drive for continuous growth.", course: "Bachelor Of Computer Application" },
 
         { name: "Varish Mehta", image: "assets/Students/varish.jpeg", quote: "Achieved 84.3% in BCA Sem 2—demonstrating strong command over computing fundamentals and consistent performance.", course: "Bachelor Of Computer Application" },
 
-        { name: "Khushpreet Kaur", image: "assets/students/khushpreet-kaur.jpeg", quote: "Scored 83.8% in BCA Sem 2, showcasing academic rigor and core computing strength.", course: "Bachelor Of Computer Application" },
+        { name: "Khushpreet Kaur", image: "assets/students/khushpreet.jpeg", quote: "Scored 83.8% in BCA Sem 2, showcasing academic rigor and core computing strength.", course: "Bachelor Of Computer Application" },
         { name: "Ajay", image: "assets/Students/ajay.jpg", quote: "Achieved 81.6% in BCA Sem 2—proof of disciplined learning and strong technical grounding.", course: "Bachelor Of Computer Application" },
 
 
