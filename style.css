@@ -96,45 +96,45 @@ a:hover {
 }
 /* --- Header & Navigation --- */
 .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 3rem;
-    background-color: #008080; /* Dark Cyan */
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background-color: #008080; /* Dark Cyan */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 100px;
 }
 
+/* Logo */
 .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-image {
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 0.75rem;
-    border: 3px solid #005F5F;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.75rem;
+  border: 3px solid #005F5F;
 }
-/* Base styles for the logo text */
+
 .logo-text {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: 700;
   color: #F0FFFF;
-  /* Adds a subtle texture and depth effect */
   text-shadow: 
-    -1px -1px 0 #005f5f,  /* Top-left shadow for depth */
-    1px 1px 0 #005f5f,   /* Bottom-right shadow for depth */
-    -2px -2px 0 #004d4d, /* Deeper top-left shadow */
-    2px 2px 0 #004d4d;   /* Deeper bottom-right shadow */
-  
-  /* Required for 3D transforms to work */
+    -1px -1px 0 #005f5f,
+     1px  1px 0 #005f5f,
+    -2px -2px 0 #004d4d,
+     2px  2px 0 #004d4d;
   display: inline-block; 
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -142,123 +142,153 @@ a:hover {
   outline: none;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .logo-text {
-    font-size: 1.5rem;
-    text-shadow: 
-      -1px -1px 0 #005f5f,
-      1px 1px 0 #005f5f;
-  }
-}
+/* Nav Links */
 .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: clip-path 0.4s ease-in-out, background-color 0.3s;
 }
 
 .main-nav a {
-    color: #F0FFFF;
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    text-decoration: none;
-    position: relative;
-    padding: 0.75rem 1.25rem;
-    border-radius: 25px;
-    overflow: hidden;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
+  color: #F0FFFF;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
 }
 
 .main-nav a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #F0FFFF; /* Light cyan color for the underline */
-    transform: scaleX(0); /* Initially hidden */
-    transition: transform 0.3s ease; /* Smooth transition for the underline effect */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #F0FFFF;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .main-nav a:hover,
 .main-nav a:focus {
-    background-color: #005f5f; /* Change background color on hover */
-    color: #FFFFFF; /* Change text color to white */
-    transform: translateY(-3px); /* Lift the button effect */
+  background-color: #005f5f;
+  color: #FFFFFF;
+  transform: translateY(-3px);
 }
 
 .main-nav a:hover::before {
-    transform: scaleX(1); /* Show the underline on hover */
+  transform: scaleX(1);
 }
 
-/* Hamburger Menu Icon */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    z-index: 1001;
-    padding: 10px;
+/* --- Hamburger / Menu Toggle --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-.hamburger .line {
-    width: 30px;
-    height: 4px;
-    background-color: #F0FFFF;
-    margin: 6px;
-    border-radius: 2px;
+.menu-toggle .bar {
+  width: 100%;
+  height: 4px;
+  background-color: #40BFBF; /* light tone of header */
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s;
 }
 
-.hamburger.active .line:nth-child(2) {
-    transform: none;
-}
-.hamburger.active .line:nth-child(1) {
-    transform: none;
-}
-.hamburger.active .line:nth-child(3) {
-    transform: none;
+/* Hover effect */
+.menu-toggle:hover .bar {
+  background-color: #66D9D9; /* lighter tone on hover */
 }
 
-/* --- Media Queries --- */
+/* Active (X shape) */
+.menu-toggle.active .bar:nth-child(1),
+.menu-toggle.active .bar:nth-child(3) {
+  background-color: #40BFBF !important;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
-    .main-header {
-        padding: 1rem;
-        height: auto;
-    }
-    
-    .logo-image {
-        height: 50px;
-        width: 50px;
-    }
+  .main-header {
+    padding: 1rem;
+    height: auto;
+  }
 
-    .logo-text {
-        font-size: 1.5rem;
-    }
+  .logo-image {
+    height: 50px;
+    width: 50px;
+  }
 
-    .main-nav {
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #008080;
-        border-top: 1px solid #005F5F;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
+  .logo-text {
+    font-size: 1.25rem; /* smaller on smartphones */
+    text-shadow: -1px -1px 0 #005f5f, 1px 1px 0 #005f5f;
+  }
 
-    .main-nav.nav-active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
+  .menu-toggle {
+    display: flex;
+  }
+.main-nav {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #66D9D9; /* updated background color */
+    border-top: 1px solid #005F5F;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path 0.4s ease-in-out, background-color 0.3s;
+}
 
-    .main-nav a {
-        margin: 1.25rem 0;
-        text-align: center;
-        width: 80%;
-        background-color: transparent;
-    }
+.main-nav.nav-active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+  /* Mobile links styling */
+  .main-nav a {
+    margin: 1rem 0;
+    text-align: center;
+    width: 80%;
+    /* Fix: Force transparent background for the links */
+    background-color: transparent !important;
+    color: #40BFBF !important; /* light tone matching toggle bars */
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    transition: color 0.3s, background-color 0.3s;
+  }
 
-    .hamburger {
-        display: block;
-    }
+  .main-nav a:hover,
+  .main-nav a:focus {
+    /* Add a subtle, darker background on hover/focus */
+    background-color: #005F5F !important;
+    color: #66D9D9 !important;
+  }
+
+  /* Ensure toggle bars always visible */
+  .menu-toggle .bar,
+  .menu-toggle.active .bar {
+    background-color: #40BFBF !important;
+  }
 }
 /* ==================== HERO SECTION ==================== */
 .hero-section {

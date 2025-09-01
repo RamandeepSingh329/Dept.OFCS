@@ -1027,3 +1027,30 @@ newsTrack.addEventListener('focusout', () => {
         }
     }, 10);
 });
+// --- Responsive Nav Toggle ---
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainNav = document.querySelector("#main-nav");
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+      // Toggle ARIA attributes
+      menuToggle.setAttribute("aria-expanded", !isExpanded);
+
+      // Toggle active states
+      menuToggle.classList.toggle("active");
+      mainNav.classList.toggle("nav-active");
+    });
+
+    // Optional: Close menu when a link is clicked (for mobile UX)
+    mainNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        mainNav.classList.remove("nav-active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+});
