@@ -829,6 +829,13 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     }
 }
  
+/* --- Parent Wrapper --- */
+.faculty-wrapper {
+    display: flex;
+    align-items: stretch; /* ensures sidebar & content match height */
+    gap: 1.5rem; /* spacing between content and sidebar */
+}
+
 /* --- Faculty Sidebar --- */
 .faculty-sidebar {
     flex: 1;
@@ -838,20 +845,29 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     overflow: hidden;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Fixed height */
+    height: 500px; /* adjust as needed */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Sidebar Hover */
 .faculty-sidebar:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
+/* Sidebar List */
 .faculty-sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex: 1;
+    overflow-y: auto; /* scroll if content exceeds height */
 }
 
+/* Sidebar Items */
 .faculty-sidebar-item {
     padding: 1rem 1.2rem;
     cursor: pointer;
@@ -883,7 +899,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     transition: background 0.3s, border-radius 0.3s;
 }
 
-/* 📱 Mobile: Remove rounded end caps on active items for the vertical stack */
 @media (max-width: 900px) {
     .faculty-sidebar-item:first-child.active {
         border-top-left-radius: 12px;
@@ -915,12 +930,47 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     animation: fadeIn 0.4s ease-in-out;
     text-align: center;
+
+    /* Fixed + matching height */
+    height: 500px; /* same as sidebar */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* scroll if content is larger */
 }
 
+/* Scrollbar Styling */
+.faculty-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.faculty-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.faculty-content::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+}
+
+.faculty-content::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3;
+}
+
+/* Firefox scrollbar */
+.faculty-content {
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f1f1f1;
+}
+
+/* Image Container */
 .faculty-content .faculty-image-container {
     margin-bottom: 1.5rem;
 }
 
+/* Faculty Image */
 .faculty-content img {
     width: clamp(180px, 14vw, 260px);
     height: clamp(220px, 16vw, 320px);
@@ -932,21 +982,20 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     animation: facultyFadeIn 1s ease forwards;
     animation-delay: 0.3s;
     transition: box-shadow 0.4s ease, transform 0.3s ease;
-    filter: none;
 }
 
 /* 📱 Smartphone-specific image adjustments */
 @media (max-width: 768px) {
     .faculty-content img {
-        width: 150px; /* fixed smaller width for mobile */
-        height: 180px; /* fixed smaller height */
+        width: 150px;
+        height: 180px;
         display: block;
         margin-left: auto;
         margin-right: auto;
     }
 }
 
-/* ====== Keyframes for PC Display ====== */
+/* ===== Keyframes ===== */
 @keyframes facultyFadeIn {
     0% {
         opacity: 0;
@@ -962,15 +1011,32 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     }
 }
 
+/* Faculty Name */
 .faculty-content h3 {
-    font-size: clamp(1.5rem, 4vw, 2rem); /* 📱 Use clamp for responsive font size */
-    margin-bottom: 1rem; /* 📱 Reduced margin for mobile */
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
     color: #1a237e;
     font-weight: 600;
     font-family: "Dancing Script", "Great Vibes", cursive;
     letter-spacing: 1px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
     text-shadow: 1px 1px 3px rgba(26, 35, 126, 0.15);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover underline animation */
+.faculty-content h3::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #3f51b5, #7986cb);
+    border-radius: 2px;
+    transition: width 0.4s ease;
 }
 
 .faculty-content h3:hover {
@@ -978,11 +1044,16 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     transform: scale(1.05);
 }
 
+.faculty-content h3:hover::after {
+    width: 100%;
+}
+
+/* Paragraphs */
 .faculty-content p {
-    font-size: 0.95rem; /* 📱 Slightly smaller font size for body text */
+    font-size: 0.95rem;
     color: #444;
-    line-height: 1.6; /* 📱 Slightly reduced line-height for readability */
-    margin-bottom: 1rem; /* 📱 Reduced margin */
+    line-height: 1.6;
+    margin-bottom: 1rem;
     font-style: italic;
     letter-spacing: 0.4px;
     position: relative;
@@ -1015,31 +1086,24 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     transform: scaleY(1);
 }
 
+/* Title Paragraph with Hover */
 .faculty-content p.title {
     font-weight: 700;
-    font-size: 1.05rem; /* 📱 Slightly smaller font size for mobile */
+    font-size: 1.05rem;
     color: #3f51b5;
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
     display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.faculty-content p.title::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 50%;
-    height: 2px;
-    background: linear-gradient(90deg, #3f51b5, #7986cb);
-    transition: width 0.4s ease;
+.faculty-content p.title:hover {
+    color: #0d1b6b;
+    transform: scale(1.05) translateY(-2px);
+    text-shadow: 1px 1px 6px rgba(63, 81, 181, 0.4);
 }
-
-.faculty-content p.title:hover::after {
-    width: 100%;
-}
-
 /* ===================== Custom Scrollbar for Smartphones ===================== */
 @media (max-width: 768px) {
     .faculty-content {
