@@ -9,3 +9,8 @@ document.addEventListener("contextmenu", (e)=>{
         e.preventDefault();
     }
 })
+
+document.addEventListener("contextmenu",(e)=>{
+    e.preventDefault();
+    // alert("Right click is isabled!")
+})
