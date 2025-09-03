@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const facultyData = [
         { name: "Dr. Kulwant Singh", title: "Head of Department", bio: "Dr. Kulwant Singh serves as the Head of Department, bringing 15+ years of distinguished teaching experience across leading academic institutions. With a strategic vision for academic excellence, he mentors both students and faculty, fostering innovation and practical problem-solving across emerging technologies. His leadership continues to shape a dynamic learning environment that equips graduates to tackle real-world challenges with confidence and expertise.", image: "assets/faculity/dr.kulwant-singh.jpeg" },
-        { name: "ER.Aneesh", title: "Assistant Professor", bio: "Er. Aneesh is an accomplished Assistant Professor with over 8 years of professional teaching experience across premier university institutions. Renowned for his commitment to academic excellence, he specializes in nurturing analytical thinking and advanced problem-solving skills among students. Through his dynamic and forward-thinking approach, Er. Aneesh empowers learners to innovate and thrive in today’s fast-evolving technological landscape. His dedication to shaping future-ready professionals continues to leave a lasting impact on academic and industry circles alike.", image: "assets/manmeet.jpg" },
         { name: "ER.Vikram Mangwana", title: "Assistant Professor", bio: "Vikram Mangwana is an Assistant Professor with over seven years of distinguished teaching experience across reputed universities. He empowers students with the analytical and technical acumen required to navigate complex digital environments, fostering a deep understanding of secure systems and investigative methodologies essential for modern technological resilience.", image: "assets/faculity/vikram-mangawana.jpeg" },
         { name: "ER.Sumit Garg", title: "Assistant Professor", bio: "Sumit Garg is an Assistant Professor who brings over seven years of teaching expertise cultivated within leading professional universities, fostering academic excellence and industry-aligned learning. He is committed to equipping future engineers with the analytical tools and practical knowledge needed to design resilient infrastructure and solve complex engineering challenges. His academic approach blends theoretical rigor with real-world application, fostering a generation of professionals capable of advancing sustainable development and precision-driven construction practices.", image: "assets/faculity/sumit-garg.jpeg" },
         { name: "ER.Amandeep Kaur", title: "Assistant Professor", bio: "Amandeep Kaur is an Assistant Professor with over 6+ years of teaching experience across well-regarded higher education institutions. She is committed to empowering students through a blend of theoretical instruction and practical application, guiding them to develop strong problem-solving skills and professional readiness for dynamic roles in the tech industry.", image: "assets/faculity/Er.Amandeep-Kaur.jpeg" },
@@ -1027,3 +1026,71 @@ newsTrack.addEventListener('focusout', () => {
         }
     }, 10);
 });
+
+const quotes = [
+  {
+    text: "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
+    author: "— Dr. A.P.J. Abdul Kalam"
+  },
+  {
+    text: "Arise, awake, and stop not until the goal is reached.",
+    author: "— Swami Vivekananda"
+  },
+  {
+    text: "The highest education is that which does not merely give us information but makes our life in harmony with all existence.",
+    author: "— Rabindranath Tagore"
+  },
+  {
+    text: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    author: "— Mahatma Gandhi"
+  },
+  {
+    text: "True knowledge is not attained by thinking. It is what you are; it is what you become.",
+    author: "— Sri Aurobindo"
+  },
+  {
+    text: "Cultivation of mind should be the ultimate aim of human existence.",
+    author: "— B. R. Ambedkar"
+  },
+  {
+    text: "The end-product of education should be a free creative man, who can battle against historical circumstances and adversities of nature.",
+    author: "— Sarvepalli Radhakrishnan"
+  },
+  {
+    text: "Educationists should build the capacities of the spirit of inquiry, creativity, entrepreneurial and moral leadership among students.",
+    author: "— Dr. A.P.J. Abdul Kalam"
+  }
+];
+
+let index = 0;
+const quoteText = document.getElementById("quote-text");
+const quoteAuthor = document.getElementById("quote-author");
+
+function showQuote(i) {
+  // Start fade-out
+  quoteText.classList.remove("fade-in");
+  quoteAuthor.classList.remove("fade-in");
+  quoteText.classList.add("fade-out");
+  quoteAuthor.classList.add("fade-out");
+
+  // After fade-out, change content and fade-in
+  setTimeout(() => {
+    quoteText.textContent = `“${quotes[i].text}”`;
+    quoteAuthor.textContent = quotes[i].author;
+
+    quoteText.classList.remove("fade-out");
+    quoteAuthor.classList.remove("fade-out");
+
+    quoteText.classList.add("fade-in");
+    quoteAuthor.classList.add("fade-in");
+  }, 500); // match CSS fade-out duration
+}
+
+// Initial load
+showQuote(index);
+
+// Auto change every 7s
+setInterval(() => {
+  index = (index + 1) % quotes.length;
+  showQuote(index);
+}, 7000);

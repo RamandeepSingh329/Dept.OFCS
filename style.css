@@ -49,7 +49,7 @@ h2 {
     font-size: clamp(2rem, 4.5vw, 2.6rem);
     text-align: center;
     margin-bottom: 1rem;
-    color: #1a237e; /* Deep indigo */
+    color: #1a237e; 
     font-weight: 700;
     letter-spacing: 0.5px;
     position: relative;
@@ -100,7 +100,7 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 3rem;
-    background-color: #008080; /* Dark Cyan */
+    background-color: #008080; 
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -124,25 +124,21 @@ a:hover {
 /* Base styles for the logo text */
 .logo-text {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  /* Reduced font size for a more compact look */
+  font-size: 1.6rem; 
   font-weight: 700;
   color: #F0FFFF;
-  /* Adds a subtle texture and depth effect */
+  /* Simplified text shadow for a cleaner, more compact effect */
   text-shadow: 
-    -1px -1px 0 #005f5f,  /* Top-left shadow for depth */
-    1px 1px 0 #005f5f,   /* Bottom-right shadow for depth */
-    -2px -2px 0 #004d4d, /* Deeper top-left shadow */
-    2px 2px 0 #004d4d;   /* Deeper bottom-right shadow */
+    1px 1px 0 #005f5f, 
+    2px 2px 0 #004d4d;
   
-  /* Required for 3D transforms to work */
   display: inline-block; 
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   outline: none;
-}
-
-/* Media query for smaller screens */
+}/* Media query for smaller screens */
 @media (max-width: 768px) {
   .logo-text {
     font-size: 1.5rem;
@@ -176,20 +172,20 @@ a:hover {
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #F0FFFF; /* Light cyan color for the underline */
-    transform: scaleX(0); /* Initially hidden */
-    transition: transform 0.3s ease; /* Smooth transition for the underline effect */
+    background-color: #F0FFFF; 
+    transform: scaleX(0); 
+    transition: transform 0.3s ease; 
 }
 
 .main-nav a:hover,
 .main-nav a:focus {
-    background-color: #005f5f; /* Change background color on hover */
-    color: #FFFFFF; /* Change text color to white */
-    transform: translateY(-3px); /* Lift the button effect */
+    background-color: #005f5f;
+    color: #FFFFFF; 
+    transform: translateY(-3px); 
 }
 
 .main-nav a:hover::before {
-    transform: scaleX(1); /* Show the underline on hover */
+    transform: scaleX(1); 
 }
 
 /* Hamburger Menu Icon */
@@ -262,17 +258,17 @@ a:hover {
 }
 /* ==================== HERO SECTION ==================== */
 .hero-section {
-    margin-top: 80px;
+    margin-top: 95px;
     position: relative;
     width: 100%;
-    height: 95vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; /* Ensure it's not repeated */
+    background-repeat: no-repeat; 
     
     /* Set the default (desktop) image here */
     background-image: url('assets/2.png');
@@ -295,9 +291,9 @@ a:hover {
   .hero-section {
     /* Set the mobile image here. This will override the desktop image */
     background-image: url('assets/android.avif');
-    height: 100vh; /* Set height to full viewport height for a tall look */
-    background-size: cover; /* Ensures the image covers the entire container without distortion */
-    background-position: center; /* Centers the image within the container */
+    height: 100vh; 
+    background-size: cover;
+    background-position: center; 
   }
 }
 .hero-overlay {
@@ -445,7 +441,7 @@ a:hover {
 
     .hero-section {
         height: 70vh;
-        margin-top: 60px; /* Adjusted to a more common mobile header height */
+        margin-top: 60px; 
     }
 
     .hero-content h1 {
@@ -470,7 +466,7 @@ a:hover {
     width: 100%;
     margin: 1rem auto;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ same as eligibility */
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
@@ -480,7 +476,7 @@ a:hover {
 }
 
 #courses:hover {
-    transform: translateY(-4px) scale(1.01); /* ✅ hover matches eligibility style */
+    transform: translateY(-4px) scale(1.01);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
                 inset 0 1px 4px rgba(255, 255, 255, 0.7);
 }
@@ -646,11 +642,11 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .course-detail h4 {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #1a237e;  /* professional deep blue */
+    color: #1a237e;  
     margin-top: 20px;
     margin-bottom: 10px;
     padding-left: 12px;
-    border-left: 4px solid #0ea5e9; /* sky-blue accent */
+    border-left: 4px solid #0ea5e9; 
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -658,13 +654,13 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* --- Individual Course Detail (Compact & Readable) --- */
 .course-detail {
     display: none;
-    font-size: 1.20rem;         /* uniform size */
-    line-height: 1.5;           /* improves readability */
+    font-size: 1.20rem;        
+    line-height: 1.5;           
     color: #444;
     animation: fadeIn 0.3s ease-in-out;
-    max-height: 340px;          /* slightly smaller height */
+    max-height: 340px;         
     overflow-y: auto;
-    padding-right: 6px;         /* space for scrollbar */
+    padding-right: 6px;         
 }
 
 .course-detail.active {
@@ -673,16 +669,16 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* Headings */
 .course-detail h3 {
-    font-size: 1.20rem;         /* same size for uniform look */
-    margin-bottom: 0.4rem;      /* compact spacing */
+    font-size: 1.20rem;         
+    margin-bottom: 0.4rem;      
     color: #1a237e;
-    font-weight: 700;           /* bold for emphasis */
-    text-align: center;         /* centered heading */
+    font-weight: 700;          
+    text-align: center;         
 }
 
 /* Paragraphs */
 .course-detail p {
-    margin-bottom: 0.5rem;      /* reduced margin */
+    margin-bottom: 0.5rem;      
     color: #555;
     font-size: 1.20rem;
     line-height: 1.5;
@@ -692,14 +688,14 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .course-detail ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 0.5rem;      /* compact */
+    margin-bottom: 0.5rem;      
 }
 
 .course-detail li {
     padding-left: 1rem;
     position: relative;
-    margin-bottom: 0.3rem;      /* tighter spacing */
-    line-height: 1.5;           /* still readable */
+    margin-bottom: 0.3rem;      
+    line-height: 1.5;          
     font-size: 1.20rem;
 }
 
@@ -938,8 +934,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* 📱 Smartphone-specific image adjustments */
 @media (max-width: 768px) {
     .faculty-content img {
-        width: 150px; /* fixed smaller width for mobile */
-        height: 180px; /* fixed smaller height */
+        width: 150px; 
+        height: 180px; 
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -963,8 +959,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 .faculty-content h3 {
-    font-size: clamp(1.5rem, 4vw, 2rem); /* 📱 Use clamp for responsive font size */
-    margin-bottom: 1rem; /* 📱 Reduced margin for mobile */
+    font-size: clamp(1.5rem, 4vw, 2rem); 
+    margin-bottom: 1rem; 
     color: #1a237e;
     font-weight: 600;
     font-family: "Dancing Script", "Great Vibes", cursive;
@@ -979,10 +975,10 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 .faculty-content p {
-    font-size: 0.95rem; /* 📱 Slightly smaller font size for body text */
+    font-size: 0.95rem; 
     color: #444;
-    line-height: 1.6; /* 📱 Slightly reduced line-height for readability */
-    margin-bottom: 1rem; /* 📱 Reduced margin */
+    line-height: 1.6; 
+    margin-bottom: 1rem;
     font-style: italic;
     letter-spacing: 0.4px;
     position: relative;
@@ -1017,7 +1013,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 .faculty-content p.title {
     font-weight: 700;
-    font-size: 1.05rem; /* 📱 Slightly smaller font size for mobile */
+    font-size: 1.05rem; 
     color: #3f51b5;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1092,11 +1088,11 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     .faculty-sidebar {
         max-width: 100%;
         border-radius: 12px;
-        order: 1; /* Pushes the sidebar to the top for a more natural flow */
+        order: 1; 
     }
     .faculty-content {
-        order: 2; /* Pushes the content below the sidebar */
-        padding: 1.5rem; /* Reduced padding for smaller screens */
+        order: 2; 
+        padding: 1.5rem; 
     }
 }
 /* =============================== */
@@ -1247,9 +1243,9 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
     flex-direction: column; 
     min-height: 500px;
-    border: none; /* Removed border */
+    border: none; 
     border-radius: 16px;
-    background:  linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ unified theme */
+    background:  linear-gradient(135deg, var(--light-bg), var(--light-green)); 
 
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
@@ -1264,7 +1260,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .facilities-container:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
-                0 0 12px rgba(99, 102, 241, 0.5); /* Indigo glow */
+                0 0 12px rgba(99, 102, 241, 0.5); 
 }
 
 /* Remove glowing animated border since border is gone */
@@ -1284,7 +1280,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     font-size: clamp(2rem, 5vw, 2.8rem);
     text-align: center;
     margin-bottom: 3rem;
-    color: #1a237e; /* Deep indigo */
+    color: #1a237e; 
     font-weight: 700;
     letter-spacing: 1px;
     position: relative;
@@ -1295,7 +1291,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     content: "";
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1a237e, #3949ab); /* Indigo gradient */
+    background: linear-gradient(90deg, #1a237e, #3949ab); 
     display: block;
     margin: 0.8rem auto 0 auto;
     border-radius: 2px;
@@ -1319,7 +1315,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* --- Updated Sidebar Styling with Rounded Corners --- */
 .facilities-sidebar {
-    /* Layout properties */
     flex: 0 0 260px;
     padding: 1.5rem;
     border-right: 1px solid #e0e0e0;
@@ -1327,10 +1322,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    
-    /* Style properties */
     background-color: #e0f7fa;
-    border-radius: 16px; /* Rounded corners instead of full circle */
+    border-radius: 16px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -1340,7 +1333,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     width: 100%;
     padding: 1rem 1.5rem;
     cursor: pointer;
-    border-radius: 12px; /* Rounded edges for items */
+    border-radius: 12px; 
     font-size: 1rem;
     font-weight: 500;
     color: #0077c2;
@@ -1371,26 +1364,24 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* --- Responsive: Horizontal scrolling for smartphones --- */
 @media (max-width: 768px) {
     .facilities-sidebar {
-        flex-direction: row;        /* switch to horizontal layout */
-        overflow-x: auto;           /* enable horizontal scroll */
-        overflow-y: hidden;         /* disable vertical */
+        flex-direction: row;        
+        overflow-x: auto;          
+        overflow-y: hidden;       
         gap: 0.75rem;
         padding: 1rem;
         border-right: none;
         border-radius: 16px;
-        -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
-        scroll-snap-type: x mandatory;     /* snapping behavior */
+        -webkit-overflow-scrolling: touch; 
+        scroll-snap-type: x mandatory;    
     }
 
     .facilities-sidebar-item {
-        min-width: 160px;           /* ensures scrollable width */
-        max-width: 220px;           /* prevents oversized blocks */
-        scroll-snap-align: start;   /* snap items neatly */
+        min-width: 160px;           
+        max-width: 220px;           
+        scroll-snap-align: start;  
         transform: none;
         text-align: center;
         border-radius: 12px;
-
-        /* Ensure truncation works in horizontal mode */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1401,8 +1392,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
         display: none;
     }
     .facilities-sidebar {
-        -ms-overflow-style: none;  /* IE/Edge */
-        scrollbar-width: none;     /* Firefox */
+        -ms-overflow-style: none;  
+        scrollbar-width: none;     
     }
 }
 
@@ -1417,11 +1408,11 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     border-radius: 12px;
     background: #fff;
     box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    display: flex; /* Added for better layout of h3, p, and button */
-    flex-direction: column; /* Stacks content vertically */
-    justify-content: center; /* Centers content vertically */
-    align-items: center; /* Centers content horizontally */
-    text-align: center; /* Ensures text is centered */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
 }
 
 .facilities-content.active {
@@ -1429,10 +1420,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     transform: translateY(0);
 }
 
-.facilities-content img {
-    /* No longer needed here as the image is hidden by default */
-    /* and styled within the .image-viewer modal */
-}
 
 .facilities-content h3 {
     font-size: 1.8rem;
@@ -1447,7 +1434,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     color: #555;
     line-height: 1.6;
     max-width: 800px;
-    margin: 0.5rem auto 1.5rem auto; /* Added bottom margin for button spacing */
+    margin: 0.5rem auto 1.5rem auto; 
     text-align: center;
     transition: color 0.3s ease;
 }
@@ -1459,7 +1446,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* === "View Image" Button === */
 .view-image-btn {
     padding: 12px 24px;
-  background: linear-gradient(135deg, #4A6464, #2F4F4F); /* Reverse gradient on hover */
+  background: linear-gradient(135deg, #4A6464, #2F4F4F); 
     color: white;
     border: none;
     border-radius: 6px;
@@ -1755,26 +1742,22 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
         margin-top: 1rem;
     }
     
-    /* Hide desktop copyright and show mobile one */
+    /* Show desktop copyright and hide mobile one */
     .footer-bottom .copyright {
-        display: none;
+        display: block; /* Ensures the desktop copyright is visible on mobile */
     }
+   
     .copyright-mobile {
-        display: block;
-        font-size: 0.8rem;
-        color: #a0a0a0;
-        margin-top: 1rem;
+        display: none; /* Explicitly hides the mobile copyright */
     }
 }
-
-
 /* === Research & Innovation Section (Synced with Courses & Faculty) === */
 #research {
     width: 100%;
     margin: 1rem auto;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ same unified gradient */
-    border-radius: 16px; /* only rounded corners remain */
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
+    border-radius: 16px; 
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
     position: relative;
@@ -1784,7 +1767,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 #research:hover {
-    transform: translateY(-4px) scale(1.01); /* ✅ hover matches others */
+    transform: translateY(-4px) scale(1.01);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
                 inset 0 1px 4px rgba(255, 255, 255, 0.7);
 }
@@ -1816,7 +1799,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     font-size: clamp(2rem, 5vw, 2.8rem);
     text-align: center;
     margin-bottom: 3rem;
-    color: #1a237e; /* Deep indigo applied */
+    color: #1a237e; 
     font-weight: 700;
     letter-spacing: 1px;
     position: relative;
@@ -1827,7 +1810,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     content: "";
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1a237e, #3949ab); /* Indigo gradient */
+    background: linear-gradient(90deg, #1a237e, #3949ab); 
     display: block;
     margin: 0.8rem auto 0 auto;
     border-radius: 2px;
@@ -1842,7 +1825,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* === Research Areas (Cards) === */
 .research-area {
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ unified theme */
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
     padding: 2rem;
     border-radius: 14px;
     border: 1px solid #e0e0e0;
@@ -1878,7 +1861,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .research-area h3 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
-    color: #1a237e; /* Deep indigo applied */
+    color: #1a237e; 
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -1954,11 +1937,11 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 #eligibility {
-  width: 100%; /* Full width */
-  max-width: none; /* Remove 900px cap */
+  width: 100%; 
+  max-width: none; 
   background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   border: 2px solid var(--border-color);
-  border-radius: 0; /* Remove border-radius so edges touch screen */
+  border-radius: 0;
   padding: clamp(2rem, 5vw, 3rem);
     margin: 1rem auto;
   box-shadow: 0 10px 25px var(--box-shadow-color);
@@ -2037,8 +2020,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* ========================================= */
 .cta-button {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #2F4F4F, #4A6464); /* Dark slate gradient */
-  color: #F8F4E3; /* Soft light color for contrast */
+  background: linear-gradient(135deg, #2F4F4F, #4A6464); 
+  color: #F8F4E3;
   border: none;
   border-radius: 0.6rem;
   font-size: 1.1rem;
@@ -2051,7 +2034,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 .cta-button:hover {
-  background: linear-gradient(135deg, #4A6464, #2F4F4F); /* Reverse gradient on hover */
+  background: linear-gradient(135deg, #4A6464, #2F4F4F); 
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(47,79,79,0.4);
   color: #FFFFFF;
@@ -2178,7 +2161,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     width: 100%;
     margin: 1rem auto;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ unified theme */
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
@@ -2189,7 +2172,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 }
 
 #student-spotlight:hover {
-    transform: translateY(-4px) scale(1.01); /* ✅ same hover style as others */
+    transform: translateY(-4px) scale(1.01); 
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
                 inset 0 1px 4px rgba(255, 255, 255, 0.7);
 }
@@ -2198,7 +2181,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     font-size: clamp(2rem, 5vw, 2.8rem);
     text-align: center;
     margin-bottom: 2rem;
-    color: #1a237e; /* Deep indigo */
+    color: #1a237e; 
     font-weight: 700;
     letter-spacing: 1px;
     position: relative;
@@ -2263,7 +2246,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .student-card-wrapper {
     position: relative;
     width: 100%;
-    min-height: 420px; /* slightly reduced */
+    min-height: 420px; 
 }
 
 /* Student Card */
@@ -2316,22 +2299,22 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 .student-details h3 {
     font-size: 1.4rem; 
-    margin-bottom: 0; /* removed bottom gap */
-    color: #1a237e; /* Deep indigo */
+    margin-bottom: 0; 
+    color: #1a237e; 
     font-weight: 700;
 }
 .student-course {
     font-size: 0.95rem;
-    color: #1a237e; /* Deep indigo for highlighting */
+    color: #1a237e; 
     font-style: italic;
-    font-weight: 600; /* makes it stand out more */
-    margin-bottom: 6px; /* reduced spacing */
+    font-weight: 600; 
+    margin-bottom: 6px; 
 }
 .student-quote {
     color: #444;
     line-height: 1.4;
     max-width: 520px;
-    margin: 4px auto 0 auto; /* tiny gap above quote */
+    margin: 4px auto 0 auto; 
     font-size: 1rem;
 }
 
@@ -2353,13 +2336,13 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* ================== News Banner Section ================== */
 .news-ticker {
-    background-color: #A52A2A; /* Main solid color */
-    color: #fff5f0; /* Light text for contrast */
+    background-color: #A52A2A; 
+    color: #fff5f0;
     padding: 12px 20px;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-    border-top: 3px solid #7f1d1d; /* Slightly darker shade */
+    border-top: 3px solid #7f1d1d; 
     border-bottom: 3px solid #7f1d1d;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     font-family: 'Montserrat', sans-serif;
@@ -2369,15 +2352,15 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* Optional hover effect for professional touch */
 .news-ticker:hover {
-    background-color: #8b1c1c; /* Darker brown on hover */
+    background-color: #8b1c1c; 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Individual news items container */
 .news-container {
     display: inline-block;
-    padding-left: 100%; /* Ensures the content starts off-screen to the right */
-    animation: marquee 90s linear infinite; /* Increased duration for slower movement */
+    padding-left: 100%;
+    animation: marquee 90s linear infinite; 
     will-change: transform;
 }
 
@@ -2396,7 +2379,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 
 /* Tags for news highlights */
 .news-tag {
-    background-color: #7f1d1d; /* Darker brown */
+    background-color: #7f1d1d;
     color: #fff5f0;
     padding: 4px 10px;
     border-radius: 20px;
@@ -2417,9 +2400,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
 }
-/* ================================================= */
-/* ==== News Slider Section - Auto-Changing Cards ==== */
-/* ================================================= */
 /* ========================= */
 /* 🔹 News & Events Section  */
 /* ========================= */
@@ -2427,7 +2407,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     width: 100%;
     margin: 0rem auto;
     padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); /* ✅ same as placements */
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12),
                 inset 0 1px 4px rgba(255, 255, 255, 0.5);
@@ -2447,7 +2427,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 .news-slider {
     position: relative;
     width: 100%;
-    max-width: 100%; /* 🔹 Stretch full width */
+    max-width: 100%; 
     margin: 3rem auto;
     padding: 3rem 2rem;
 background: linear-gradient(135deg, var(--light-bg), var(--light-green));
@@ -2555,7 +2535,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     display: flex;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
-    background: linear-gradient(135deg, #fdfdfd, #f5f7fa); /* same soft gradient */
+    background: linear-gradient(135deg, #fdfdfd, #f5f7fa);
     border-radius: 12px;
     box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5),
                 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -2587,7 +2567,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 .news-slider {
     position: relative;
     width: 100%;
-    max-width: 100%; /* 🔹 Stretch full width */
+    max-width: 100%; 
     margin: 3rem auto;
     padding: 3rem 2rem;
     background: linear-gradient(135deg, var(--light-bg), var(--light-green));
@@ -2960,7 +2940,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center; /* keep it centered like Courses */
+    text-align: center; 
 }
 
 #placements:hover {
@@ -3016,7 +2996,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
     max-width: 280px;
-    border: none; /* border removed */
+    border: none;
 }
 
 .placement-stat:hover {
@@ -3026,7 +3006,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 
 .placement-stat h3 {
     font-size: 2.5rem;
-    color: #1a237e; /* Deep indigo */
+    color: #1a237e; 
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
@@ -3097,37 +3077,35 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   }
 }
 /* =========================
-   HOD Blog Section Styles
+   Unified About + HOD Blog Styles
 ========================= */
-#hod-blog {
+#about-hod {
   width: 100%;
-  margin: 1rem auto;
-  padding: 2rem;
-  background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15),
-              0 6px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #fdfdfd, #f4f9ff);
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.75;
+  color: #2b2b2b;
   position: relative;
   overflow: hidden;
-  text-align: center;
   transition: all 0.3s ease-in-out;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.7;
-  color: #2b2b2b;
 }
 
-#hod-blog:hover {
+#about-hod:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.18),
-              0 8px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.16),
+              0 8px 10px rgba(0, 0, 0, 0.10);
 }
 
 /* 🔹 Animated glowing border */
-#hod-blog::before {
+#about-hod::before {
   content: "";
   position: absolute;
   inset: -3px;
-  border-radius: 15px;
+  border-radius: 18px;
   padding: 3px;
   background: linear-gradient(270deg, #0077ff, #00d4ff, #ff00ff, #0077ff);
   background-size: 300% 300%;
@@ -3140,8 +3118,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   pointer-events: none;
 }
 
-#hod-blog:hover::before,
-#hod-blog:focus-within::before {
+#about-hod:hover::before,
+#about-hod:focus-within::before {
   opacity: 1;
 }
 
@@ -3152,146 +3130,178 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 }
 
 /* =========================
-   HOD Header Section
+   Section Headers
 ========================= */
-.hod-blog-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Main Title */
-.hod-blog-header .main-heading {
+.main-heading {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1.2rem;
-  color: #0d47a1;
-}
-
-/* HOD Blog Header */
-.hod-blog-header {
-  background: #f9f4ef; /* Warm white highlight */
-  padding: 1.8rem 2rem;
-  border-radius: 12px;
-  text-align: center;
-  color: #0d47a1; /* Deep indigo for text */
-  font-family: "Georgia", "Times New Roman", cursive; /* Cursive tone */
-}
-
-/* Main Heading */
-.hod-blog-header .main-heading {
-  font-size: 1.9rem;
-  font-weight: 700;
   margin-bottom: 1rem;
-  font-style: italic;
-}
-
-/* Meta Heading */
-.hod-blog-header .meta-heading {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #0d47a1; /* Deep indigo */
-  font-style: italic; /* Cursive tone */
-  font-family: "Georgia", "Times New Roman", cursive;
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.5px;
-}
-
-/* Meta Author */
-.hod-blog-header .meta-author {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  font-style: italic;
-  opacity: 0.9; /* Softer effect */
-}
-
-
-/* Sub-heading */
-.hod-blog-header .sub-heading {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1565c0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0 0 0.5rem;
-}
-
-/* HOD Name */
-.hod-blog-header .hod-name {
-  font-size: 1.2rem;
-  font-weight: 600;
   color: #0d47a1;
-  margin-bottom: 0.3rem;
+  text-align: center;
   position: relative;
-  display: inline-block;
-  padding-bottom: 5px;
 }
 
-.hod-blog-header .hod-name::after {
+.main-heading::after {
   content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 100%;
+  display: block;
+  width: 70px;
+  height: 4px;
+  margin: 0.6rem auto 0;
   background: linear-gradient(90deg, #0d47a1, #42a5f5);
   border-radius: 2px;
 }
 
-/* Author Info */
-.hod-blog-header .hod-author {
-  font-size: 1rem;
-  color: #333;
-  font-style: italic;
-  margin: 0 auto;
-  background-color: #eaf6ff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  display: inline-block;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.hod-blog-header .hod-author:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-}
-
-/* 📱 Mobile adjustments */
-@media (max-width: 768px) {
-  #hod-blog {
-    padding: 1.5rem;
-    margin: 2rem auto;
-  }
-
-  .hod-blog-header .main-heading {
-    font-size: 1.6rem;
-  }
-
-  .hod-blog-header .meta-box {
-    width: 100%;
-    display: block;
-  }
-
-  .hod-blog-header .sub-heading {
-    font-size: 1rem;
-  }
-
-  .hod-blog-header .hod-name {
-    font-size: 1.05rem;
-  }
-
-  .hod-blog-header .hod-author {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
+.intro {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 850px;
+  margin: 0 auto 2rem;
+  line-height: 1.8;
+  text-align: center;
 }
 
 /* =========================
-   Blog Content Styles
+   About University Highlights
 ========================= */
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin: 2.5rem 0;
+}
+
+.highlight {
+  background: #fff;
+  border-radius: 15px;
+  padding: 1.8rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 128, 128, 0.15);
+}
+
+.highlight h3 {
+  font-size: 1.4rem;
+  color: #1a237e;
+  margin-bottom: 1rem;
+}
+
+.highlight p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.quote-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem auto;
+  text-align: center;
+  max-width: 850px; /* keeps it nicely readable */
+  perspective: 1000px; /* subtle 3D depth for smoother animation */
+}
+
+.quote-box blockquote {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, #f9fbff, #f3f7fc);
+  font-size: 1.3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  line-height: 1.9;
+  text-align: center;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.quote-box blockquote:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.quote-box blockquote p {
+  margin: 0;
+  font-style: italic;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.quote-box blockquote footer {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #222;
+  font-style: italic;
+  opacity: 0.9;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Smooth fade-slide animations */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+  }
+}
+/* =========================
+   HOD Blog Section
+========================= */
+.hod-blog-header {
+  background: #f9f4ef;
+  padding: 1.8rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #0d47a1;
+  font-family: "Georgia", "Times New Roman", cursive;
+}
+
+.meta-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.meta-author {
+  font-size: 1.05rem;
+  font-style: italic;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Blog Content */
 .hod-blog-box {
-  background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
-  padding: 2.5rem;
+  background: #ffffff;
+  padding: 2.2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
@@ -3305,153 +3315,189 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   color: #2e2e2e;
   line-height: 1.9;
   font-family: "Georgia", "Times New Roman", serif;
-  letter-spacing: 0.2px;
-  word-spacing: 1px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .hod-blog-box p:hover {
   color: #0d47a1;
   text-shadow: 0 0 1px rgba(13, 71, 161, 0.3);
-  cursor: default;
 }
 
 /* =========================
-   Blockquote Styles
+   Responsive
 ========================= */
-.hod-blog-box blockquote {
-  margin: 1.8rem auto;
-  padding: 1.5rem 2rem;
-  border-left: 5px solid #0d47a1;
-  background: linear-gradient(to right, #f9fbff, #f3f7fc);
-  color: #1c1c1c;
-  font-style: italic;
-  font-size: 1.1rem;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  border-radius: 10px;
-  line-height: 1.75;
-  position: relative;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  transition: all 0.3s ease;
-}
+@media (max-width: 768px) {
+  #about-hod {
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
 
-.hod-blog-box blockquote:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-}
-.meta-box {
-  background: #f5faff;
-  padding: 1.8rem 2rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  max-width: 700px;
-  margin: 2rem auto;
-  transition: all 0.3s ease;
-}
+  .main-heading {
+    font-size: 1.6rem;
+  }
 
-.meta-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-}
+  .intro {
+    font-size: 1rem;
+  }
 
-.meta-box .meta-heading {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1565c0;
-  margin-bottom: 1rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
+  .highlight h3 {
+    font-size: 1.2rem;
+  }
 
-.meta-box .meta-author {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.6;
-  font-style: italic;
+  .hod-blog-box p {
+    font-size: 1rem;
+  }
 }
-
-.meta-box .meta-author {
-  color: #1565c0;   /* Highlighted blue */
-  font-weight: 700; /* Bold for strong emphasis */
-  font-style: normal;
-  font-size: 1.1rem;
-}
-
 /* --- Floating WhatsApp Button --- */
 .whatsapp-float {
-    position: fixed;
-    width: 55px;
-    height: 55px;
-    bottom: 20px; /* Adjusted for stacking */
-    right: 30px; /* Adjusted for stacking */
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    display: flex; /* Centering with flexbox */
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    animation: pulse-animation 1.5s infinite ease-in-out; /* Smooth timing and shorter duration */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  height: 55px;
+  background-color: #25d366; 
+  color: #fff;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 55px;
+  padding: 0; 
+  overflow: hidden; 
+  transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease, gap 0.4s ease;
+  animation: pulse-animation 1.8s infinite ease-in-out;
 }
 
-.whatsapp-float:hover {
-    animation: none;
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
+/* WhatsApp Icon */
 .whatsapp-icon {
-    font-size: 24px; /* Scaled to match new button size */
+  font-size: 28px; 
+  color: #fff; 
+  flex-shrink: 0; 
+  line-height: 1; 
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
+/* Hidden Text */
+.whatsapp-text {
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.4s ease, max-width 0.4s ease;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+}
+
+/* Hover / Focus effect */
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+  width: 180px; 
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: none;
+  gap: 12px;
+}
+
+/* Show text smoothly */
+.whatsapp-float:hover .whatsapp-text,
+.whatsapp-float:focus .whatsapp-text {
+  opacity: 1;
+  max-width: 120px; 
+}
+
+/* Subtle pulse animation */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+}
 /* --- Floating Email Button --- */
 .email-float {
-    position: fixed;
-    width: 55px;
-    height: 55px;
-    bottom: 90px; /* Adjusted for stacking */
-    right: 30px; /* Adjusted for stacking */
-    background-color: #D44638;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    display: flex; /* Centering with flexbox */
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    animation: pulse-animation 1.5s infinite ease-in-out; /* Smooth timing and shorter duration */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: fixed;
+  bottom: 90px; 
+  right: 30px;
+  height: 55px;
+  background-color: #D44638; 
+  color: #fff;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0; 
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 55px; 
+  padding: 0;
+  overflow: hidden;
+  transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease, gap 0.4s ease;
+  animation: pulse-email 1.8s infinite ease-in-out;
 }
 
-.email-float:hover {
-    animation: none;
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
+/* Email Icon */
 .email-icon {
-    font-size: 24px; /* Scaled to match new button size */
+  font-size: 26px;
+  color: #fff;
+  flex-shrink: 0;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
-/* Define a single set of keyframes for both buttons to ensure they are synchronized. */
-@keyframes pulse-animation {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0, 200, 150, 0.7); /* Using a more generic theme color */
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 15px rgba(0, 200, 150, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0, 200, 150, 0);
-    }
+/* Hidden Text */
+.email-text {
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0; 
+  transition: opacity 0.4s ease, max-width 0.4s ease;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+}
+
+/* Hover / Focus effect */
+.email-float:hover,
+.email-float:focus {
+  width: 180px;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: none;
+  gap: 12px; 
+}
+
+.email-float:hover .email-text,
+.email-float:focus .email-text {
+  opacity: 1;
+  max-width: 120px;
+}
+
+/* Pulse Animation (red version) */
+@keyframes pulse-email {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(212, 70, 56, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(212, 70, 56, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(212, 70, 56, 0.4);
+  }
 }
