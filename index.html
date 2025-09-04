@@ -539,6 +539,17 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
                 </p>
             </div>
         </div>
+                <div class="student-card-item">
+            <img src="assets/Students/ishan.jpg" alt="Sukhchain Singh" class="student-image">
+            <div class="student-details">
+                <h3>Mohammed Ishan</h3>
+                <p class="student-course">Master of Computer Application</p>
+<p class="student-quote">
+  Achieved 74.2% in MCA Semester 2, showcasing Mohammed Ishan’s strong grasp of computer applications and consistent academic excellence.
+</p>
+            </div>
+        </div>
+
         <div class="student-card-item">
             <img src="assets/Students/sukhchain.jpeg" alt="Sukhchain Singh" class="student-image">
             <div class="student-details">
@@ -656,54 +667,51 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
         </section>
 
 <section id="eligibility" class="container">
-    <h2>Course Eligibility</h2>
-    <p class="section-lead">Find out instantly if you qualify for your chosen course.</p>
-    <div class="eligibility-box">
-        <form id="eligibility-form">
-            <label for="course">Select Course:</label>
-            <select id="course" name="course" required>
-                <option value="">-- Choose a course --</option>
-                <option value="bca">BCA</option>
-                <option value="bsc-cs">B.Sc Computer Science</option>
-                <option value="bsc-it">B.Sc Information Technology</option>
-                <option value="btech">B.Tech (CSE)</option>
-                <option value="mca">MCA</option>
-                <option value="msc-cs">M.Sc Computer Science</option>
-                <option value="msc-it">M.Sc Information Technology</option>
-                <option value="bca-mca-integrated">BCA + MCA Integrated</option>
-                <option value="pgdca">PGDCA</option>
-                <option value="diploma-cs-eng">Diploma in Computer Science & Engineering</option>
-                <option value="diploma-elec-eng">Diploma in Electrical Engineering</option>
-                <option value="diploma-ece-eng">Diploma in Electronics & Communication</option>
-                <option value="diploma-mech-eng">Diploma in Mechanical Engineering</option>
-                <option value="diploma-civil-eng">Diploma in Civil Engineering</option>
-            </select>
+  <h2>Course Eligibility</h2>
+  <p class="section-lead">Find out instantly if you qualify for your chosen course.</p>
 
-            <label for="qualification">Your Last Qualification:</label>
-            <select id="qualification" name="qualification" required>
-                <option value="">-- Select qualification --</option>
-                <option value="10">10th</option>
-                <option value="12-science">12th (Science Stream)</option>
-                <option value="12-commerce">12th (Commerce Stream)</option>
-                <option value="12-arts">12th (Arts Stream)</option>
-                <option value="graduation-any">Graduation (Any Stream)</option>
-                <option value="graduation-cs">Graduation (CS)</option>
-                <option value="graduation-it">Graduation (IT)</option>
-                <option value="btech">B.Tech / BE</option>
-                <option value="msc">M.Sc</option>
-                <option value="pgdca">PGDCA</option>
-            </select>
+  <div class="eligibility-box">
+    <form id="eligibility-form">
+      <!-- Course Selection -->
+      <label for="course">Select Course:</label>
+      <select id="course" name="course" required>
+        <option value="">-- Choose a course --</option>
+        <option value="bca">BCA</option>
+        <option value="bsc-cs">B.Sc Computer Science</option>
+        <option value="bsc-it">B.Sc Information Technology</option>
+        <option value="btech">B.Tech (CSE)</option>
+        <option value="mca">MCA</option>
+        <option value="msc-cs">M.Sc Computer Science</option>
+        <option value="msc-it">M.Sc Information Technology</option>
+        <option value="bca-mca-integrated">BCA + MCA Integrated</option>
+        <option value="pgdca">PGDCA</option>
+        <option value="diploma-cs-eng">Diploma in Computer Science & Engineering</option>
+        <option value="diploma-elec-eng">Diploma in Electrical Engineering</option>
+        <option value="diploma-ece-eng">Diploma in Electronics & Communication</option>
+        <option value="diploma-mech-eng">Diploma in Mechanical Engineering</option>
+        <option value="diploma-civil-eng">Diploma in Civil Engineering</option>
+      </select>
 
-            <button type="submit" class="cta-button">Check Eligibility</button>
-        </form>
-    </div>
-    
-    <div id="custom-popup" class="popup-overlay">
-        <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <div id="popup-result-message"></div>
-        </div>
-    </div>
+      <!-- Qualification Selection -->
+      <label for="qualification">Your Last Qualification:</label>
+      <select id="qualification" name="qualification" required>
+        <option value="">-- Select qualification --</option>
+        <option value="10">10th</option>
+        <option value="12-science">12th (Science Stream)</option>
+        <option value="12-commerce">12th (Commerce Stream)</option>
+        <option value="12-arts">12th (Arts Stream)</option>
+        <option value="graduation-any">Graduation (Any Stream)</option>
+        <option value="graduation-cs">Graduation (CS)</option>
+        <option value="graduation-it">Graduation (IT)</option>
+        <option value="btech">B.Tech / BE</option>
+        <option value="msc">M.Sc</option>
+        <option value="pgdca">PGDCA</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit" class="cta-button">Check Eligibility</button>
+    </form>
+  </div>
 </section>
 
         <section id="facilities" class="container reveal">
@@ -806,10 +814,11 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
         hands-on experience. The faculty’s commitment to mentoring enables 
         learners to grow as critical thinkers, innovators, and problem-solvers.
       </p>
-      <blockquote>
-        “We aspire to create future leaders in technology — professionals 
-        driven by knowledge, guided by innovation, and committed to excellence.”
-      </blockquote>
+      <blockquote class="vision-quote">
+  “We aspire to create future leaders in technology — professionals 
+  driven by knowledge, guided by innovation, and committed to excellence.”
+</blockquote>
+
       <p>
         Over the years, our students have excelled in academics, contributed 
         to impactful projects, and strengthened the university’s reputation 
@@ -821,6 +830,7 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
   </article>
 
 </section>
+
 <a href="https://wa.me/919251667416" class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp whatsapp-icon"></i>
   <span class="whatsapp-text">Connect with us</span>
@@ -830,6 +840,7 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
   <i class="fa-solid fa-envelope email-icon"></i>
   <span class="email-text">Email Us</span>
 </a>
+
     </main>
 
     <footer class="main-footer">

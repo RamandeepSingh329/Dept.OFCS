@@ -2075,77 +2075,97 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
   animation: shake 0.5s ease;
 }
 
-/* ========================================= */
-/* === CUSTOM POP-UP STYLING & ANIMATIONS === */
-/* ========================================= */
+/* ================================ */
+/* === NOTIFICATION STYLING === */
+/* ================================ */
 
-.popup-overlay {
-  display: none;
+.notification-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(5px);
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.popup-content {
+.notification {
   background: var(--popup-bg);
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 500px;
-  width: 90%;
-  text-align: center;
+  padding: 15px 20px;
+  border-radius: 10px;
+  min-width: 280px;
+  max-width: 350px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #333;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transform: scale(0.8) translateY(-20px);
+  transform: translateX(120%);
   opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease-out;
+  animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
-.popup-content.show-popup {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
-
-.popup-content.hide-popup {
-  transform: scale(0.9) translateY(20px);
-  opacity: 0;
-}
-
-.close-btn {
+/* Close Button */
+.notification .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  color: #888;
+  top: 8px;
+  right: 10px;
+  font-size: 20px;
+  color: #666;
   cursor: pointer;
   transition: color 0.2s, transform 0.2s;
 }
 
-.close-btn:hover {
-  color: #333;
+.notification .close-btn:hover {
+  color: #000;
   transform: rotate(90deg);
 }
 
-#popup-result-message p {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin: 0;
+/* Success, Error, Info, Warning Variants */
+.notification.success {
+  border-left: 6px solid var(--success-text);
 }
 
-#popup-result-message.eligible {
-  color: var(--success-text);
+.notification.error {
+  border-left: 6px solid var(--error-text);
 }
 
-#popup-result-message.not-eligible {
-  color: var(--error-text);
+.notification.info {
+  border-left: 6px solid var(--clean-blue, #0077ff);
 }
 
+.notification.warning {
+  border-left: 6px solid #f39c12;
+}
+
+/* Animation for entry */
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for exit */
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* Auto-hide effect */
+.notification.hide {
+  animation: slideOut 0.5s ease forwards;
+}
 /* New, more professional keyframes */
 @keyframes shake-animation {
   0%, 100% { transform: translateX(0); }
@@ -3083,7 +3103,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   width: 100%;
   margin: 2rem auto;
   padding: 2.5rem;
-  background: linear-gradient(135deg, #fdfdfd, #f4f9ff);
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
   border-radius: 18px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -3152,13 +3172,26 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 }
 
 .intro {
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
   font-size: 1.1rem;
   color: #444;
   max-width: 850px;
   margin: 0 auto 2rem;
+  padding: 2rem;
   line-height: 1.8;
   text-align: center;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  font-family: "Georgia", "Times New Roman", serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.intro:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
 
 /* =========================
    About University Highlights
@@ -3171,7 +3204,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 }
 
 .highlight {
-  background: #fff;
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
   border-radius: 15px;
   padding: 1.8rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
@@ -3206,24 +3239,28 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 }
 
 .quote-box blockquote {
-  display: inline-block;
-  margin: 0 auto;
-  padding: 2rem 2.5rem;
-  background: linear-gradient(135deg, #f9fbff, #f3f7fc);
-  font-size: 1.3rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  line-height: 1.9;
+  display: block;
+  max-width: 750px;              /* keeps it neat on wide screens */
+  margin: 2rem auto;             /* centers horizontally */
+  padding: 1.6rem 2rem;
+  background: linear-gradient(135deg, #fffdf7, #fefaf3);
+  font-size: 1.2rem;
+  font-family: "Georgia", "Times New Roman", serif; /* elegant font */
+  border-left: 5px solid #008080; /* professional accent bar */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  line-height: 1.8;
   text-align: center;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
+  color: #0d3d3d;
+  letter-spacing: 0.3px;          /* subtle spacing for readability */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .quote-box blockquote:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(0, 128, 128, 0.25);
 }
+
 
 .quote-box blockquote p {
   margin: 0;
@@ -3332,7 +3369,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
 
 /* Blog Content */
 .hod-blog-box {
-  background: #ffffff;
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -3354,6 +3391,30 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
   color: #0d47a1;
   text-shadow: 0 0 1px rgba(13, 71, 161, 0.3);
 }
+.vision-quote {
+  display: block;
+  max-width: 750px;              /* keeps it neat on wide screens */
+  margin: 2rem auto;             /* centers horizontally */
+  padding: 1.6rem 2rem;
+background: linear-gradient(135deg, #fffdf7, #fefaf3);
+  font-size: 1.2rem;
+  font-family: "Georgia", "Times New Roman", serif; /* elegant font */
+  font-style: italic;
+  border-left: 5px solid #008080; /* professional accent bar */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  line-height: 1.8;
+  text-align: center;
+  color: #0d3d3d;
+  letter-spacing: 0.3px;          /* subtle spacing for readability */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vision-quote:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(0, 128, 128, 0.25);
+}
+
 
 /* =========================
    Blockquote

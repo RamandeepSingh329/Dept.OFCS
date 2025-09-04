@@ -687,21 +687,25 @@ if (newsTicker && newsContainer) {
 document.addEventListener('DOMContentLoaded', () => {
     // Cached DOM elements
     const eligibilityForm = document.getElementById('eligibility-form');
-    const popupOverlay = document.getElementById('custom-popup');
-    const popupMessageDiv = document.getElementById('popup-result-message');
-    const closeBtn = document.querySelector('.close-btn');
-    const popupContent = popupOverlay?.querySelector('.popup-content');
 
-    // Optimized eligibility rules based on the provided document
+    // === Notification container ===
+    let notificationContainer = document.querySelector('.notification-container');
+    if (!notificationContainer) {
+        notificationContainer = document.createElement('div');
+        notificationContainer.className = 'notification-container';
+        document.body.appendChild(notificationContainer);
+    }
+
+    // === Eligibility rules ===
     const eligibilityRules = {
         'bca': {
-            required: ['12-science', '12-commerce', '12-arts'], // Keeping these specific for flexibility
+            required: ['12-science', '12-commerce', '12-arts'],
             name: 'Bachelor of Computer Applications (BCA)',
             advice: 'a 10+2 (Class 12th) qualification from a recognized board with at least 50% marks.'
         },
         'bca-mca-integrated': {
             required: ['12-science', '12-commerce', '12-arts'],
-            name: 'BCA+MCA Integrated',
+            name: 'BCA + MCA Integrated',
             advice: 'a 10+2 (Class 12th) qualification from a recognized board with at least 50% marks.'
         },
         'mca': {
@@ -725,7 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
             advice: 'a 10+2 qualification, preferably with a Science stream.'
         },
         'btech': {
-            required: ['12-science'], // Assuming 12-science covers the PCM requirement
+            required: ['12-science'],
             name: 'B.Tech in Computer Science Engineering',
             advice: 'a 10+2 qualification with Physics, Chemistry, and Mathematics as mandatory subjects and a minimum of 50% marks.'
         },
@@ -766,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Utility: Check eligibility
+    // === Utility: Check eligibility ===
     const checkEligibility = (course, qualification) => {
         const rule = eligibilityRules[course];
         if (!rule) return { valid: false, msg: "⚠️ Invalid course selected." };
@@ -778,64 +782,52 @@ document.addEventListener('DOMContentLoaded', () => {
         const isEligible = rule.required.includes(qualification);
         const msg = isEligible
             ? `🎉 Congratulations! You are eligible for the ${rule.name} program.`
-            : `❌ To be eligible for the ${rule.name}, you need ${rule.advice}.`;
+            : `❌ To be eligible for the ${rule.name}, you need ${rule.advice}`;
 
         return { valid: true, isEligible, msg };
     };
 
-    // Show popup with animation
-    const showPopup = (msg, isSuccess) => {
-        if (!popupOverlay || !popupContent) return;
+    // === Show notification ===
+    const showNotification = (msg, type = 'info') => {
+        const notif = document.createElement('div');
+        notif.className = `notification ${type}`;
+        notif.innerHTML = `
+            <span class="notif-message">${msg}</span>
+            <span class="close-btn">&times;</span>
+        `;
 
-        popupMessageDiv.innerHTML = `<p>${msg}</p>`;
-        popupMessageDiv.className = isSuccess ? 'eligible' : 'not-eligible';
+        // Append to container
+        notificationContainer.appendChild(notif);
 
-        popupOverlay.style.display = 'flex';
-        popupContent.style.transform = 'scale(0.8) translateY(-20px)';
-        popupContent.style.opacity = '0';
+        // Close button action
+        notif.querySelector('.close-btn').addEventListener('click', () => {
+            hideNotification(notif);
+        });
 
-        setTimeout(() => {
-            popupContent.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            popupContent.style.transform = 'scale(1) translateY(0)';
-            popupContent.style.opacity = '1';
-            if (!isSuccess) {
-                popupContent.classList.add('shake-animation');
-                setTimeout(() => popupContent.classList.remove('shake-animation'), 500);
-            }
-        }, 50);
+        // Auto remove after 5s
+        setTimeout(() => hideNotification(notif), 5000);
     };
 
-    // Hide popup
-    const hidePopup = () => {
-        if (!popupOverlay || !popupContent) return;
-        popupContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-        popupContent.style.transform = 'scale(0.9) translateY(20px)';
-        popupContent.style.opacity = '0';
-
-        setTimeout(() => {
-            popupOverlay.style.display = 'none';
-            eligibilityForm?.reset();
-        }, 300);
+    // === Hide notification ===
+    const hideNotification = (notif) => {
+        notif.classList.add('hide');
+        setTimeout(() => notif.remove(), 500);
     };
 
-    // Event: Form submission
+    // === Event: Form submission ===
     eligibilityForm?.addEventListener('submit', e => {
         e.preventDefault();
         const course = document.getElementById('course')?.value;
         const qualification = document.getElementById('qualification')?.value;
 
         const { valid, isEligible, msg } = checkEligibility(course, qualification);
+
         if (!valid) {
-            showPopup(msg, false);
+            showNotification(msg, 'warning');
             return;
         }
-        showPopup(msg, isEligible);
-    });
-
-    // Event: Close popup
-    closeBtn?.addEventListener('click', hidePopup);
-    popupOverlay?.addEventListener('click', e => {
-        if (e.target === popupOverlay) hidePopup();
+        showNotification(msg, isEligible ? 'success' : 'error');
+        eligibilityForm.reset();
     });
 });
 document.addEventListener("DOMContentLoaded", () => {
