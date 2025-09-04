@@ -3348,6 +3348,32 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     font-size: 1rem;
   }
 }
+blockquote {
+  display: inline-block;
+  margin: 1.5rem auto;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, #f9fbff, #f3f7fc);
+  font-size: 1.05rem;   /* reduced */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  line-height: 1.6;     /* tighter */
+  text-align: center;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+blockquote:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+blockquote p {
+  margin: 0;
+  font-style: italic;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
 /* --- Floating WhatsApp Button --- */
 .whatsapp-float {
   position: fixed;

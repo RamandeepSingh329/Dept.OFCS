@@ -852,7 +852,7 @@ const newsData = [
   },
 
   {
-    images: ["assets/Int.conference/Int.conference.jpeg"],
+    images: ["assets/Int.conference/Int.conference.jpeg", "assets/Int.conference/img1.jpeg", "assets/Int.conference/img2.jpeg", "assets/Int.conference/img3.jpeg", "assets/Int.conference/img4.jpeg", "assets/Int.conference/img5.jpeg", "assets/Int.conference/img6.jpeg"],
     title: "International Conference on Cyber Security & Laws in the context of Innovations and Intellectual Properry ICCL-IP 2025",
     icon: "fas fa-user-graduate",
     desc: "26th – 27th September 2025 An international forum bringing together researchers, professionals, and innovators to explore advancements in cyber security, legal frameworks, and the protection of intellectual property in the digital era."},
@@ -881,7 +881,7 @@ const newsData = [
     desc: "Pioneering researchers, visionary keynote speakers, and tech innovators explore emerging paradigms and foster collaboration."
   },
   {
-    images: ["assets/workshop/workshop.jpg", "assets/workshop/workshop1.jpg", "assets/workshop2.jpg"],
+    images: ["assets/workshop/workshop.jpeg", "assets/workshop/workshop1.jpeg", "assets/workshop/workshop3.jpeg"],
     title: "Brighter Tech Workshop",
     icon: "fas fa-laptop-code",
     desc: "Hands-on workshop on Cybersecurity Trends offering aspirants practical insights into emerging threats and defense strategies."
