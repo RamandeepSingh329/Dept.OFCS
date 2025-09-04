@@ -685,10 +685,13 @@ if (newsTicker && newsContainer) {
     newsTicker.addEventListener('focusout', handleTickerAnimation);
 }
 document.addEventListener('DOMContentLoaded', () => {
-    // Cached DOM elements
     const eligibilityForm = document.getElementById('eligibility-form');
+    if (!eligibilityForm) {
+        console.error('Eligibility form not found. Make sure the ID is correct.');
+        return;
+    }
 
-    // === Notification container ===
+    // Create notification container if not exists
     let notificationContainer = document.querySelector('.notification-container');
     if (!notificationContainer) {
         notificationContainer = document.createElement('div');
@@ -696,137 +699,93 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(notificationContainer);
     }
 
-    // === Eligibility rules ===
+    // Eligibility rules
     const eligibilityRules = {
-        'bca': {
-            required: ['12-science', '12-commerce', '12-arts'],
-            name: 'Bachelor of Computer Applications (BCA)',
-            advice: 'a 10+2 (Class 12th) qualification from a recognized board with at least 50% marks.'
-        },
-        'bca-mca-integrated': {
-            required: ['12-science', '12-commerce', '12-arts'],
-            name: 'BCA + MCA Integrated',
-            advice: 'a 10+2 (Class 12th) qualification from a recognized board with at least 50% marks.'
-        },
-        'mca': {
-            required: ['btech', 'graduation-cs', 'graduation-science-math', 'graduation-commerce-math', 'graduation-arts-math', 'pgdca'],
-            name: 'Master of Computer Applications (MCA)',
-            advice: 'a Bachelor\'s degree in CS/IT or a B.Sc./B.Com./B.A. with Mathematics at the 10+2 or Graduation Level, with at least 50% marks.'
-        },
-        'pgdca': {
-            required: ['graduation'],
-            name: 'Post Graduate Diploma in Computer Applications (PGDCA)',
-            advice: 'a Bachelor\'s degree from a UGC-recognized university, typically with 45-50% marks.'
-        },
-        'bsc-cs': {
-            required: ['12-science'],
-            name: 'B.Sc in Computer Science',
-            advice: 'a 10+2 qualification, preferably with a Science stream.'
-        },
-        'bsc-it': {
-            required: ['12-science'],
-            name: 'B.Sc in Information Technology',
-            advice: 'a 10+2 qualification, preferably with a Science stream.'
-        },
-        'btech': {
-            required: ['12-science'],
-            name: 'B.Tech in Computer Science Engineering',
-            advice: 'a 10+2 qualification with Physics, Chemistry, and Mathematics as mandatory subjects and a minimum of 50% marks.'
-        },
-        'msc-cs': {
-            required: ['graduation'],
-            name: 'M.Sc in Computer Science',
-            advice: 'a Bachelor\'s degree from a UGC-recognized university, typically with 45-50% marks.'
-        },
-        'msc-it': {
-            required: ['graduation'],
-            name: 'M.Sc in Information Technology',
-            advice: 'a Bachelor\'s degree from a UGC-recognized university, typically with 45-50% marks.'
-        },
-        'diploma-cs-eng': {
-            required: ['10', '12-science'],
-            name: 'Diploma in Computer Science Engineering',
-            advice: 'a 10th-grade exam with at least 40% marks and studied Science and Mathematics as compulsory subjects.'
-        },
-        'diploma-elec-eng': {
-            required: ['10', '12-science'],
-            name: 'Diploma in Electrical Engineering',
-            advice: 'a 10th-grade exam with at least 40% marks and studied Science and Mathematics as compulsory subjects.'
-        },
-        'diploma-ece-eng': {
-            required: ['10', '12-science'],
-            name: 'Diploma in Electronics & Communication Engineering',
-            advice: 'a 10th-grade exam with at least 40% marks and studied Science and Mathematics as compulsory subjects.'
-        },
-        'diploma-mech-eng': {
-            required: ['10'],
-            name: 'Diploma in Mechanical Engineering',
-            advice: 'a 10th-grade exam with at least 40% marks and studied Science and Mathematics as compulsory subjects.'
-        },
-        'diploma-civil-eng': {
-            required: ['10', '12-science'],
-            name: 'Diploma in Civil Engineering',
-            advice: 'a 10th-grade exam with at least 40% marks and studied Science and Mathematics as compulsory subjects.'
-        }
+        'bca': { required: ['12-science', '12-commerce', '12-arts'], name: 'Bachelor of Computer Applications (BCA)', advice: 'a 10+2 qualification with at least 50% marks.' },
+        'bca-mca-integrated': { required: ['12-science', '12-commerce', '12-arts'], name: 'BCA + MCA Integrated', advice: 'a 10+2 qualification with at least 50% marks.' },
+        'mca': { required: ['btech', 'graduation-cs', 'graduation-science-math', 'graduation-commerce-math', 'graduation-arts-math', 'pgdca'], name: 'Master of Computer Applications (MCA)', advice: 'a Bachelor\'s degree in CS/IT or a B.Sc./B.Com./B.A. with Mathematics, with at least 50% marks.' },
+        'pgdca': { required: ['graduation-any-stream'], name: 'Post Graduate Diploma in Computer Applications (PGDCA)', advice: 'a Bachelor\'s degree in any stream with typically 45-50% marks.' },
+        'bsc-cs': { required: ['12-science'], name: 'B.Sc in Computer Science', advice: 'a 10+2 qualification, preferably in Science.' },
+        'bsc-it': { required: ['12-science'], name: 'B.Sc in Information Technology', advice: 'a 10+2 qualification, preferably in Science.' },
+        'btech': { required: ['12-science'], name: 'B.Tech in Computer Science Engineering', advice: '10+2 with PCM and minimum 50% marks.' },
+        'msc-cs': { required: ['graduation'], name: 'M.Sc in Computer Science', advice: 'Bachelor\'s degree with 45-50% marks.' },
+        'msc-it': { required: ['graduation'], name: 'M.Sc in Information Technology', advice: 'Bachelor\'s degree with 45-50% marks.' },
+        'diploma-cs-eng': { required: ['10', '12-science'], name: 'Diploma in Computer Science Engineering', advice: '10th-grade with Science & Math, min 40% marks.' },
+        'diploma-elec-eng': { required: ['10', '12-science'], name: 'Diploma in Electrical Engineering', advice: '10th-grade with Science & Math, min 40% marks.' },
+        'diploma-ece-eng': { required: ['10', '12-science'], name: 'Diploma in Electronics & Communication Engineering', advice: '10th-grade with Science & Math, min 40% marks.' },
+        'diploma-mech-eng': { required: ['10'], name: 'Diploma in Mechanical Engineering', advice: '10th-grade with Math & Science, min 40% marks.' },
+        'diploma-civil-eng': { required: ['10', '12-science'], name: 'Diploma in Civil Engineering', advice: '10th-grade with Science & Math, min 40% marks.' }
     };
 
-    // === Utility: Check eligibility ===
+    // Notification icons
+    const getIcon = (type) => {
+        const icons = {
+            success: '✅',
+            error: '❌',
+            warning: '⚠️',
+            info: '💡'
+        };
+        return icons[type] || '💡';
+    };
+
+    // Eligibility check
     const checkEligibility = (course, qualification) => {
         const rule = eligibilityRules[course];
-        if (!rule) return { valid: false, msg: "⚠️ Invalid course selected." };
+        if (!rule) return { valid: false, msg: "Please select both course and qualification.", type: 'warning' };
 
-        if (!course || !qualification) {
-            return { valid: false, msg: "⚠️ Please select both course and qualification." };
-        }
+        let isEligible = (course === 'pgdca' && qualification.includes('graduation')) || rule.required.includes(qualification);
 
-        const isEligible = rule.required.includes(qualification);
-        const msg = isEligible
-            ? `🎉 Congratulations! You are eligible for the ${rule.name} program.`
-            : `❌ To be eligible for the ${rule.name}, you need ${rule.advice}`;
+        let msg = isEligible
+            ? `🎉 Congratulations! You are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.google.com" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`
+            : `⚠️ You are not eligible for the <strong>${rule.name}</strong> program. You typically need ${rule.advice}.`;
 
-        return { valid: true, isEligible, msg };
+        let type = isEligible ? 'success' : 'error';
+        return { valid: true, msg, type };
     };
 
-    // === Show notification ===
-    const showNotification = (msg, type = 'info') => {
+    // Show notification
+    const showNotification = (msg, type = 'info', duration = 8000) => {
         const notif = document.createElement('div');
         notif.className = `notification ${type}`;
         notif.innerHTML = `
-            <span class="notif-message">${msg}</span>
-            <span class="close-btn">&times;</span>
+            <div class="content-wrapper">
+                <span class="icon">${getIcon(type)}</span>
+                <span class="notif-message">${msg}</span>
+            </div>
+            <button class="close-btn">&times;</button>
+            <div class="progress"></div>
         `;
 
-        // Append to container
         notificationContainer.appendChild(notif);
 
-        // Close button action
+        // Close button
         notif.querySelector('.close-btn').addEventListener('click', () => {
-            hideNotification(notif);
+            notif.classList.add('hide');
+            setTimeout(() => notif.remove(), 500);
         });
 
-        // Auto remove after 5s
-        setTimeout(() => hideNotification(notif), 5000);
+        // Progress bar animation duration
+        const progress = notif.querySelector('.progress');
+        progress.style.animationDuration = `${duration / 1000}s`;
+
+        // Auto remove
+        setTimeout(() => {
+            notif.classList.add('hide');
+            setTimeout(() => notif.remove(), 500);
+        }, duration);
     };
 
-    // === Hide notification ===
-    const hideNotification = (notif) => {
-        notif.classList.add('hide');
-        setTimeout(() => notif.remove(), 500);
-    };
-
-    // === Event: Form submission ===
-    eligibilityForm?.addEventListener('submit', e => {
+    // Form submit
+    eligibilityForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const course = document.getElementById('course')?.value;
-        const qualification = document.getElementById('qualification')?.value;
+        const course = e.target.querySelector('#course').value;
+        const qualification = e.target.querySelector('#qualification').value;
 
-        const { valid, isEligible, msg } = checkEligibility(course, qualification);
+        const { valid, msg, type } = checkEligibility(course, qualification);
 
-        if (!valid) {
-            showNotification(msg, 'warning');
-            return;
-        }
-        showNotification(msg, isEligible ? 'success' : 'error');
+        if (!valid) return showNotification(msg, 'warning');
+
+        showNotification(msg, type);
         eligibilityForm.reset();
     });
 });

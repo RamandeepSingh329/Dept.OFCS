@@ -2074,107 +2074,199 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
   border: 1px solid var(--error-border);
   animation: shake 0.5s ease;
 }
+/* ================================ */
+/* === PROFESSIONAL NOTIFICATION STYLING === */
+/* ================================ */
 
 /* ================================ */
-/* === NOTIFICATION STYLING === */
+/* === ADVANCED FLOATING NOTIFICATIONS === */
 /* ================================ */
 
+/* CSS Variables */
+:root {
+  --popup-bg: #ffffff; /* Pure white */
+  --text-color: #212529;
+  --shadow-color: rgba(0, 0, 0, 0.25);
+  --border-color: rgba(0, 0, 0, 0.05);
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --duration: 8s; /* Default notification duration */
+}
+
+/* Container fixed top-right */
 .notification-container {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1100;
+  top: 25px;
+  right: 25px;
+  z-index: 1200;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
+  pointer-events: none; /* Allow clicks through container */
 }
 
+/* Notification card */
 .notification {
   background: var(--popup-bg);
-  padding: 15px 20px;
-  border-radius: 10px;
-  min-width: 280px;
-  max-width: 350px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  color: var(--text-color);
+  padding: 16px 22px;
+  border-radius: 14px;
+  min-width: 300px;
+  max-width: 420px;
+  box-shadow: 0 10px 28px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
   font-size: 1rem;
-  line-height: 1.4;
-  color: #333;
+  line-height: 1.5;
   position: relative;
-  transform: translateX(120%);
+  overflow: hidden;
+  pointer-events: auto; /* Allow clicks inside */
+  transform: translateY(-20px) translateX(120%);
   opacity: 0;
-  animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  animation: floatIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Close Button */
+/* Colored stripe */
+.notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  border-radius: 14px 0 0 14px;
+  transition: background 0.3s ease;
+}
+
+/* Flex layout */
+.notification .content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Icon */
+.notification .icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px; /* aligns icon with multiline text */
+}
+
+/* Close button */
 .notification .close-btn {
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 10px;
-  font-size: 20px;
-  color: #666;
+  font-size: 1.5rem;
+  color: #adb5bd;
   cursor: pointer;
-  transition: color 0.2s, transform 0.2s;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
 }
-
 .notification .close-btn:hover {
-  color: #000;
-  transform: rotate(90deg);
+  color: var(--text-color);
+  background-color: #f1f3f5;
+  transform: scale(1.15);
 }
 
-/* Success, Error, Info, Warning Variants */
-.notification.success {
-  border-left: 6px solid var(--success-text);
-}
+/* Notification variants */
+.notification.success::before { background: var(--success-color); }
+.notification.error::before   { background: var(--error-color); }
+.notification.info::before    { background: var(--info-color); }
+.notification.warning::before { background: var(--warning-color); }
 
-.notification.error {
-  border-left: 6px solid var(--error-text);
-}
-
-.notification.info {
-  border-left: 6px solid var(--clean-blue, #0077ff);
-}
-
-.notification.warning {
-  border-left: 6px solid #f39c12;
-}
-
-/* Animation for entry */
-@keyframes slideIn {
+/* Entry animation */
+@keyframes floatIn {
   from {
-    transform: translateX(120%);
+    transform: translateY(-20px) translateX(120%);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0) translateX(0);
     opacity: 1;
   }
 }
 
-/* Animation for exit */
-@keyframes slideOut {
+/* Exit animation */
+@keyframes floatOut {
   from {
-    transform: translateX(0);
+    transform: translateY(0) translateX(0);
     opacity: 1;
   }
   to {
-    transform: translateX(120%);
+    transform: translateY(-20px) translateX(150%);
     opacity: 0;
   }
 }
 
-/* Auto-hide effect */
 .notification.hide {
-  animation: slideOut 0.5s ease forwards;
+  animation: floatOut 0.5s ease forwards;
 }
-/* New, more professional keyframes */
+
+/* Optional shake animation */
 @keyframes shake-animation {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-8px); }
-  40%, 80% { transform: translateX(8px); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
 }
-
 .shake-animation {
   animation: shake-animation 0.5s ease-in-out;
+}
+
+/* Progress bar */
+.notification .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  animation-name: progressBar;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  background: var(--info-color);
+}
+
+/* Variant colors for progress bar */
+.notification.success .progress { background: var(--success-color); }
+.notification.error .progress   { background: var(--error-color); }
+.notification.info .progress    { background: var(--info-color); }
+.notification.warning .progress { background: var(--warning-color); }
+
+/* Progress bar keyframes */
+@keyframes progressBar {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+  .notification {
+    min-width: 250px;
+    max-width: 90%;
+    font-size: 0.95rem;
+    padding: 14px 18px;
+  }
+
+  .notification .icon {
+    font-size: 22px;
+  }
+
+  .notification .close-btn {
+    font-size: 1.3rem;
+    padding: 6px;
+  }
+
+  .notification .progress {
+    height: 3px;
+  }
 }
 /* === Student Spotlight Section === */
 #student-spotlight {
