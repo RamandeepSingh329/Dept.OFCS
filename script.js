@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eligibilityRules = {
         'bca': { required: ['12-science', '12-commerce', '12-arts'], name: 'Bachelor of Computer Applications (BCA)', advice: 'a 10+2 qualification with at least 50% marks.' },
         'bca-mca-integrated': { required: ['12-science', '12-commerce', '12-arts'], name: 'BCA + MCA Integrated', advice: 'a 10+2 qualification with at least 50% marks.' },
-        'mca': { required: ['btech', 'graduation-cs', 'graduation-science-math', 'graduation-commerce-math', 'graduation-arts-math', 'pgdca'], name: 'Master of Computer Applications (MCA)', advice: 'a Bachelor\'s degree in CS/IT or a B.Sc./B.Com./B.A. with Mathematics, with at least 50% marks.' },
+        'mca': { required: ['btech', 'graduation-cs', 'graduation-science-math', 'graduation-commerce-math', 'graduation-arts-math', 'pgdca', 'graduation-any-stream'], name: 'Master of Computer Applications (MCA)', advice: 'a Bachelor\'s degree with at least 50% marks, typically with a strong foundation in Mathematics.' },
         'pgdca': { required: ['graduation-any-stream'], name: 'Post Graduate Diploma in Computer Applications (PGDCA)', advice: 'a Bachelor\'s degree in any stream with typically 45-50% marks.' },
         'bsc-cs': { required: ['12-science'], name: 'B.Sc in Computer Science', advice: 'a 10+2 qualification, preferably in Science.' },
         'bsc-it': { required: ['12-science'], name: 'B.Sc in Information Technology', advice: 'a 10+2 qualification, preferably in Science.' },
@@ -733,13 +733,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const rule = eligibilityRules[course];
         if (!rule) return { valid: false, msg: "Please select both course and qualification.", type: 'warning' };
 
-        let isEligible = (course === 'pgdca' && qualification.includes('graduation')) || rule.required.includes(qualification);
+        // Default eligibility check
+        let isEligible = rule.required.includes(qualification);
 
-        let msg = isEligible
-            ? `🎉 Congratulations! You are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.google.com" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`
-            : `⚠️ You are not eligible for the <strong>${rule.name}</strong> program. You typically need ${rule.advice}.`;
+        // Special case: MCA - any graduation is eligible
+        if (course === 'mca' && qualification.includes('graduation')) {
+            isEligible = true;
+        }
 
-        let type = isEligible ? 'success' : 'error';
+        // Special case: PGDCA - any graduation is eligible
+        if (course === 'pgdca' && qualification.includes('graduation')) {
+            isEligible = true;
+        }
+
+        const msg = isEligible
+            ? `🎉 Congratulations! As per the university norms and in line with the National Education Policy (NEP) 2020, you are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`
+            : `⚠️ It seems your current qualification may not meet the eligibility requirements for the <strong>${rule.name}</strong> program. Don't worry, there are many other pathways to a successful career! We recommend exploring other related programs or considering a preparatory course to meet the criteria.`;
+
+        const type = isEligible ? 'success' : 'error';
         return { valid: true, msg, type };
     };
 
