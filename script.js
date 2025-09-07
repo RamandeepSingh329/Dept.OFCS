@@ -220,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
       name: "Highlights connection between developers and mentors",
       title: "TechTalk",
       images: ["assets/project-development/mentorship.jpeg"]
-      // (No description provided — handled gracefully below)
     },
     {
       name: "Empowering Minds Through Education",
@@ -275,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentFacilityIndex = 0;
   let facilitiesInterval;
-  let viewerImageInterval;
 
   const facilitiesSidebar = document.getElementById('facilities-sidebar');
   const facilitiesContent = document.getElementById('facilities-content');
@@ -287,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
     facilitiesData.forEach((facility, index) => {
       const sidebarItem = document.createElement('div');
       sidebarItem.classList.add('facilities-sidebar-item');
-      // Use 'title' if available, else fallback to 'name'
       sidebarItem.innerText = facility.title || facility.name;
 
       sidebarItem.addEventListener('click', () => {
@@ -304,19 +301,15 @@ document.addEventListener('DOMContentLoaded', () => {
     currentFacilityIndex = index;
     const facility = facilitiesData[index];
 
-    // Optional fade-out class if you have CSS for it
     facilitiesContent.classList.remove('active');
 
     setTimeout(() => {
-      // Build content safely (avoid rendering 'undefined' description)
       let html = `
         <h3>${facility.name}</h3>
         ${facility.description ? `<p>${facility.description}</p>` : ''}
       `;
-
       facilitiesContent.innerHTML = html;
 
-      // Only render "View Images" button if there are images
       if (facility.images && facility.images.length > 0) {
         const viewBtn = document.createElement('button');
         viewBtn.classList.add('view-image-btn');
@@ -328,23 +321,21 @@ document.addEventListener('DOMContentLoaded', () => {
         facilitiesContent.appendChild(viewBtn);
       }
 
-      // Highlight active sidebar
       document.querySelectorAll('.facilities-sidebar-item').forEach((item, i) => {
         item.classList.toggle('active', i === index);
       });
 
-      // Optional fade-in class if you have CSS for it
       facilitiesContent.classList.add('active');
     }, 200);
   };
 
-  // ----------------- AUTO SCROLL (3s) -----------------
+  // ----------------- AUTO SCROLL -----------------
   const startFacilitiesAutoScroll = () => {
     clearInterval(facilitiesInterval);
     facilitiesInterval = setInterval(() => {
       const nextIndex = (currentFacilityIndex + 1) % facilitiesData.length;
       updateFacilitiesContent(nextIndex);
-    }, 3000); // every 3s ✅
+    }, 3000);
   };
 
   const stopFacilitiesAutoScroll = () => {
@@ -356,50 +347,72 @@ document.addEventListener('DOMContentLoaded', () => {
     startFacilitiesAutoScroll();
   };
 
-  // ----------------- IMAGE VIEWER (FIXED) -----------------
+  // ----------------- IMAGE VIEWER (FINAL CORRECTION) -----------------
   const viewer = document.createElement('div');
   viewer.classList.add('image-viewer');
-  viewer.innerHTML = `<span class="close-btn" aria-label="Close">&times;</span><img src="" alt="Facility Image">`;
+  viewer.innerHTML = `
+    <span class="close-btn" aria-label="Close">&times;</span>
+    <button class="arrow-btn prev-btn" aria-label="Previous Image">&#10094;</button>
+    <img src="" alt="Facility Image" class="viewer-img">
+    <button class="arrow-btn next-btn" aria-label="Next Image">&#10095;</button>
+  `;
   document.body.appendChild(viewer);
 
-  const viewerImg = viewer.querySelector('img');
+  const viewerImg = viewer.querySelector('.viewer-img');
   const closeBtn = viewer.querySelector('.close-btn');
+  const prevBtn = viewer.querySelector('.prev-btn');
+  const nextBtn = viewer.querySelector('.next-btn');
+
+  let currentViewerImages = [];
+  let currentViewerImageIndex = 0;
 
   const openImageViewer = (images) => {
     if (!images || images.length === 0) return;
 
-    let currentImageIndex = 0;
+    currentViewerImages = images;
+    currentViewerImageIndex = 0;
 
-    const updateViewerImage = () => {
-      // Preload the next image to prevent flicker
+    updateViewerImage();
+
+    viewer.classList.add('active');
+    const hasMultipleImages = images.length > 1;
+    prevBtn.style.display = hasMultipleImages ? 'block' : 'none';
+    nextBtn.style.display = hasMultipleImages ? 'block' : 'none';
+  };
+
+  const updateViewerImage = () => {
+    // Fade out the current image
+    viewerImg.style.opacity = '0';
+
+    // Wait for the transition to complete before changing the source
+    setTimeout(() => {
+      // Preload the new image to ensure a smooth transition
       const imgToLoad = new Image();
-      imgToLoad.src = images[currentImageIndex];
+      imgToLoad.src = currentViewerImages[currentViewerImageIndex];
       imgToLoad.onload = () => {
         viewerImg.src = imgToLoad.src;
+        viewerImg.style.opacity = '1'; // Fade in the new image
       };
-    };
-
-    // Set the initial image source and then make the viewer visible
-    viewerImg.src = images[0];
-    viewer.classList.add('active');
-
-    // Ensure previous interval is cleared
-    clearInterval(viewerImageInterval);
-
-    // Auto-advance images every 3s if there's more than one
-    if (images.length > 1) {
-      viewerImageInterval = setInterval(() => {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateViewerImage();
-      }, 3000); // every 3s
-    }
+    }, 500); // Wait 500ms (adjust to match your CSS transition duration)
   };
 
   const closeImageViewer = () => {
-    clearInterval(viewerImageInterval);
     viewer.classList.remove('active');
     startFacilitiesAutoScroll();
   };
+
+  // Manual Navigation Event Listeners
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentViewerImageIndex = (currentViewerImageIndex - 1 + currentViewerImages.length) % currentViewerImages.length;
+    updateViewerImage();
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentViewerImageIndex = (currentViewerImageIndex + 1) % currentViewerImages.length;
+    updateViewerImage();
+  });
 
   closeBtn.addEventListener('click', closeImageViewer);
   viewer.addEventListener('click', (e) => {
@@ -730,6 +743,22 @@ document.addEventListener('DOMContentLoaded', () => {
         'diploma-civil-eng': { required: ['10', '12-science'], name: 'Diploma in Civil Engineering', advice: '10th-grade with Science & Math, min 40% marks.' }
     };
 
+    // Qualification mapping for user-friendly display
+    const qualificationMap = {
+        '10': '10th grade',
+        '12-science': '12th with Science stream',
+        '12-commerce': '12th with Commerce stream',
+        '12-arts': '12th with Arts stream',
+        'graduation': 'any Bachelor\'s degree',
+        'graduation-any-stream': 'any Bachelor\'s degree',
+        'graduation-cs': 'Bachelor\'s degree in Computer Science',
+        'graduation-science-math': 'Bachelor\'s degree in Science (with Mathematics)',
+        'graduation-commerce-math': 'Bachelor\'s degree in Commerce (with Mathematics)',
+        'graduation-arts-math': 'Bachelor\'s degree in Arts (with Mathematics)',
+        'pgdca': 'Post Graduate Diploma in Computer Applications (PGDCA)',
+        'btech': 'B.Tech'
+    };
+
     // Notification icons
     const getIcon = (type) => {
         const icons = {
@@ -744,26 +773,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Eligibility check
     const checkEligibility = (course, qualification) => {
         const rule = eligibilityRules[course];
-        if (!rule) return { valid: false, msg: "Please select both course and qualification.", type: 'warning' };
+        if (!rule) return { valid: false, msg: "Please select both a course and your qualification.", type: 'warning' };
 
         // Default eligibility check
         let isEligible = rule.required.includes(qualification);
 
-        // Special case: MCA - any graduation is eligible
-        if (course === 'mca' && qualification.includes('graduation')) {
+        // Special cases
+        if ((course === 'mca' || course === 'pgdca') && qualification.includes('graduation')) {
             isEligible = true;
         }
 
-        // Special case: PGDCA - any graduation is eligible
-        if (course === 'pgdca' && qualification.includes('graduation')) {
-            isEligible = true;
+        let msg, type;
+        if (isEligible) {
+            msg = `🎉 Congratulations! As per the university norms and in line with the National Education Policy (NEP) 2020, you are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`;
+            type = 'success';
+        } else {
+            // New logic for when not eligible
+            const requiredQualifications = rule.required.map(req => qualificationMap[req] || req);
+            const formattedRequirements = requiredQualifications.length > 1
+                ? requiredQualifications.slice(0, -1).join(', ') + ' or ' + requiredQualifications.slice(-1)
+                : requiredQualifications[0];
+
+            msg = `⚠️ It seems your current qualification may not meet the eligibility requirements for the <strong>${rule.name}</strong> program. The required qualifications are: <strong>${formattedRequirements}</strong>. Don't worry, there are many other pathways to a successful career! We recommend exploring other related programs or considering a preparatory course to meet the criteria.`;
+            type = 'error';
         }
 
-        const msg = isEligible
-            ? `🎉 Congratulations! As per the university norms and in line with the National Education Policy (NEP) 2020, you are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`
-            : `⚠️ It seems your current qualification may not meet the eligibility requirements for the <strong>${rule.name}</strong> program. Don't worry, there are many other pathways to a successful career! We recommend exploring other related programs or considering a preparatory course to meet the criteria.`;
-
-        const type = isEligible ? 'success' : 'error';
         return { valid: true, msg, type };
     };
 
@@ -807,8 +841,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const { valid, msg, type } = checkEligibility(course, qualification);
 
-        if (!valid) return showNotification(msg, 'warning');
-
         showNotification(msg, type);
         eligibilityForm.reset();
     });
@@ -818,92 +850,117 @@ document.addEventListener("DOMContentLoaded", () => {
     // The background image is now handled by the CSS.
 });// News Data with multiple images per item
 const newsData = [
-  
-  {
-    images: ["assets/Students/skdu-team1.jpeg", "assets/Students/skdu-team.jpeg"],
-    title: "Girls' Tug-of-War Team Triumphs at University Games 2025",
-    icon: "fas fa-trophy",
-    desc: "Our talented girls' team secured victory in the thrilling tug-of-war competition at the University Games, held on National Sports Day. Their dedication and teamwork brought home the gold, making the university proud."
-  },
+  
+  {
+    images: ["assets/Students/skdu-team1.jpeg", "assets/Students/skdu-team.jpeg"],
+    title: "Girls' Tug-of-War Team Triumphs at University Games 2025",
+    icon: "fas fa-trophy",
+    desc: "Our talented girls' team secured victory in the thrilling tug-of-war competition at the University Games, held on National Sports Day. Their dedication and teamwork brought home the gold, making the university proud."
+  },
 
-  {
-    images: ["assets/Int.conference/Int.conference.jpeg", "assets/Int.conference/img1.jpeg", "assets/Int.conference/img2.jpeg", "assets/Int.conference/img3.jpeg", "assets/Int.conference/img4.jpeg", "assets/Int.conference/img5.jpeg", "assets/Int.conference/img6.jpeg"],
-    title: "International Conference on Cyber Security & Laws in the context of Innovations and Intellectual Properry ICCL-IP 2025",
-    icon: "fas fa-user-graduate",
-    desc: "26th – 27th September 2025 An international forum bringing together researchers, professionals, and innovators to explore advancements in cyber security, legal frameworks, and the protection of intellectual property in the digital era."},
-  {
-    images: [
-      "assets/nationalconference/conference4.jpg",
-      "assets/nationalconference/conference.jpg",
-      "assets/nationalconference/conference1.jpg",
-      "assets/nationalconference/conference2.jpg",
-      "assets/nationalconference/conference3.jpg"
-    ],
-    title: "National Conference on New Approaches in Computer Science & Engineering",
-    icon: "fas fa-user-graduate",
-    desc: "Empowering aspirants with expert guidance, interactive sessions, and exposure to diverse academic and professional pathways."
-  },
-  {
-    images: [
-      "assets/placements/placements.jpg",
-      "assets/placements/placements2.jpg",
-      "assets/placements/placements1.jpg",
-      "assets/placements/placements3.jpg",
-      "assets/placements/placements4.jpg"
-    ],
-    title: "Placement Drive",
-    icon: "fas fa-briefcase",
-    desc: "Pioneering researchers, visionary keynote speakers, and tech innovators explore emerging paradigms and foster collaboration."
-  },
-  {
-    images: ["assets/workshop/workshop.jpeg", "assets/workshop/workshop1.jpeg", "assets/workshop/workshop3.jpeg"],
-    title: "Brighter Tech Workshop",
-    icon: "fas fa-laptop-code",
-    desc: "Hands-on workshop on Cybersecurity Trends offering aspirants practical insights into emerging threats and defense strategies."
-  },
-  {
-    images: ["assets/fresherparty/fresher3.jpg", "assets/fresherparty/fresher2.jpg", "assets/fresherparty/fresher.jpg"],
-    title: "Fresher Party",
-    icon: "fas fa-cocktail",
-    desc: "Welcoming new aspirants with vibrant celebrations, interactive sessions, and camaraderie to start their academic journey."
-  },
-  {
-    images: ["assets/edutour/edutour1.jpg", "assets/edutour/edutour2.jpg"],
-    title: "Academic Tour",
-    icon: "fas fa-university",
-    desc: "Immersive exposure to leading institutions and research facilities, bridging classroom learning with real-world environments."
-  }
+  {
+    images: ["assets/Int.conference/Int.conference.jpeg", "assets/Int.conference/img1.jpeg", "assets/Int.conference/img2.jpeg", "assets/Int.conference/img3.jpeg", "assets/Int.conference/img4.jpeg", "assets/Int.conference/img5.jpeg", "assets/Int.conference/img6.jpeg"],
+    title: "International Conference on Cyber Security & Laws in the context of Innovations and Intellectual Properry ICCL-IP 2025",
+    icon: "fas fa-user-graduate",
+    desc: "26th – 27th September 2025 An international forum bringing together researchers, professionals, and innovators to explore advancements in cyber security, legal frameworks, and the protection of intellectual property in the digital era."},
+  {
+    images: [
+      "assets/nationalconference/conference4.jpg",
+      "assets/nationalconference/conference.jpg",
+      "assets/nationalconference/conference1.jpg",
+      "assets/nationalconference/conference2.jpg",
+      "assets/nationalconference/conference3.jpg"
+    ],
+    title: "National Conference on New Approaches in Computer Science & Engineering",
+    icon: "fas fa-user-graduate",
+    desc: "Empowering aspirants with expert guidance, interactive sessions, and exposure to diverse academic and professional pathways."
+  },
+  {
+    images: [
+      "assets/placements/placements.jpg",
+      "assets/placements/placements2.jpg",
+      "assets/placements/placements1.jpg",
+      "assets/placements/placements3.jpg",
+      "assets/placements/placements4.jpg"
+    ],
+    title: "Placement Drive",
+    icon: "fas fa-briefcase",
+    desc: "Pioneering researchers, visionary keynote speakers, and tech innovators explore emerging paradigms and foster collaboration."
+  },
+  {
+    images: ["assets/workshop/workshop.jpeg", "assets/workshop/workshop1.jpeg", "assets/workshop/workshop3.jpeg"],
+    title: "Brighter Tech Workshop",
+    icon: "fas fa-laptop-code",
+    desc: "Hands-on workshop on Cybersecurity Trends offering aspirants practical insights into emerging threats and defense strategies."
+  },
+  {
+    images: ["assets/fresherparty/fresher3.jpg", "assets/fresherparty/fresher2.jpg", "assets/fresherparty/fresher.jpg"],
+    title: "Fresher Party",
+    icon: "fas fa-cocktail",
+    desc: "Welcoming new aspirants with vibrant celebrations, interactive sessions, and camaraderie to start their academic journey."
+  },
+  {
+    images: ["assets/edutour/edutour1.jpg", "assets/edutour/edutour2.jpg"],
+    title: "Academic Tour",
+    icon: "fas fa-university",
+    desc: "Immersive exposure to leading institutions and research facilities, bridging classroom learning with real-world environments."
+  }
 ];
 
 /**
- * Injects the necessary CSS for smooth transitions and animation pausing.
- */
+ * Injects the necessary CSS for smooth transitions and animation pausing.
+ */
 function injectCSS() {
-  const style = document.createElement('style');
-  style.textContent = `
-    body.viewer-active #newsTrack,
-    #newsTrack.paused {
-      animation-play-state: paused;
+  const style = document.createElement('style');
+  style.textContent = `
+    body.viewer-active #newsTrack,
+    #newsTrack.paused {
+      animation-play-state: paused;
+    }
+    #imageViewer.active #viewerImg {
+      transition: opacity 1s ease-in-out; /* smoother fade */
+    }
+    .view-images-btn {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .view-images-btn:hover {
+      background-color: #0056b3;
+    }
+    #imageViewer.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    #imageViewer.active #viewerImg {
-      transition: opacity 1s ease-in-out; /* smoother fade */
+    .arrow-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+        user-select: none;
     }
-    .view-images-btn {
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
+    #prevBtn {
+        left: 20px;
     }
-    .view-images-btn:hover {
-      background-color: #0056b3;
+    #nextBtn {
+        right: 20px;
     }
-  `;
-  document.head.appendChild(style);
+ `;
+  document.head.appendChild(style);
 }
 
 // Call the function to inject the CSS when the script runs
@@ -913,18 +970,18 @@ injectCSS();
 const newsTrack = document.getElementById('newsTrack');
 
 newsData.forEach(item => {
-  const card = document.createElement('div');
-  card.classList.add('news-card');
+  const card = document.createElement('div');
+  card.classList.add('news-card');
 
-  const allImagesData = item.images.join(',');
+  const allImagesData = item.images.join(',');
 
-  card.innerHTML = `
-    <h3><i class="${item.icon}"></i> ${item.title}</h3>
-    <p>${item.desc}</p>
-    <button class="view-images-btn" data-images="${allImagesData}">View Images</button>
-  `;
+  card.innerHTML = `
+    <h3><i class="${item.icon}"></i> ${item.title}</h3>
+    <p>${item.desc}</p>
+    <button class="view-images-btn" data-images="${allImagesData}">View Images</button>
+  `;
 
-  newsTrack.appendChild(card);
+  newsTrack.appendChild(card);
 });
 
 // Image Viewer Functionality
@@ -932,76 +989,101 @@ const viewer = document.getElementById('imageViewer');
 const viewerImg = document.getElementById('viewerImg');
 const closeBtn = document.getElementById('closeViewer');
 
-let autoChangeTimeout;
 let currentImageIndex = 0;
 let currentImagesArray = [];
 
-function changeImage() {
-  viewerImg.style.opacity = '0'; // fade out
+// New arrow buttons
+const prevBtn = document.createElement('button');
+prevBtn.id = 'prevBtn';
+prevBtn.classList.add('arrow-btn');
+prevBtn.innerHTML = '&#10094;';
+viewer.appendChild(prevBtn);
+
+const nextBtn = document.createElement('button');
+nextBtn.id = 'nextBtn';
+nextBtn.classList.add('arrow-btn');
+nextBtn.innerHTML = '&#10095;';
+viewer.appendChild(nextBtn);
+
+function updateImage(newIndex) {
+  viewerImg.style.opacity = '0'; // fade out
   
-  setTimeout(() => {
-    currentImageIndex = (currentImageIndex + 1) % currentImagesArray.length;
+  // Use a temporary image object to preload the next image
+  const tempImg = new Image();
+  tempImg.onload = () => {
+    // Once the image is loaded, update the viewer image source
+    currentImageIndex = newIndex;
     viewerImg.src = currentImagesArray[currentImageIndex];
     
-    // fade in
+    // Now fade it in
     viewerImg.style.opacity = '1';
-    
-    // Next change after 8s (1s fade + 7s visible)
-    autoChangeTimeout = setTimeout(changeImage, 8000);
-  }, 1000); // matches fade duration (1s)
+  };
+  
+  // Set the source of the temporary image to trigger loading
+  tempImg.src = currentImagesArray[newIndex];
 }
+
+// Event listeners for arrow buttons
+prevBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent viewer from closing
+  const newIndex = (currentImageIndex - 1 + currentImagesArray.length) % currentImagesArray.length;
+  updateImage(newIndex);
+});
+
+nextBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent viewer from closing
+  const newIndex = (currentImageIndex + 1) % currentImagesArray.length;
+  updateImage(newIndex);
+});
 
 // Open viewer
 document.querySelectorAll('.view-images-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    currentImagesArray = button.getAttribute('data-images').split(',');
-    currentImageIndex = 0;
-
+  button.addEventListener('click', () => {
+    currentImagesArray = button.getAttribute('data-images').split(',');
+    currentImageIndex = 0;
+    
+    // Immediately set the first image
     viewerImg.src = currentImagesArray[currentImageIndex];
-    viewer.classList.add('active');
-    document.body.classList.add('viewer-active'); 
 
-    setTimeout(() => {
-      viewerImg.style.opacity = '1';
-    }, 50);
+    viewer.classList.add('active');
+    document.body.classList.add('viewer-active'); 
 
-    autoChangeTimeout = setTimeout(changeImage, 8000); // start slideshow
-  });
+    setTimeout(() => {
+      viewerImg.style.opacity = '1';
+    }, 50);
+  });
 });
 
 // Close button
 closeBtn.addEventListener('click', () => {
-  viewer.classList.remove('active');
-  viewerImg.style.opacity = '0';
-  clearTimeout(autoChangeTimeout); 
-  document.body.classList.remove('viewer-active'); 
+  viewer.classList.remove('active');
+  viewerImg.style.opacity = '0';
+  document.body.classList.remove('viewer-active'); 
 });
 
 // Close when clicking outside the image
 viewer.addEventListener('click', e => {
-  if (e.target === viewer) {
-    viewer.classList.remove('active');
-    viewerImg.style.opacity = '0';
-    clearTimeout(autoChangeTimeout); 
-    document.body.classList.remove('viewer-active'); 
-  }
+  if (e.target === viewer) {
+    viewer.classList.remove('active');
+    viewerImg.style.opacity = '0';
+    document.body.classList.remove('viewer-active'); 
+  }
 });
 
 // New Event Listeners for Focus
 newsTrack.addEventListener('focusin', () => {
-    newsTrack.classList.add('paused');
+    newsTrack.classList.add('paused');
 });
 
 newsTrack.addEventListener('focusout', () => {
-    // A small delay is added to prevent flickering when focus shifts between elements within the same card.
-    setTimeout(() => {
-        // Check if the focus has moved outside the news card container entirely
-        if (!newsTrack.contains(document.activeElement)) {
-            newsTrack.classList.remove('paused');
-        }
-    }, 10);
+    // A small delay is added to prevent flickering when focus shifts between elements within the same card.
+    setTimeout(() => {
+        // Check if the focus has moved outside the news card container entirely
+        if (!newsTrack.contains(document.activeElement)) {
+            newsTrack.classList.remove('paused');
+        }
+    }, 10);
 });
-
 const quotes = [
   {
     text: "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
@@ -1069,3 +1151,140 @@ setInterval(() => {
   index = (index + 1) % quotes.length;
   showQuote(index);
 }, 7000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Select all required DOM elements ---
+    const slideContainer = document.querySelector('.slide-container');
+    const slides = document.querySelectorAll('.slide');
+    const arrows = document.querySelectorAll('.hero-arrow');
+    const paginationDots = document.querySelectorAll('.dot');
+    const slideCount = slides.length;
+    let currentSlide = 0;
+    let autoSlideInterval;
+
+    // --- Core function to handle slide change and updates ---
+    const updateSlider = () => {
+        // Calculate the translation value for the smooth slide effect
+        const offset = -currentSlide * 100; // 100% per slide
+        slideContainer.style.transform = `translateX(${offset}%)`;
+
+        // Update active class for pagination dots
+        paginationDots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    };
+
+    // --- Function to handle automatic slide changes ---
+    const startAutoSlide = () => {
+        // Clear any existing interval to prevent multiple timers running
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }, 4000); // Change slide every 4 seconds
+    };
+
+    // --- Event Listeners for user interaction ---
+
+    // Set initial background images from data attributes
+    slides.forEach(slide => {
+        const imageUrl = slide.getAttribute('data-image');
+        if (imageUrl) {
+            slide.style.backgroundImage = `url('${imageUrl}')`;
+        }
+    });
+
+    // Handle arrow clicks for manual navigation
+    arrows.forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            // Stop the auto-slide timer when a user interacts
+            clearInterval(autoSlideInterval);
+
+            if (e.target.classList.contains('right-arrow')) {
+                currentSlide = (currentSlide + 1) % slideCount;
+            } else if (e.target.classList.contains('left-arrow')) {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            }
+            updateSlider();
+
+            // Restart the auto-slide timer after a brief delay
+            startAutoSlide();
+        });
+    });
+
+    // Handle pagination dot clicks for direct navigation
+    paginationDots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            clearInterval(autoSlideInterval);
+            const index = parseInt(e.target.getAttribute('data-slide-index'));
+            currentSlide = index;
+            updateSlider();
+            startAutoSlide();
+        });
+    });
+
+    // Pause auto-slide when the mouse is over the slider
+    slideContainer.parentElement.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+
+    // Resume auto-slide when the mouse leaves the slider
+    slideContainer.parentElement.addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+
+    // --- Initial setup ---
+    updateSlider(); // Set the initial state
+    startAutoSlide(); // Begin the automatic slide show
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navContainer = document.querySelector('.nav-float-container');
+
+    // Function to close the menu
+    function closeNavMenu() {
+        if (navContainer.classList.contains('active')) {
+            navContainer.classList.remove('active');
+        }
+    }
+
+    // Toggle the menu on button click
+    navToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        navContainer.classList.toggle('active');
+    });
+
+    // Close the menu if a link is clicked
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeNavMenu();
+        });
+    });
+
+    // Close the menu if a click occurs outside of it
+    document.addEventListener('click', function(event) {
+        if (!navContainer.contains(event.target) && !navToggle.contains(event.target)) {
+            closeNavMenu();
+        }
+    });
+
+    // Optional: Add a smooth scroll effect for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId && document.querySelector(targetId)) {
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});

@@ -59,7 +59,7 @@ h2::after {
     content: "";
     width: 70px;
     height: 4px;
-    background: linear-gradient(90deg, #0077ff, #00d4ff);
+    background: linear-gradient(90deg, #1a237e, #3949ab);
     display: block;
     margin: 0.8rem auto 0 auto;
     border-radius: 2px;
@@ -268,114 +268,154 @@ a:hover {
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; 
-    
-    /* Set the default (desktop) image here */
-    background-image: url('assets/2.png');
+    background-repeat: no-repeat;
 }
 
-.hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+/* --- Slide Container & Slide Transition --- */
+.slide-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+    will-change: transform;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Super smooth transition */
+}
+
+/* --- Individual Slide --- */
+.slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+    /* This will be set by JS using the data-image attribute */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: none;
-    z-index: 0;
 }
 
-/* ==================== Media query for smartphones ==================== */
-@media (max-width: 768px) {
-  .hero-section {
-    /* Set the mobile image here. This will override the desktop image */
-    background-image: url('assets/android.avif');
-    height: 100vh; 
-    background-size: cover;
-    background-position: center; 
-  }
-}
-.hero-overlay {
+/* --- Text Overlay (new class) --- */
+.slide-content {
     position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #fff;
-    max-width: 90%;
-    padding: 0 15px;
-}
-
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    animation: none;
-    line-height: 1.2;
-}
-
-.hero-content .subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    animation: none;
-    line-height: 1.4;
-}
-
-.hero-content .cta-button {
-    display: inline-block;
-    padding: 10px 22px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
-    border-radius: 50px;
-    text-decoration: none;
-    transition: none;
-}
-.hero-content .cta-button:hover {
-    transform: none;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 20px;
+    bottom: 15%; /* Positioned lower to avoid the center of the image */
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
-}
-.scroll-indicator a {
-    font-size: 1.3rem;
-    color: #fff;
-    animation: none;
+    text-align: center;
+    color: #FFF8E1; /* Warm white font color */
+    padding: 0.75rem 1.5rem; /* Reduced padding for smaller footprint */
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2); /* Very subtle transparency */
+    max-width: 70%; /* Reduced max-width */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Lighter shadow */
 }
 
-/* Navigation Arrows */
+.slide-content h1 {
+    font-size: 2rem; /* Slightly smaller font size */
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.slide-content p {
+    font-size: 0.9rem; /* Slightly smaller font size */
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- Navigation Arrows --- */
 .hero-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
     border: none;
-    padding: 10px 14px;
-    font-size: 1.8rem;
+    padding: 0.75rem 1.1rem;
     cursor: pointer;
+    z-index: 10;
     border-radius: 50%;
-    transition: none;
+    font-size: 1.4rem;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
-.hero-arrow:hover {
-    background: rgba(0,0,0,0.4);
-}
-.left-arrow { left: 15px; }
-.right-arrow { right: 15px; }
 
+.hero-arrow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+/* --- Pagination Dots (new) --- */
+.pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: white;
+    transform: scale(1.2);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .slide-content {
+        bottom: 10%; /* Adjust for tablets */
+        max-width: 80%;
+        padding: 0.75rem 1.25rem;
+    }
+    .slide-content h1 {
+        font-size: 1.6rem;
+    }
+    .slide-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 768px) {
+    .hero-section {
+        background-image: url('assets/android.avif');
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+    }
+    .slide-container, .hero-arrow, .pagination {
+        display: none;
+    }
+    .slide-content {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        max-width: 90%;
+        bottom: 5%; /* Closer to the bottom on mobile */
+    }
+    .slide-content h1 {
+        font-size: 1.4rem;
+    }
+    .slide-content p {
+        font-size: 0.85rem;
+    }
+}
 /* ==================== RESPONSIVE ==================== */
 @media(max-width: 768px) {
     .main-header {
@@ -1236,51 +1276,51 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     0% { transform: scale(0.7); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
-/* === Facilities Section (Indigo Background, No Border) === */
+/* ======================================= */
+/* === Section 3: Facilities Section === */
+/* ======================================= */
+
+/* === Facilities Section Container === */
 .facilities-container {
     display: flex;
-        margin: 1rem auto;
-
-    flex-direction: column; 
+    flex-direction: column;
+    margin: 1rem auto;
     min-height: 500px;
-    border: none; 
+    border: none;
     border-radius: 16px;
-    background:  linear-gradient(135deg, var(--light-bg), var(--light-green)); 
-
+    background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeIn 0.6s ease-in-out;
     position: relative;
-    padding: 2rem; 
+    padding: 2rem;
 }
 
 /* Hover effect with glowing shadow */
 .facilities-container:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
-                0 0 12px rgba(99, 102, 241, 0.5); 
+                0 0 12px rgba(99, 102, 241, 0.5);
 }
 
-/* Remove glowing animated border since border is gone */
+/* Ensure glowing border is completely gone */
 .facilities-container::before {
     display: none;
 }
-
 
 .facilities-container:hover::before,
 .facilities-container:focus-within::before {
     opacity: 1;
 }
 
-/* === Heading & Lead inside Facilities === */
 /* === Section Heading === */
 #placements h2 {
     font-size: clamp(2rem, 5vw, 2.8rem);
     text-align: center;
     margin-bottom: 3rem;
-    color: #1a237e; 
+    color: #1a237e;
     font-weight: 700;
     letter-spacing: 1px;
     position: relative;
@@ -1291,7 +1331,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     content: "";
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1a237e, #3949ab); 
+    background: linear-gradient(90deg, #1a237e, #3949ab);
     display: block;
     margin: 0.8rem auto 0 auto;
     border-radius: 2px;
@@ -1313,7 +1353,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     flex: 1;
 }
 
-/* --- Updated Sidebar Styling with Rounded Corners --- */
+/* --- Sidebar Styling --- */
 .facilities-sidebar {
     flex: 0 0 260px;
     padding: 1.5rem;
@@ -1323,7 +1363,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     flex-direction: column;
     gap: 1rem;
     background-color: #e0f7fa;
-    border-radius: 16px; 
+    border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -1333,7 +1373,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     width: 100%;
     padding: 1rem 1.5rem;
     cursor: pointer;
-    border-radius: 12px; 
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
     color: #0077c2;
@@ -1342,8 +1382,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     background: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     flex-shrink: 0;
-
-    /* Handle long names */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1361,24 +1399,24 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     font-weight: 600;
 }
 
-/* --- Responsive: Horizontal scrolling for smartphones --- */
+/* --- Responsive: Horizontal scrolling --- */
 @media (max-width: 768px) {
     .facilities-sidebar {
-        flex-direction: row;        
-        overflow-x: auto;          
-        overflow-y: hidden;       
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 0.75rem;
         padding: 1rem;
         border-right: none;
         border-radius: 16px;
-        -webkit-overflow-scrolling: touch; 
-        scroll-snap-type: x mandatory;    
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
     }
 
     .facilities-sidebar-item {
-        min-width: 160px;           
-        max-width: 220px;           
-        scroll-snap-align: start;  
+        min-width: 160px;
+        max-width: 220px;
+        scroll-snap-align: start;
         transform: none;
         text-align: center;
         border-radius: 12px;
@@ -1387,13 +1425,13 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
         text-overflow: ellipsis;
     }
 
-    /* Optional: Hide scrollbar for a cleaner look */
+    /* Hide scrollbar for a cleaner look */
     .facilities-sidebar::-webkit-scrollbar {
         display: none;
     }
     .facilities-sidebar {
-        -ms-overflow-style: none;  
-        scrollbar-width: none;     
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 }
 
@@ -1408,18 +1446,17 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     border-radius: 12px;
     background: #fff;
     box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .facilities-content.active {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 .facilities-content h3 {
     font-size: 1.8rem;
@@ -1434,7 +1471,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     color: #555;
     line-height: 1.6;
     max-width: 800px;
-    margin: 0.5rem auto 1.5rem auto; 
+    margin: 0.5rem auto 1.5rem auto;
     text-align: center;
     transition: color 0.3s ease;
 }
@@ -1446,25 +1483,33 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
 /* === "View Image" Button === */
 .view-image-btn {
     padding: 12px 24px;
-  background: linear-gradient(135deg, #4A6464, #2F4F4F); 
+    background: linear-gradient(135deg, #4A6464, #2F4F4F);
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .view-image-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #5A7474, #3F5F5F);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* === Image Viewer Modal === */
+.view-image-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ======================================= */
+/* === Image Viewer Modal and Arrows === */
+/* ======================================= */
+
 .image-viewer {
     position: fixed;
     top: 0;
@@ -1486,33 +1531,70 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     visibility: visible;
 }
 
-.image-viewer img {
+.viewer-img {
     max-width: 90%;
-    max-height: 90%;
+    max-height: 90vh; /* Using vh for better responsiveness on small screens */
     object-fit: contain;
     transform: scale(0.8);
     transition: transform 0.4s ease;
 }
 
-.image-viewer.active img {
+.image-viewer.active .viewer-img {
     transform: scale(1);
 }
 
+/* Corrected Close Button Styles */
 .close-btn {
     position: absolute;
     top: 20px;
     right: 30px;
     color: white;
-    font-size: 40px;
+    font-size: 2.5rem; /* Better size for touch */
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
     z-index: 1001;
+    user-select: none;
 }
 
 .close-btn:hover {
     color: #bbb;
+    transform: scale(1.1);
 }
+
+/* Corrected Arrow Button Styles */
+.arrow-btn {
+    position: absolute; /* Positioned relative to the viewer */
+    top: 50%;
+    transform: translateY(-50%); /* Correct vertical centering */
+    font-size: 3rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px; /* Adjust padding for a better look */
+    z-index: 1001;
+    user-select: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.arrow-btn.prev-btn {
+    left: 20px;
+}
+
+.arrow-btn.next-btn {
+    right: 20px;
+}
+
+.arrow-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1); /* Subtle scale effect on hover */
+}
+
+.arrow-btn:active {
+    transform: translateY(-50%) scale(0.9); /* Press effect on click */
+}
+
 
 /* === Animations === */
 @keyframes borderGlow {
@@ -1810,8 +1892,8 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     content: "";
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1a237e, #3949ab); 
-    display: block;
+    background: linear-gradient(90deg, #1a237e, #3949ab);
+     display: block;
     margin: 0.8rem auto 0 auto;
     border-radius: 2px;
 }
@@ -2074,9 +2156,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
   border: 1px solid var(--error-border);
   animation: shake 0.5s ease;
 }
-/* ================================ */
-/* === PROFESSIONAL NOTIFICATION STYLING === */
-/* ================================ */
 
 /* ================================ */
 /* === ADVANCED FLOATING NOTIFICATIONS === */
@@ -2513,221 +2592,6 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));    bor
     100% { transform: translateX(-100%); }
 }
 /* ========================= */
-/* 🔹 News & Events Section  */
-/* ========================= */
-#news-events {
-    width: 100%;
-    margin: 0rem auto;
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12),
-                inset 0 1px 4px rgba(255, 255, 255, 0.5);
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover lift effect */
-#news-events:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18),
-                inset 0 1px 6px rgba(255, 255, 255, 0.7);
-}
-
-.news-slider {
-    position: relative;
-    width: 100%;
-    max-width: 100%; 
-    margin: 3rem auto;
-    padding: 3rem 2rem;
-background: linear-gradient(135deg, var(--light-bg), var(--light-green));
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
-                inset 0 1px 3px rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(224, 230, 240, 0.7);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover lift effect */
-.news-slider:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
-                inset 0 1px 4px rgba(255, 255, 255, 0.7);
-}
-
-/* 🔹 Animated glowing border */
-.news-slider::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 16px;
-    padding: 3px;
-    background: linear-gradient(270deg, #0077ff, #00d4ff, #ff00ff, #0077ff);
-    background-size: 300% 300%;
-    animation: borderGlow 6s linear infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.news-slider:hover::before,
-.news-slider:focus-within::before {
-    opacity: 1;
-}
-
-/* 🔹 Glow animation */
-@keyframes borderGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* === News Card (Synced with Research glowing effect) === */
-.news-card {
-    position: relative;
-    background: #fff;
-    border-radius: 12px;
-    padding: 3rem 2rem;
-    margin: 1rem;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5eaf3;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.news-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12);
-}
-
-/* 🔹 Glowing animated gradient border */
-.news-card::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 12px;
-    padding: 3px;
-    background: linear-gradient(270deg, #0077ff, #00d4ff, #ff00ff, #0077ff);
-    background-size: 300% 300%;
-    animation: borderGlow 6s linear infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.news-card:hover::before,
-.news-card:focus-within::before {
-    opacity: 1;
-}
-
-/* Reuse the same borderGlow animation */
-@keyframes borderGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Track that slides */
-.news-track {
-    display: flex;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-    background: linear-gradient(135deg, #fdfdfd, #f5f7fa);
-    border-radius: 12px;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5),
-                0 4px 10px rgba(0, 0, 0, 0.08);
-}
-/* ========================= */
-/* 🔹 News & Events Section  */
-/* ========================= */
-#news-events {
-    width: 100%;
-    margin: 0rem auto;
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green));
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12),
-                inset 0 1px 4px rgba(255, 255, 255, 0.5);
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover lift effect */
-#news-events:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18),
-                inset 0 1px 6px rgba(255, 255, 255, 0.7);
-}
-
-.news-slider {
-    position: relative;
-    width: 100%;
-    max-width: 100%; 
-    margin: 3rem auto;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, var(--light-bg), var(--light-green));
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
-                inset 0 1px 3px rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(224, 230, 240, 0.7);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover lift effect */
-.news-slider:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18),
-                inset 0 1px 4px rgba(255, 255, 255, 0.7);
-}
-
-/* 🔹 Animated glowing border */
-.news-slider::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 16px;
-    padding: 3px;
-    background: linear-gradient(270deg, #0077ff, #00d4ff, #ff00ff, #0077ff);
-    background-size: 300% 300%;
-    animation: borderGlow 6s linear infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.news-slider:hover::before,
-.news-slider:focus-within::before {
-    opacity: 1;
-}
-
-/* 🔹 Glow animation */
-@keyframes borderGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-/* ========================= */
 /* 🔹 News & Events Section  */
 /* ========================= */
 #news-events {
@@ -2868,7 +2732,32 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
     transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+.view-images-btn {
+    /* Basic Button Styling */
+    padding: 10px 20px;
+    background-color: #007BFF; /* A vibrant, professional blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px; /* Added spacing to separate from the text */
+    text-align: center;
+    text-decoration: none; /* In case it's an anchor tag */
 
+    /* Hover and Active Effects */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-images-btn:hover {
+    background-color: #0056b3; /* A darker shade for the hover effect */
+    transform: translateY(-2px); /* A subtle lift effect */
+}
+
+.view-images-btn:active {
+    background-color: #004494; /* Even darker to simulate a button press */
+    transform: translateY(0); /* Return to original position */
+}
 /* Image Viewer */
 .image-viewer {
     position: fixed;
@@ -3038,6 +2927,7 @@ background: linear-gradient(135deg, var(--light-bg), var(--light-green));
         height: 10px;
     }
 }
+
 /* ========================== */
 /* 🔹 Placements Section      */
 /* ========================== */
@@ -3567,13 +3457,124 @@ blockquote p {
     padding: 0.8rem 1rem;
   }
 }
+/* --- Floating Navigation Button Container --- */
+.nav-float-container {
+  position: fixed;
+  bottom: 150px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* --- Floating Navigation Button (the toggle) --- */
+.nav-float {
+  height: 55px;
+  background-color: #4B0082; /* Mid-indigo color */
+  color: #fff;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  width: 55px;
+  padding: 0;
+  overflow: hidden;
+  transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease, gap 0.4s ease;
+  animation: pulse-nav 1.8s infinite ease-in-out;
+}
+
+/* --- Navigation Icon --- */
+.nav-icon {
+  font-size: 26px;
+  color: #fff;
+  flex-shrink: 0;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* --- Hidden Text on Floating Button --- */
+.nav-text {
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.4s ease, max-width 0.4s ease;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+}
+
+/* --- Hover / Focus effect for Navigation Button --- */
+.nav-float:hover,
+.nav-float:focus {
+  width: 180px;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: none;
+  gap: 12px;
+}
+
+.nav-float:hover .nav-text,
+.nav-float:focus .nav-text {
+  opacity: 1;
+  max-width: 120px;
+}
+
+/* --- Pulse Animation (mid-indigo version) --- */
+@keyframes pulse-nav {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(75, 0, 130, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 12px rgba(75, 0, 130, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(75, 0, 130, 0.4); }
+}
+
+/* --- Links Container (the pop-up menu) --- */
+.nav-links {
+  display: none; /* Initially hide the links */
+  flex-direction: column;
+  margin-top: 10px;
+  background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  width: 150px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  max-height: 200px; /* Limits the height of the container to 200px */
+  overflow-y: auto; /* Adds a vertical scrollbar when content exceeds the max-height */
+}
+
+/* --- Individual Links within the menu --- */
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+  background-color: #f0f0f0;
+}
+
+/* --- Rule to SHOW the links when parent has 'active' class --- */
+.nav-float-container.active .nav-links {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
 /* --- Floating WhatsApp Button --- */
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
+  bottom: 30px;
   right: 30px;
   height: 55px;
-  background-color: #25d366; 
+  background-color: #25D366; /* WhatsApp color */
   color: #fff;
   border-radius: 50px;
   display: flex;
@@ -3584,23 +3585,21 @@ blockquote p {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   z-index: 100;
   width: 55px;
-  padding: 0; 
-  overflow: hidden; 
+  padding: 0;
+  overflow: hidden;
   transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease, gap 0.4s ease;
-  animation: pulse-animation 1.8s infinite ease-in-out;
+  animation: pulse-whatsapp 1.8s infinite ease-in-out;
 }
 
-/* WhatsApp Icon */
 .whatsapp-icon {
-  font-size: 28px; 
-  color: #fff; 
-  flex-shrink: 0; 
-  line-height: 1; 
+  font-size: 26px;
+  color: #fff;
+  flex-shrink: 0;
+  line-height: 1;
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-/* Hidden Text */
 .whatsapp-text {
   white-space: nowrap;
   opacity: 0;
@@ -3612,62 +3611,50 @@ blockquote p {
   color: #fff;
 }
 
-/* Hover / Focus effect */
 .whatsapp-float:hover,
 .whatsapp-float:focus {
-  width: 180px; 
+  width: 180px;
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   animation: none;
   gap: 12px;
 }
 
-/* Show text smoothly */
 .whatsapp-float:hover .whatsapp-text,
 .whatsapp-float:focus .whatsapp-text {
   opacity: 1;
-  max-width: 120px; 
+  max-width: 120px;
 }
 
-/* Subtle pulse animation */
-@keyframes pulse-animation {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(37, 211, 102, 0.4);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px rgba(37, 211, 102, 0.6);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(37, 211, 102, 0.4);
-  }
+@keyframes pulse-whatsapp {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 12px rgba(37, 211, 102, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(37, 211, 102, 0.4); }
 }
+
 /* --- Floating Email Button --- */
 .email-float {
   position: fixed;
-  bottom: 90px; 
+  bottom: 90px;
   right: 30px;
   height: 55px;
-  background-color: #D44638; 
+  background-color: #D44638;
   color: #fff;
   border-radius: 50px;
   display: flex;
   align-items: center;
-  gap: 0; 
+  gap: 0;
   justify-content: center;
   text-decoration: none;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  width: 55px; 
+  width: 55px;
   padding: 0;
   overflow: hidden;
   transition: width 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease, gap 0.4s ease;
   animation: pulse-email 1.8s infinite ease-in-out;
 }
 
-/* Email Icon */
 .email-icon {
   font-size: 26px;
   color: #fff;
@@ -3677,11 +3664,10 @@ blockquote p {
   transition: transform 0.3s ease;
 }
 
-/* Hidden Text */
 .email-text {
   white-space: nowrap;
   opacity: 0;
-  max-width: 0; 
+  max-width: 0;
   transition: opacity 0.4s ease, max-width 0.4s ease;
   font-size: 15px;
   font-weight: 500;
@@ -3689,14 +3675,13 @@ blockquote p {
   color: #fff;
 }
 
-/* Hover / Focus effect */
 .email-float:hover,
 .email-float:focus {
   width: 180px;
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   animation: none;
-  gap: 12px; 
+  gap: 12px;
 }
 
 .email-float:hover .email-text,
@@ -3705,18 +3690,26 @@ blockquote p {
   max-width: 120px;
 }
 
-/* Pulse Animation (red version) */
 @keyframes pulse-email {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(212, 70, 56, 0.4);
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(212, 70, 56, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 12px rgba(212, 70, 56, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(212, 70, 56, 0.4); }
+}
+
+/* --- Media Queries for Responsive Design --- */
+
+/* Hide the navigation button container on screens larger than 768px (PC/Desktop) */
+@media (min-width: 769px) {
+  .nav-float-container {
+    display: none;
   }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 12px rgba(212, 70, 56, 0.6);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(212, 70, 56, 0.4);
+}
+
+/* Disable the pulse animation on screens smaller than 769px (Smartphone/Tablet) to prevent blinking */
+@media (max-width: 768px) {
+  .nav-float,
+  .whatsapp-float,
+  .email-float {
+    animation: none !important;
   }
 }
