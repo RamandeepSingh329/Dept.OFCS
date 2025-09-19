@@ -20,8 +20,15 @@
  <nav class="main-nav">
   <a href="#home" class="nav-link">Home</a>
   <a href="#courses" class="nav-link">Courses</a>
- <a href="#student-spotlight" class="nav-link">Achievements</a>
-  <a href="#faculty" class="nav-link">Faculty</a>
+<div class="dropdown">
+  <a href="#" class="nav-link dropdown-toggle" id="achievementsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    Achievements
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="achievementsDropdown">
+    <li><a class="dropdown-item" href="#student-spotlight">Academics</a></li>
+    <li><a class="dropdown-item" href="#student-projects">Student's Accomplishments</a></li>
+  </ul>
+</div>  <a href="#faculty" class="nav-link">Faculty</a>
   <a href="#research" class="nav-link">Research</a>
  <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" class="nav-link">Admissions</a>
   <a href="#facilities" class="nav-link">Facilities</a>
@@ -106,15 +113,15 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
   </p>
   <div class="placements-grid">
     <div class="placement-stat">
-      <h3>--</h3>
+      <h3>85%</h3>
       <p>Placement Rate</p>
     </div>
     <div class="placement-stat">
-      <h3>--</h3>
+      <h3>₹7 LPA</h3>
       <p>Average Salary</p>
     </div>
     <div class="placement-stat">
-      <h3>--</h3>
+      <h3>₹10 LPA</h3>
       <p>Highest Salary</p>
     </div>
   </div>
@@ -124,8 +131,6 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
       <img src="assets/ceat.webp" alt="ceat" class="company-logo">
       <img src="assets/piramal.webp" alt="piramal" class="company-logo">
       <img src="assets/icici.webp" alt="Wipro" class="company-logo">
-      <img src="assets/cognizant_logo.png" alt="Cognizant" class="company-logo">
-      <img src="assets/amazon_logo.png" alt="Amazon" class="company-logo">
     </div>
   </div>
 </section>
@@ -655,6 +660,21 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
     </div>
 </section>
 
+<section id="student-projects" class="projects-section">
+  <div class="container">
+    <div class="projects-header">
+      <h2>Student's Innovative Mind</h2>
+      <p class="subtitle">A showcase of innovative web applications built by Computer Science students.</p>
+    </div>
+
+    <div class="slider-wrapper">
+      <button id="slide-left" class="slider-arrow" aria-label="Slide Left">‹</button>
+      <div id="projects-slider" class="slider"></div>
+      <button id="slide-right" class="slider-arrow" aria-label="Slide Right">›</button>
+    </div>
+  </div>
+</section>
+
         <section id="faculty" class="container reveal">
             <h2>Our Distinguished Faculty</h2>
             <div class="faculty-container">
@@ -694,7 +714,8 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
 
   <div class="eligibility-box">
     <form id="eligibility-form">
-      <!-- Course Selection -->
+<label for="student-name">Your Name:</label>
+<input type="text" id="student-name" name="student-name" placeholder="Enter Your Name" required>
       <label for="course">Select Course:</label>
       <select id="course" name="course" required>
         <option value="">-- Choose a course --</option>
@@ -714,7 +735,6 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
         <option value="diploma-civil-eng">Diploma in Civil Engineering</option>
       </select>
 
-      <!-- Qualification Selection -->
       <label for="qualification">Your Last Qualification:</label>
       <select id="qualification" name="qualification" required>
         <option value="">-- Select qualification --</option>
@@ -730,12 +750,10 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
         <option value="pgdca">PGDCA</option>
       </select>
 
-      <!-- Submit Button -->
       <button type="submit" class="cta-button">Check Eligibility</button>
     </form>
   </div>
 </section>
-
         <section id="facilities" class="container reveal">
     <div class="facilities-container">
         <h2>Our Facilities</h2>
@@ -853,6 +871,7 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
   </article>
 
 </section>
+
 <div class="nav-float-container">
     <a href="#" class="nav-float" id="nav-toggle">
         <i class="fa-solid fa-bars nav-icon"></i>
@@ -865,13 +884,11 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
         <a href="#faculty">Faculty</a>
                 <a href="#facilities">Facilities</a>
                         <a href="#student-spotlight">Achievements</a>
+                        <a href="#student-projects">Students Accomplishments</a>
                                                 <a href="#news-events">Extra Curricular Activities</a>
-
-
-
-
     </div>
 </div>
+
 <a href="https://wa.me/919251667416" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp whatsapp-icon"></i>
     <span class="whatsapp-text">Connect with us</span>
@@ -908,8 +925,6 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
                     <li><a href="https://admission.skduniversity.org/?CampaignSource=Google_Campaigns&CampaignName=SKDU_Brand_2025&CampaignID=22071532207&device=c&adgroupid=173412951595&gclid=&keyword=skd%20university&gad_source=1&gad_campaignid=22071532207&gbraid=0AAAAAq61iyPnX_XQUK-YtBxczg6ovDRbH">Admissions</a></li>
                     <li><a href="#facilities">Facilities</a></li>
                                         <li><a href="#eligiblity">Course Eligiblity</a></li>
-
-
                 </ul>
             </div>
 <div class="footer-column contact-info">
@@ -940,7 +955,21 @@ The deadline for re-admissions to Semesters 3, 5, 7, and 9 has been extended. St
             </p>
         </div>
     </footer>
-
+<div id="disclaimer-popup" class="disclaimer-popup">
+    <div class="disclaimer-popup-content">
+        <span class="close-button">&times;</span>
+        <div class="disclaimer-header">
+            <img src="assets/skduni.jpg" alt="University Logo" class="department-logo">
+            <h3>Faculty of Engineering & Technology</h3>
+            <h4><b>Shri Khushal Das University</b></h4>
+        </div>
+        <div class="disclaimer-text-container">
+            <p>
+                <strong>Verified & Secure</strong></br>"The university’s course offerings, faculty profiles, and departmental information have undergone a rigorous, multi-tier verification process to ensure their accuracy and authenticity. The institution remains committed to maintaining the highest standards of data integrity, thereby providing students and faculty with a reliable and secure source of information."
+            </p>
+        </div>
+    </div>
+</div>
     <script src="script.js"></script>
     <script src="secure.js"></script>
 </body>

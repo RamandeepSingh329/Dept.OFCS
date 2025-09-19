@@ -1,28 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const facultyData = [
-        { name: "Dr. Kulwant Singh", title: "Head of Department", bio: "Dr. Kulwant Singh serves as the Head of Department, bringing 15+ years of distinguished teaching experience across leading academic institutions. With a strategic vision for academic excellence, he mentors both students and faculty, fostering innovation and practical problem-solving across emerging technologies. His leadership continues to shape a dynamic learning environment that equips graduates to tackle real-world challenges with confidence and expertise.", image: "assets/faculity/dr.kulwant-singh.jpeg" },
-        { name: "ER.Vikram Mangwana", title: "Assistant Professor", bio: "Vikram Mangwana is an Assistant Professor with over seven years of distinguished teaching experience across reputed universities. He empowers students with the analytical and technical acumen required to navigate complex digital environments, fostering a deep understanding of secure systems and investigative methodologies essential for modern technological resilience.", image: "assets/faculity/vikram-mangawana.jpeg" },
-        { name: "ER.Sumit Garg", title: "Assistant Professor", bio: "Sumit Garg is an Assistant Professor who brings over seven years of teaching expertise cultivated within leading professional universities, fostering academic excellence and industry-aligned learning. He is committed to equipping future engineers with the analytical tools and practical knowledge needed to design resilient infrastructure and solve complex engineering challenges. His academic approach blends theoretical rigor with real-world application, fostering a generation of professionals capable of advancing sustainable development and precision-driven construction practices.", image: "assets/faculity/sumit-garg.jpeg" },
-{
-  name: "ER. Manoj Joshi",
-  title: "Teaching Assistant",
-  bio: "ER. Manoj Joshi is a Teaching Assistant with over three years of teaching experience. He is dedicated to supporting academic excellence by assisting in core engineering subjects and guiding students in practical applications of classroom learning. With a focus on strengthening fundamentals, he helps learners build analytical and problem-solving skills essential for professional growth. His approach combines patience, clarity, and practical orientation, making him an effective mentor for aspiring engineers.",
-  image: "assets/faculity/"
-},
-{
-  name: "ER. Nitin Meena",
-  title: "Teaching Assistant",
-  bio: "ER. Nitin Meena is a Teaching Assistant with over three years of teaching experience. He actively supports students in developing strong academic foundations and practical skills through hands-on guidance and mentoring. His approach emphasizes conceptual clarity, collaborative learning, and real-world application, enabling students to bridge the gap between theory and practice. With his dedication and enthusiasm, he plays a vital role in shaping confident and competent future engineers.",
-  image: "assets/faculity/"
-},
-
-        { name: "ER.Amandeep Kaur", title: "Assistant Professor", bio: "Amandeep Kaur is an Assistant Professor with over 6+ years of teaching experience across well-regarded higher education institutions. She is committed to empowering students through a blend of theoretical instruction and practical application, guiding them to develop strong problem-solving skills and professional readiness for dynamic roles in the tech industry.", image: "assets/faculity/Er.Amandeep-Kaur.jpeg" },
-        { name: "Manmeet Kaur", title: "Assistant Professor", bio: "Manmeet Kaur is an Assistant Professor with over 9+ years of teaching experience across respected university environments. She is dedicated to cultivating analytical thinking and problem-solving abilities in students, guiding them to innovate and excel in today’s rapidly evolving technological landscape. Her commitment to academic excellence and student development continues to shape future-ready professionals.", image: "assets/faculity/Manmeet-kaur.jpeg" },
-        { name: "Sarvjeet Kaur", title: "Assistant Professor", bio: "Sarvjeet Kaur is an Assistant Professor with over 6+ years of professional teaching experience in reputed universities. She is deeply committed to mentoring students through both foundational and advanced concepts in computing, encouraging innovation and critical thinking in the field of technology. Her academic approach blends clarity, curiosity, and creativity, empowering learners to excel in dynamic and evolving digital environments.", image: "assets/sarvjeet.jpg" },
-        { name: "Rajwinder Singh", title: "Assistant Engineer", bio: "Rajwinder Singh is a dedicated Assistant Engineer who specializes in designing and maintaining secure, high-performance digital systems. Known for his precision and problem-solving acumen, he contributes to building resilient infrastructures that support institutional growth and technological advancement. His commitment to engineering excellence and continuous innovation makes him a valuable asset in today’s rapidly evolving digital landscape.", image: "assets/faculity/rajwinder-singh.jpeg" },
-        { name: "Suraj Singh", title: "Lab Assistant", bio: "Suraj Singh is a committed Lab Assistant known for his hands-on support in technical training environments. With a strong foundation in digital systems and communication protocols, he ensures smooth lab operations and fosters practical learning experiences. Suraj plays a key role in preparing students for real-world challenges by maintaining high standards of accuracy, efficiency, and professional conduct.", image: "assets/faculity/suraj-singh.png" }
-    ];
+        { name: "Dr. Kulwant Singh", title: "Head of Department", bio: "Dr. Kulwant Singh serves as the Head of Department, bringing 15+ years of distinguished teaching experience across leading academic institutions. With a strategic vision for academic excellence, he mentors both students and faculty, fostering innovation and practical problem-solving across emerging technologies. His leadership continues to shape a dynamic learning environment that equips graduates to tackle real-world challenges with confidence and expertise.", image: "assets/faculity/dr.kulwant-singh.jpeg" },
+        { name: "ER.Vikram Mangwana", title: "Assistant Professor", bio: "Vikram Mangwana is an Assistant Professor with over seven years of distinguished teaching experience across reputed universities. He empowers students with the analytical and technical acumen required to navigate complex digital environments, fostering a deep understanding of secure systems and investigative methodologies essential for modern technological resilience.", image: "assets/faculity/vikram-mangawana.jpeg" },
+        { name: "ER.Sumit Garg", title: "Assistant Professor", bio: "Sumit Garg is an Assistant Professor who brings over seven years of teaching expertise cultivated within leading professional universities, fostering academic excellence and industry-aligned learning. He is committed to equipping future engineers with the analytical tools and practical knowledge needed to design resilient infrastructure and solve complex engineering challenges. His academic approach blends theoretical rigor with real-world application, fostering a generation of professionals capable of advancing sustainable development and precision-driven construction practices.", image: "assets/faculity/sumit-garg.jpeg" },
+        { name: "ER. Manoj Joshi", title: "Teaching Assistant", bio: "ER. Manoj Joshi is a Teaching Assistant with over three years of teaching experience. He is dedicated to supporting academic excellence by assisting in core engineering subjects and guiding students in practical applications of classroom learning. With a focus on strengthening fundamentals, he helps learners build analytical and problem-solving skills essential for professional growth. His approach combines patience, clarity, and practical orientation, making him an effective mentor for aspiring engineers.", image: "assets/faculity/manoj-joshi.jpeg" },
+        { name: "ER. Nitin Meena", title: "Teaching Assistant", bio: "ER. Nitin Meena is a Teaching Assistant with over three years of teaching experience. He actively supports students in developing strong academic foundations and practical skills through hands-on guidance and mentoring. His approach emphasizes conceptual clarity, collaborative learning, and real-world application, enabling students to bridge the gap between theory and practice. With his dedication and enthusiasm, he plays a vital role in shaping confident and competent future engineers.", image: "assets/faculity/nitin-meena.jpeg" },
+        { name: "ER.Amandeep Kaur", title: "Assistant Professor", bio: "Amandeep Kaur is an Assistant Professor with over 7+ years of teaching experience across well-regarded higher education institutions. She is committed to empowering students through a blend of theoretical instruction and practical application, guiding them to develop strong problem-solving skills and professional readiness for dynamic roles in the tech industry.", image: "assets/faculity/Er.Amandeep-Kaur.jpeg" },
+        { name: "Manmeet Kaur", title: "Assistant Professor", bio: "Manmeet Kaur is an Assistant Professor with over 9+ years of teaching experience across respected university environments. She is dedicated to cultivating analytical thinking and problem-solving abilities in students, guiding them to innovate and excel in today’s rapidly evolving technological landscape. Her commitment to academic excellence and student development continues to shape future-ready professionals.", image: "assets/faculity/Manmeet-kaur.jpeg" },
+        { name: "Sarvjeet Kaur", title: "Assistant Professor", bio: "Sarvjeet Kaur is an Assistant Professor with over 6+ years of professional teaching experience in reputed universities. She is deeply committed to mentoring students through both foundational and advanced concepts in computing, encouraging innovation and critical thinking in the field of technology. Her academic approach blends clarity, curiosity, and creativity, empowering learners to excel in dynamic and evolving digital environments.", image: "assets/faculity/sarvjeet-kaur.jpg" },
+        { name: "Rajwinder Singh", title: "Assistant Engineer", bio: "Rajwinder Singh is a dedicated Assistant Engineer who specializes in designing and maintaining secure, high-performance digital systems. Known for his precision and problem-solving acumen, he contributes to building resilient infrastructures that support institutional growth and technological advancement. His commitment to engineering excellence and continuous innovation makes him a valuable asset in today’s rapidly evolving digital landscape.", image: "assets/faculity/rajwinder-singh.jpeg" },
+        { name: "Suraj Singh", title: "Lab Assistant", bio: "Suraj Singh is a committed Lab Assistant known for his hands-on support in technical training environments. With a strong foundation in digital systems and communication protocols, he ensures smooth lab operations and fosters practical learning experiences. Suraj plays a key role in preparing students for real-world challenges by maintaining high standards of accuracy, efficiency, and professional conduct.", image: "assets/faculity/suraj-singh.png" }
+    ];
 
     let currentFacultyIndex = 0;
     let facultyInterval;
@@ -86,9 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Click-to-view image
         const facultyImg = facultyContent.querySelector('.faculty-image');
         if (facultyImg) {
-            facultyImg.addEventListener('click', () => {
-                openImageViewer(faculty.image);
-            });
+            facultyImg.addEventListener('click', () => openImageViewer(faculty));
         }
 
         // Mobile 'View More' functionality
@@ -99,13 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
             bioSummary.style.display = 'none';
 
             viewMoreBtn.addEventListener('click', () => {
-                if (bioSummary.style.display === 'none') {
-                    bioSummary.style.display = 'block';
-                    viewMoreBtn.textContent = 'View Less';
-                } else {
-                    bioSummary.style.display = 'none';
-                    viewMoreBtn.textContent = 'View More';
-                }
+                const isHidden = bioSummary.style.display === 'none';
+                bioSummary.style.display = isHidden ? 'block' : 'none';
+                viewMoreBtn.textContent = isHidden ? 'View Less' : 'View More';
             });
         }
     }
@@ -125,38 +107,72 @@ document.addEventListener('DOMContentLoaded', () => {
         startFacultyAutoScroll();
     }
 
-    // --- Image Viewer (Optimized) ---
+    /* ========================================= */
+    /* === Transparent Custom Image Viewer === */
+    /* ========================================= */
     const viewer = document.createElement('div');
     viewer.classList.add('image-viewer');
     viewer.innerHTML = `
-        <div class="viewer-overlay"></div>
-        <div class="viewer-content">
+        <div class="viewer-image-container">
             <span class="close-btn">&times;</span>
-            <img src="" alt="Faculty Image" class="viewer-image">
+            <img src="" alt="Faculty Photo" class="viewer-image">
         </div>
     `;
     document.body.appendChild(viewer);
 
+    const viewerImageContainer = viewer.querySelector('.viewer-image-container');
     const viewerImg = viewer.querySelector('.viewer-image');
     const closeBtn = viewer.querySelector('.close-btn');
-    const viewerOverlay = viewer.querySelector('.viewer-overlay');
 
-    function openImageViewer(src) {
-        viewerImg.src = src;
+    // Style the close button with JavaScript
+    Object.assign(closeBtn.style, {
+        position: 'absolute',
+        top: '-15px', // Adjust as needed
+        right: '-15px', // Adjust as needed
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        color: '#fff',
+        background: '#D32F2F',
+        borderRadius: '50%',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.4)',
+        transition: 'transform 0.2s ease',
+        pointerEvents: 'auto',
+        zIndex: '10',
+    });
+
+    closeBtn.addEventListener('mouseenter', () => {
+        closeBtn.style.transform = 'scale(1.2)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+        closeBtn.style.transform = 'scale(1)';
+    });
+
+    function openImageViewer(faculty) {
+        viewerImg.src = faculty.image;
         viewer.classList.add('active');
-        setTimeout(() => viewerImg.style.opacity = '1', 50);
+        setTimeout(() => viewerImageContainer.style.opacity = '1', 50);
         document.body.style.overflow = 'hidden';
     }
 
     function closeImageViewer() {
         viewer.classList.remove('active');
-        viewerImg.style.opacity = '0';
-        document.body.style.overflow = '';
+        viewerImageContainer.style.opacity = '0';
+        setTimeout(() => {
+            if (!viewer.classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        }, 400);
     }
 
+    // Close only with cross button
     closeBtn.addEventListener('click', closeImageViewer);
-    viewerOverlay.addEventListener('click', closeImageViewer);
 
+    // Close with Esc key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && viewer.classList.contains('active')) {
             closeImageViewer();
@@ -164,13 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Initialize ---
-    if (facultySidebar && facultyContent) {
+    if (facultyData.length > 0) {
         renderFacultySidebar();
-        updateFacultyContent(currentFacultyIndex);
+        updateFacultyContent(0);
         startFacultyAutoScroll();
     }
 });
-   // --- DEGREE SLIDES MANUAL NAVIGATION LOGIC ---
+  // --- DEGREE SLIDES MANUAL NAVIGATION LOGIC ---
     const degreeSlidesContainer = document.querySelector('.degree-slides-container');
     const prevButton = document.getElementById('prev-degree');
     const nextButton = document.getElementById('next-degree');
@@ -264,12 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
         "Interactive, tech-enabled classrooms designed to elevate students engagement and understanding."
     },
     {
-      name: "Virtual Lab Collaboration with IIT Delhi",
-      title: "Virtual Lab",
-      images: ["assets/virtuallab.jpg"],
-      description:
-        "The Robotics and Intelligent Systems Lab, developed in collaboration with Virtual Labs, IIT Delhi, provides experiential learning and applied technological research."
-    }
+  name: "Virtual Lab Collaboration with IIT Delhi",
+  title: "Virtual Lab",
+  images: ["assets/virtuallab.jpg"],
+  description:
+    "The Robotics and Intelligent Systems Lab, developed in collaboration with Virtual Labs, IIT Delhi, offers students experiential learning and opportunities for applied technological research. To explore and access resources, visit the official Virtual Labs portal at <a href='https://www.vlab.co.in/broad-area-computer-science-and-engineering' target='_blank' style='color:#0d6efd; text-decoration:underline;'>www.vlab.co.in</a>."
+}
+
   ];
 
   let currentFacilityIndex = 0;
@@ -717,7 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Create notification container if not exists
+    // Create notification container if it doesn't exist
     let notificationContainer = document.querySelector('.notification-container');
     if (!notificationContainer) {
         notificationContainer = document.createElement('div');
@@ -725,7 +742,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(notificationContainer);
     }
 
-    // Eligibility rules
+    // Functions to manage scroll behavior
+    const disableScroll = () => {
+        document.body.classList.add('no-scroll');
+    };
+
+    const enableScroll = () => {
+        document.body.classList.remove('no-scroll');
+    };
+
+    // Eligibility rules for various courses
     const eligibilityRules = {
         'bca': { required: ['12-science', '12-commerce', '12-arts'], name: 'Bachelor of Computer Applications (BCA)', advice: 'a 10+2 qualification with at least 50% marks.' },
         'bca-mca-integrated': { required: ['12-science', '12-commerce', '12-arts'], name: 'BCA + MCA Integrated', advice: 'a 10+2 qualification with at least 50% marks.' },
@@ -770,39 +796,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return icons[type] || '💡';
     };
 
-    // Eligibility check
+    // Check eligibility based on rules
     const checkEligibility = (course, qualification) => {
         const rule = eligibilityRules[course];
         if (!rule) return { valid: false, msg: "Please select both a course and your qualification.", type: 'warning' };
 
-        // Default eligibility check
         let isEligible = rule.required.includes(qualification);
 
-        // Special cases
+        // Handle special cases where multiple graduation types qualify
         if ((course === 'mca' || course === 'pgdca') && qualification.includes('graduation')) {
             isEligible = true;
         }
 
         let msg, type;
         if (isEligible) {
-            msg = `🎉 Congratulations! As per the university norms and in line with the National Education Policy (NEP) 2020, you are eligible for the <strong>${rule.name}</strong> program. <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChsSEwidhd2z1ZiPAxXED4MDHYuEGMkYACICCAEQABoCc2Y&co=1&ase=2&gclid=EAIaIQobChMInYXds9WYjwMVxA-DAx2LhBjJEAAYASAAEgKTJPD_BwE&ohost=www.google.com&cid=CAASJeRoBToMSfssZSGfmpm8mTnaEu1XKixsD7rgE8kD8JZF-R9Z0Gw&category=acrcp_v1_40&sig=AOD64_2KM6RJldY691U3yODcwEx4CheZLw&q&nis=4&adurl&ved=2ahUKEwjs-taz1ZiPAxWmzTgGHUKoHOUQ0Qx6BAgcEAE" target="_blank" style="color: #0d6efd; text-decoration: underline;">Start your journey here</a>.`;
+            msg = `🎉 Congratulations! Based on your qualifications, you are provisionally eligible for the <strong>${rule.name}</strong> program. This determination is in accordance with the National Education Policy (NEP) 2020. We invite you to proceed with your application. <a href="https://admission.skduniversity.org/?CampaignSource=Google_Campaigns&CampaignName=SKDU_Brand_2025&CampaignID=22071532207&device=c&adgroupid=173412951595&gclid=&keyword=skd%20university&gad_source=1&gad_campaignid=22071532207&gbraid=0AAAAAq61iyPnX_XQUK-YtBxczg6ovDRbH" target="_blank" style="color: #0d6efd; text-decoration: underline;">Begin your application here</a>.`;
             type = 'success';
         } else {
-            // New logic for when not eligible
             const requiredQualifications = rule.required.map(req => qualificationMap[req] || req);
             const formattedRequirements = requiredQualifications.length > 1
                 ? requiredQualifications.slice(0, -1).join(', ') + ' or ' + requiredQualifications.slice(-1)
                 : requiredQualifications[0];
 
-            msg = `⚠️ It seems your current qualification may not meet the eligibility requirements for the <strong>${rule.name}</strong> program. The required qualifications are: <strong>${formattedRequirements}</strong>. Don't worry, there are many other pathways to a successful career! We recommend exploring other related programs or considering a preparatory course to meet the criteria.`;
+            msg = `⚠️ Your qualifications do not meet the minimum criteria for <strong>${rule.name}</strong>. The required qualifications are <strong>${formattedRequirements}</strong>. Please explore other programs or consult with our academic advisors.`;
             type = 'error';
         }
-
         return { valid: true, msg, type };
     };
 
-    // Show notification
-    const showNotification = (msg, type = 'info', duration = 8000) => {
+    // Show the notification pop-up
+    const showNotification = (msg, type = 'info') => {
+        disableScroll();
         const notif = document.createElement('div');
         notif.className = `notification ${type}`;
         notif.innerHTML = `
@@ -811,44 +835,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="notif-message">${msg}</span>
             </div>
             <button class="close-btn">&times;</button>
-            <div class="progress"></div>
         `;
-
         notificationContainer.appendChild(notif);
 
-        // Close button
-        notif.querySelector('.close-btn').addEventListener('click', () => {
+        // Function to close and clean up the notification
+        const closeNotification = () => {
             notif.classList.add('hide');
-            setTimeout(() => notif.remove(), 500);
+            setTimeout(() => {
+                notif.remove();
+                enableScroll();
+            }, 500);
+        };
+
+        // Auto-close after 7 seconds
+        const timer = setTimeout(closeNotification, 7000);
+
+        // Close button functionality
+        notif.querySelector('.close-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            clearTimeout(timer); // Clear the auto-close timer
+            closeNotification();
         });
 
-        // Progress bar animation duration
-        const progress = notif.querySelector('.progress');
-        progress.style.animationDuration = `${duration / 1000}s`;
-
-        // Auto remove
-        setTimeout(() => {
-            notif.classList.add('hide');
-            setTimeout(() => notif.remove(), 500);
-        }, duration);
+        // Auto-close when clicking outside the notification
+        document.addEventListener('click', (e) => {
+            if (!notificationContainer.contains(e.target) && notificationContainer.contains(notif)) {
+                clearTimeout(timer); // Clear the auto-close timer
+                closeNotification();
+            }
+        }, { once: true });
     };
 
-    // Form submit
+    // Form submission handler
     eligibilityForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const studentName = e.target.querySelector('#student-name').value.trim();
         const course = e.target.querySelector('#course').value;
         const qualification = e.target.querySelector('#qualification').value;
 
-        const { valid, msg, type } = checkEligibility(course, qualification);
+        if (!studentName || !course || !qualification) {
+            showNotification('Please fill in all the required fields.', 'warning');
+            return;
+        }
 
-        showNotification(msg, type);
+        const { valid, msg, type } = checkEligibility(course, qualification);
+        let personalizedMsg = `Hello ${studentName}! ${msg}`;
+
+        showNotification(personalizedMsg, type);
         eligibilityForm.reset();
     });
 });
-document.addEventListener("DOMContentLoaded", () => {
-    // The image-setting JavaScript has been removed.
-    // The background image is now handled by the CSS.
-});// News Data with multiple images per item
 const newsData = [
   
   {
@@ -1287,4 +1323,157 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+
+// ===============================
+// 🎯 Student Projects Section JS (Optimized with Animations)
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const projects = [
+    {
+      id: "p1",
+      title: "Hospital Management System",
+      team: "Ramandeep Sinmgh",
+      stack: "HTML , CSS , JS",
+      image: "assets/Projects/header.png",
+      excerpt: "A Digital Transformation Initiative Hospital Management System  ",
+    },
+    {
+      id: "p2",
+      title: "E-Commerce Platform",
+      team: "Khushpreet Singh",
+      stack: "Angular, Bootstrap, Json-Server, HTML, CSS, JS",
+      image: "assets/Projects/e-com.png",
+      excerpt: "Full-featured online shopping site with cart, payments, and admin dashboard.",
+    },
+    {
+      id: "p3",
+      title: "EASY ACCESS",
+      team: "Neeraj Arora",
+      stack: "PYTHON, DJANGO",
+      image: "assets/Projects/easy-access.png",
+      excerpt: "A dynamic platform empowering freshers to master advanced programming languages with ease and confidence.",
+    },
+        {
+      id: "p4",
+      title: "My Book Lab",
+      team: "Sukhchain Singh",
+      stack: "Django,Javascript,Bootstrap,PostgreSQL",
+      image: "assets/Projects/thebooklab.jpeg",
+      excerpt: "A dynamic portfolio generator with customizable templates and PDF export.",
+    }
+
+  ];
+
+  const slider = document.getElementById("projects-slider");
+
+  // Render project cards
+  projects.forEach(project => {
+    const card = document.createElement("article");
+    card.classList.add("card");
+    card.innerHTML = `
+      <div class="card-thumb">
+        <img src="${project.image}" alt="${project.title} screenshot">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${project.title}</h3>
+        <p class="card-meta">Developed By: ${project.team} • ${project.stack}</p>
+        <p class="card-excerpt">${project.excerpt}</p>
+      </div>
+    `;
+    slider.appendChild(card);
+  });
+
+  // Arrow buttons
+  const leftArrow = document.getElementById("slide-left");
+  const rightArrow = document.getElementById("slide-right");
+
+  const scrollAmount = 300; // Pixels to scroll per click (adjust as needed)
+
+  leftArrow.addEventListener("click", () => {
+    slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  rightArrow.addEventListener("click", () => {
+    slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all dropdowns to make the script reusable
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+  dropdownToggles.forEach(function(toggle) {
+    const parentDropdown = toggle.closest('.dropdown');
+    const dropdownMenu = parentDropdown.querySelector('.dropdown-menu');
+
+    // Add a click event listener to each dropdown toggle
+    toggle.addEventListener('click', function(event) {
+      // Prevents the default action of the link
+      event.preventDefault();
+      
+      // Toggle the 'show' class on the dropdown menu
+      dropdownMenu.classList.toggle('show');
+      
+      // Toggle the ARIA attribute for accessibility
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+      toggle.setAttribute('aria-expanded', !isExpanded);
+    });
+  });
+
+  // Close the dropdown if the user clicks outside of it
+  document.addEventListener('click', function(event) {
+    // Check if the click occurred outside any dropdown container
+    const isClickInsideDropdown = event.target.closest('.dropdown');
+    
+    if (!isClickInsideDropdown) {
+      // Find all currently open dropdowns and close them
+      const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
+      openDropdowns.forEach(function(openMenu) {
+        openMenu.classList.remove('show');
+        // Reset the aria-expanded attribute on the toggle button
+        const toggleButton = openMenu.closest('.dropdown').querySelector('.dropdown-toggle');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const popup = document.getElementById('disclaimer-popup');
+    const closeButton = document.querySelector('.close-button');
+
+    setTimeout(() => {
+        popup.classList.add('show');
+    }, 0);
+
+    // Set a timer to automatically hide the pop-up after 10 seconds (10000 milliseconds)
+    const autoCloseTimer = setTimeout(() => {
+        popup.classList.remove('show');
+        popup.addEventListener('transitionend', function handler() {
+            popup.style.display = 'none';
+            popup.removeEventListener('transitionend', handler);
+        });
+    }, 7000); // 7000ms = 7 seconds
+
+    closeButton.onclick = function() {
+        clearTimeout(autoCloseTimer);
+        popup.classList.remove('show');
+        popup.addEventListener('transitionend', function handler() {
+            popup.style.display = 'none';
+            popup.removeEventListener('transitionend', handler);
+        });
+    };
+
+    window.onclick = function(event) {
+        if (event.target === popup) {
+            clearTimeout(autoCloseTimer);
+            popup.classList.remove('show');
+            popup.addEventListener('transitionend', function handler() {
+                popup.style.display = 'none';
+                popup.removeEventListener('transitionend', handler);
+            });
+        }
+    };
 });
