@@ -3483,7 +3483,7 @@ blockquote p {
 /* --- Floating Navigation Button (the toggle) --- */
 .nav-float {
   height: 55px;
-  background-color: #4B0082; /* Mid-indigo color */
+  background-color: #4B0082; 
   color: #fff;
   border-radius: 50px;
   display: flex;
@@ -3546,7 +3546,7 @@ blockquote p {
 
 /* --- Links Container (the pop-up menu) --- */
 .nav-links {
-  display: none; /* Initially hide the links */
+  display: none; 
   flex-direction: column;
   margin-top: 10px;
   background: linear-gradient(135deg, var(--light-bg), var(--light-green)); 
@@ -3557,8 +3557,8 @@ blockquote p {
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateY(10px);
   opacity: 0;
-  max-height: 200px; /* Limits the height of the container to 200px */
-  overflow-y: auto; /* Adds a vertical scrollbar when content exceeds the max-height */
+  max-height: 200px; 
+  overflow-y: auto; 
 }
 
 /* --- Individual Links within the menu --- */
@@ -3586,7 +3586,7 @@ blockquote p {
   bottom: 30px;
   right: 30px;
   height: 55px;
-  background-color: #25D366; /* WhatsApp color */
+  background-color: #25D366; 
   color: #fff;
   border-radius: 50px;
   display: flex;
@@ -3708,7 +3708,6 @@ blockquote p {
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(212, 70, 56, 0.4); }
 }
 
-/* --- Media Queries for Responsive Design --- */
 
 /* Hide the navigation button container on screens larger than 768px (PC/Desktop) */
 @media (min-width: 769px) {
@@ -3784,7 +3783,7 @@ blockquote p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    justify-content: center; /* Center arrows + slider */
+    justify-content: center; 
 }
 
 /* 🔹 Slider container - shows 2 cards centered */
