@@ -230,227 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ----------------- FACILITIES DATA -----------------
-  const facilitiesData = [
-    {
-      name: "Highlights connection between developers and mentors",
-      title: "TechTalk",
-      images: ["assets/project-development/mentorship.jpeg"]
-    },
-    {
-      name: "Empowering Minds Through Education",
-      title: "Core Learning",
-      images: [
-        "assets/smart-classes/classroom.jpeg",
-        "assets/smart-classes/smart-classes3.jpeg",
-        "assets/smart-classes/classroom-1.jpeg",
-        "assets/smart-classes/class-room.jpeg"
-      ],
-      description:
-        "From foundational subjects to advanced specializations, our curriculum is delivered through dynamic sessions led by passionate educators."
-    },
-    {
-      name: "Advanced Computer Lab I",
-      title: "Hands-on Computing Lab",
-      images: [
-        "assets/smart-classes/class-room.jpeg",
-        "assets/img3.jpeg",
-        "assets/varish.jpeg",
-        "assets/ajay.jpg"
-      ],
-      description:
-        "Our state-of-art computer labs are equipped with high-performance workstations and specialized software for a variety of courses."
-    },
-    {
-      name: "Advanced Computer Lab II",
-      title: "Programming Lab",
-      images: ["assets/lab2-image1.jpg", "assets/lab2-image2.jpg"],
-      description:
-        "Equipped with ultra-fast workstations, industry-grade software, and dedicated environments for AI, machine learning, and data science."
-    },
-    {
-      name:
-        "Mentors transform the learning journey by enriching students’ experiences through digital classrooms, where knowledge meets innovation.",
-      title: "Smart Class",
-      images: [
-        "assets/smart-classes/smart-classes3.jpeg",
-        "assets/smart-classes/smart-classes2.jpeg"
-      ],
-      description:
-        "Interactive, tech-enabled classrooms designed to elevate students engagement and understanding."
-    },
-    {
-  name: "Virtual Lab Collaboration with IIT Delhi",
-  title: "Virtual Lab",
-  images: ["assets/virtuallab.jpg"],
-  description:
-    "The Robotics and Intelligent Systems Lab, developed in collaboration with Virtual Labs, IIT Delhi, offers students experiential learning and opportunities for applied technological research. To explore and access resources, visit the official Virtual Labs portal at <a href='https://www.vlab.co.in/broad-area-computer-science-and-engineering' target='_blank' style='color:#0d6efd; text-decoration:underline;'>www.vlab.co.in</a>."
-}
-
-  ];
-
-  let currentFacilityIndex = 0;
-  let facilitiesInterval;
-
-  const facilitiesSidebar = document.getElementById('facilities-sidebar');
-  const facilitiesContent = document.getElementById('facilities-content');
-
-  // ----------------- RENDER SIDEBAR -----------------
-  const renderFacilitiesSidebar = () => {
-    if (!facilitiesSidebar) return;
-    facilitiesSidebar.innerHTML = '';
-    facilitiesData.forEach((facility, index) => {
-      const sidebarItem = document.createElement('div');
-      sidebarItem.classList.add('facilities-sidebar-item');
-      sidebarItem.innerText = facility.title || facility.name;
-
-      sidebarItem.addEventListener('click', () => {
-        updateFacilitiesContent(index);
-        resetFacilitiesAutoScroll();
-      });
-      facilitiesSidebar.appendChild(sidebarItem);
-    });
-  };
-
-  // ----------------- UPDATE MAIN CONTENT -----------------
-  const updateFacilitiesContent = (index) => {
-    if (!facilitiesContent) return;
-    currentFacilityIndex = index;
-    const facility = facilitiesData[index];
-
-    facilitiesContent.classList.remove('active');
-
-    setTimeout(() => {
-      let html = `
-        <h3>${facility.name}</h3>
-        ${facility.description ? `<p>${facility.description}</p>` : ''}
-      `;
-      facilitiesContent.innerHTML = html;
-
-      if (facility.images && facility.images.length > 0) {
-        const viewBtn = document.createElement('button');
-        viewBtn.classList.add('view-image-btn');
-        viewBtn.textContent = 'View Images';
-        viewBtn.addEventListener('click', () => {
-          stopFacilitiesAutoScroll();
-          openImageViewer(facility.images);
-        });
-        facilitiesContent.appendChild(viewBtn);
-      }
-
-      document.querySelectorAll('.facilities-sidebar-item').forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-      });
-
-      facilitiesContent.classList.add('active');
-    }, 200);
-  };
-
-  // ----------------- AUTO SCROLL -----------------
-  const startFacilitiesAutoScroll = () => {
-    clearInterval(facilitiesInterval);
-    facilitiesInterval = setInterval(() => {
-      const nextIndex = (currentFacilityIndex + 1) % facilitiesData.length;
-      updateFacilitiesContent(nextIndex);
-    }, 3000);
-  };
-
-  const stopFacilitiesAutoScroll = () => {
-    clearInterval(facilitiesInterval);
-  };
-
-  const resetFacilitiesAutoScroll = () => {
-    stopFacilitiesAutoScroll();
-    startFacilitiesAutoScroll();
-  };
-
-  // ----------------- IMAGE VIEWER (FINAL CORRECTION) -----------------
-  const viewer = document.createElement('div');
-  viewer.classList.add('image-viewer');
-  viewer.innerHTML = `
-    <span class="close-btn" aria-label="Close">&times;</span>
-    <button class="arrow-btn prev-btn" aria-label="Previous Image">&#10094;</button>
-    <img src="" alt="Facility Image" class="viewer-img">
-    <button class="arrow-btn next-btn" aria-label="Next Image">&#10095;</button>
-  `;
-  document.body.appendChild(viewer);
-
-  const viewerImg = viewer.querySelector('.viewer-img');
-  const closeBtn = viewer.querySelector('.close-btn');
-  const prevBtn = viewer.querySelector('.prev-btn');
-  const nextBtn = viewer.querySelector('.next-btn');
-
-  let currentViewerImages = [];
-  let currentViewerImageIndex = 0;
-
-  const openImageViewer = (images) => {
-    if (!images || images.length === 0) return;
-
-    currentViewerImages = images;
-    currentViewerImageIndex = 0;
-
-    updateViewerImage();
-
-    viewer.classList.add('active');
-    const hasMultipleImages = images.length > 1;
-    prevBtn.style.display = hasMultipleImages ? 'block' : 'none';
-    nextBtn.style.display = hasMultipleImages ? 'block' : 'none';
-  };
-
-  const updateViewerImage = () => {
-    // Fade out the current image
-    viewerImg.style.opacity = '0';
-
-    // Wait for the transition to complete before changing the source
-    setTimeout(() => {
-      // Preload the new image to ensure a smooth transition
-      const imgToLoad = new Image();
-      imgToLoad.src = currentViewerImages[currentViewerImageIndex];
-      imgToLoad.onload = () => {
-        viewerImg.src = imgToLoad.src;
-        viewerImg.style.opacity = '1'; // Fade in the new image
-      };
-    }, 500); // Wait 500ms (adjust to match your CSS transition duration)
-  };
-
-  const closeImageViewer = () => {
-    viewer.classList.remove('active');
-    startFacilitiesAutoScroll();
-  };
-
-  // Manual Navigation Event Listeners
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentViewerImageIndex = (currentViewerImageIndex - 1 + currentViewerImages.length) % currentViewerImages.length;
-    updateViewerImage();
-  });
-
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentViewerImageIndex = (currentViewerImageIndex + 1) % currentViewerImages.length;
-    updateViewerImage();
-  });
-
-  closeBtn.addEventListener('click', closeImageViewer);
-  viewer.addEventListener('click', (e) => {
-    if (e.target === viewer) closeImageViewer();
-  });
-
-  // Optional: close on ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && viewer.classList.contains('active')) {
-      closeImageViewer();
-    }
-  });
-
-  // ----------------- INITIALIZE -----------------
-  if (facilitiesSidebar && facilitiesContent) {
-    renderFacilitiesSidebar();
-    updateFacilitiesContent(currentFacilityIndex);
-    startFacilitiesAutoScroll();
-  }
-});
-document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------- CAROUSEL DATA & SETUP -----------------
     const studentItems = document.querySelectorAll('#student-data-container .student-card-item');
@@ -885,309 +664,240 @@ document.addEventListener('DOMContentLoaded', () => {
         eligibilityForm.reset();
     });
 });
-const newsData = [
-  
-  {
-    images: ["assets/Students/skdu-team1.jpeg", "assets/Students/skdu-team.jpeg"],
-    title: "Girls' Tug-of-War Team Triumphs at University Games 2025",
-    icon: "fas fa-trophy",
-    desc: "Our talented girls' team secured victory in the thrilling tug-of-war competition at the University Games, held on National Sports Day. Their dedication and teamwork brought home the gold, making the university proud."
-  },
-
-  {
-    images: ["assets/Int.conference/Int.conference.jpeg", "assets/Int.conference/img1.jpeg", "assets/Int.conference/img2.jpeg", "assets/Int.conference/img3.jpeg", "assets/Int.conference/img4.jpeg", "assets/Int.conference/img5.jpeg", "assets/Int.conference/img6.jpeg"],
-    title: "International Conference on Cyber Security & Laws in the context of Innovations and Intellectual Properry ICCL-IP 2025",
-    icon: "fas fa-user-graduate",
-    desc: "26th – 27th September 2025 An international forum bringing together researchers, professionals, and innovators to explore advancements in cyber security, legal frameworks, and the protection of intellectual property in the digital era."},
-  {
-    images: [
-      "assets/nationalconference/conference4.jpg",
-      "assets/nationalconference/conference.jpg",
-      "assets/nationalconference/conference1.jpg",
-      "assets/nationalconference/conference2.jpg",
-      "assets/nationalconference/conference3.jpg"
-    ],
-    title: "National Conference on New Approaches in Computer Science & Engineering",
-    icon: "fas fa-user-graduate",
-    desc: "Empowering aspirants with expert guidance, interactive sessions, and exposure to diverse academic and professional pathways."
-  },
-  {
-    images: [
-      "assets/placements/placements.jpg",
-      "assets/placements/placements2.jpg",
-      "assets/placements/placements1.jpg",
-      "assets/placements/placements3.jpg",
-      "assets/placements/placements4.jpg"
-    ],
-    title: "Placement Drive",
-    icon: "fas fa-briefcase",
-    desc: "Pioneering researchers, visionary keynote speakers, and tech innovators explore emerging paradigms and foster collaboration."
-  },
-  {
-    images: ["assets/workshop/workshop.jpeg", "assets/workshop/workshop1.jpeg", "assets/workshop/workshop3.jpeg"],
-    title: "Brighter Tech Workshop",
-    icon: "fas fa-laptop-code",
-    desc: "Hands-on workshop on Cybersecurity Trends offering aspirants practical insights into emerging threats and defense strategies."
-  },
-  {
-    images: ["assets/fresherparty/fresher3.jpg", "assets/fresherparty/fresher2.jpg", "assets/fresherparty/fresher.jpg"],
-    title: "Fresher Party",
-    icon: "fas fa-cocktail",
-    desc: "Welcoming new aspirants with vibrant celebrations, interactive sessions, and camaraderie to start their academic journey."
-  },
-  {
-    images: ["assets/edutour/edutour1.jpg", "assets/edutour/edutour2.jpg"],
-    title: "Academic Tour",
-    icon: "fas fa-university",
-    desc: "Immersive exposure to leading institutions and research facilities, bridging classroom learning with real-world environments."
-  }
-];
-
-/**
- * Injects the necessary CSS for smooth transitions and animation pausing.
- */
-function injectCSS() {
-  const style = document.createElement('style');
-  style.textContent = `
-    body.viewer-active #newsTrack,
-    #newsTrack.paused {
-      animation-play-state: paused;
-    }
-    #imageViewer.active #viewerImg {
-      transition: opacity 1s ease-in-out; /* smoother fade */
-    }
-    .view-images-btn {
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-    }
-    .view-images-btn:hover {
-      background-color: #0056b3;
-    }
-    #imageViewer.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .arrow-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 2rem;
-        color: white;
-        background: rgba(0, 0, 0, 0.5);
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 1001;
-        user-select: none;
-    }
-    #prevBtn {
-        left: 20px;
-    }
-    #nextBtn {
-        right: 20px;
-    }
- `;
-  document.head.appendChild(style);
-}
-
-// Call the function to inject the CSS when the script runs
-injectCSS();
-
-// Render News Cards
-const newsTrack = document.getElementById('newsTrack');
-
-newsData.forEach(item => {
-  const card = document.createElement('div');
-  card.classList.add('news-card');
-
-  const allImagesData = item.images.join(',');
-
-  card.innerHTML = `
-    <h3><i class="${item.icon}"></i> ${item.title}</h3>
-    <p>${item.desc}</p>
-    <button class="view-images-btn" data-images="${allImagesData}">View Images</button>
-  `;
-
-  newsTrack.appendChild(card);
-});
-
-// Image Viewer Functionality
-const viewer = document.getElementById('imageViewer');
-const viewerImg = document.getElementById('viewerImg');
-const closeBtn = document.getElementById('closeViewer');
-
-let currentImageIndex = 0;
-let currentImagesArray = [];
-
-// New arrow buttons
-const prevBtn = document.createElement('button');
-prevBtn.id = 'prevBtn';
-prevBtn.classList.add('arrow-btn');
-prevBtn.innerHTML = '&#10094;';
-viewer.appendChild(prevBtn);
-
-const nextBtn = document.createElement('button');
-nextBtn.id = 'nextBtn';
-nextBtn.classList.add('arrow-btn');
-nextBtn.innerHTML = '&#10095;';
-viewer.appendChild(nextBtn);
-
-function updateImage(newIndex) {
-  viewerImg.style.opacity = '0'; // fade out
-  
-  // Use a temporary image object to preload the next image
-  const tempImg = new Image();
-  tempImg.onload = () => {
-    // Once the image is loaded, update the viewer image source
-    currentImageIndex = newIndex;
-    viewerImg.src = currentImagesArray[currentImageIndex];
-    
-    // Now fade it in
-    viewerImg.style.opacity = '1';
-  };
-  
-  // Set the source of the temporary image to trigger loading
-  tempImg.src = currentImagesArray[newIndex];
-}
-
-// Event listeners for arrow buttons
-prevBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevent viewer from closing
-  const newIndex = (currentImageIndex - 1 + currentImagesArray.length) % currentImagesArray.length;
-  updateImage(newIndex);
-});
-
-nextBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevent viewer from closing
-  const newIndex = (currentImageIndex + 1) % currentImagesArray.length;
-  updateImage(newIndex);
-});
-
-// Open viewer
-document.querySelectorAll('.view-images-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    currentImagesArray = button.getAttribute('data-images').split(',');
-    currentImageIndex = 0;
-    
-    // Immediately set the first image
-    viewerImg.src = currentImagesArray[currentImageIndex];
-
-    viewer.classList.add('active');
-    document.body.classList.add('viewer-active'); 
-
-    setTimeout(() => {
-      viewerImg.style.opacity = '1';
-    }, 50);
-  });
-});
-
-// Close button
-closeBtn.addEventListener('click', () => {
-  viewer.classList.remove('active');
-  viewerImg.style.opacity = '0';
-  document.body.classList.remove('viewer-active'); 
-});
-
-// Close when clicking outside the image
-viewer.addEventListener('click', e => {
-  if (e.target === viewer) {
-    viewer.classList.remove('active');
-    viewerImg.style.opacity = '0';
-    document.body.classList.remove('viewer-active'); 
-  }
-});
-
-// New Event Listeners for Focus
-newsTrack.addEventListener('focusin', () => {
-    newsTrack.classList.add('paused');
-});
-
-newsTrack.addEventListener('focusout', () => {
-    // A small delay is added to prevent flickering when focus shifts between elements within the same card.
-    setTimeout(() => {
-        // Check if the focus has moved outside the news card container entirely
-        if (!newsTrack.contains(document.activeElement)) {
-            newsTrack.classList.remove('paused');
-        }
-    }, 10);
-});
-const quotes = [
+const galleryData = [
   {
-    text: "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
-    author: "— Dr. A.P.J. Abdul Kalam"
+    src: [
+      "assets/Students/skdu-team1.jpeg",
+      "assets/Students/skdu-team2.jpeg"
+    ],
+    location: "University Games 2025"
   },
   {
-    text: "Arise, awake, and stop not until the goal is reached.",
-    author: "— Swami Vivekananda"
+    src: [
+      "assets/Students/skdu-team.jpeg"
+    ],
+    location: "Winners' Podium"
   },
   {
-    text: "The highest education is that which does not merely give us information but makes our life in harmony with all existence.",
-    author: "— Rabindranath Tagore"
+    src: [
+      "assets/Int.conference/Int.conference.jpeg",
+      "assets/Int.conference/Int.conference2.jpg",
+    ],
+    location: "ICCL-IP 2025"
   },
   {
-    text: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
-    author: "— Mahatma Gandhi"
+    src: [
+      "assets/nationalconference/conference1.jpg"
+    ],
+    location: "National Conference"
   },
   {
-    text: "True knowledge is not attained by thinking. It is what you are; it is what you become.",
-    author: "— Sri Aurobindo"
+    src: [
+      "assets/placements/placements.jpg"
+    ],
+    location: "Placement Drive"
   },
   {
-    text: "Cultivation of mind should be the ultimate aim of human existence.",
-    author: "— B. R. Ambedkar"
+    src: [
+      "assets/workshop/workshop1.jpeg",
+      "assets/workshop/workshop2.jpeg"
+    ],
+    location: "Tech Workshop"
   },
   {
-    text: "The end-product of education should be a free creative man, who can battle against historical circumstances and adversities of nature.",
-    author: "— Sarvepalli Radhakrishnan"
+    src: [
+      "assets/fresherparty/fresher3.jpg"
+    ],
+    location: "Fresher Party"
   },
   {
-    text: "Educationists should build the capacities of the spirit of inquiry, creativity, entrepreneurial and moral leadership among students.",
-    author: "— Dr. A.P.J. Abdul Kalam"
+    src: [
+"assets/Students/skdu-team1.jpeg"    ],
+    location: "Academic Tour"
   }
 ];
 
-let index = 0;
-const quoteText = document.getElementById("quote-text");
-const quoteAuthor = document.getElementById("quote-author");
+// Flatten all images for gallery track
+const flatGallery = [];
+galleryData.forEach(item => {
+  item.src.forEach(image => {
+    flatGallery.push({src: image, location: item.location});
+  });
+});
 
+// Populate gallery
+const galleryTrack = document.getElementById('galleryTrack');
+flatGallery.forEach((item, i) => {
+  const img = document.createElement('img');
+  img.src = item.src;
+  img.dataset.index = i;
+  galleryTrack.appendChild(img);
+
+  img.addEventListener('click', () => openViewer(i));
+});
+
+// =========================
+// Desktop: Ping-Pong auto slide
+let offset = 0;
+let direction = 1;
+const speed = 1.5;
+
+function autoSlide() {
+  if(window.innerWidth > 768) {
+    const maxOffset = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+    offset += speed * direction;
+    if(offset >= maxOffset) direction = -1;
+    else if(offset <= 0) direction = 1;
+    galleryTrack.style.transform = `translateX(${-offset}px)`;
+  }
+  requestAnimationFrame(autoSlide);
+}
+autoSlide();
+
+// Mobile vertical scroll
+if(window.innerWidth <= 768){
+  galleryTrack.style.overflowY = "auto";
+  galleryTrack.style.scrollBehavior = "smooth";
+}
+
+// =========================
+// Fullscreen Viewer
+const viewer = document.getElementById('imageViewer');
+const viewerImg = document.getElementById('viewerImg');
+const closeBtn = document.getElementById('closeViewer');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const imageCounter = document.getElementById('imageCounter');
+const imageLocation = document.getElementById('imageLocation');
+
+let currentIndex = 0;
+
+function openViewer(index){
+  currentIndex = index;
+  viewer.classList.add('active');
+  updateViewer();
+}
+
+function updateViewer(){
+  viewerImg.style.opacity = 0;
+  const temp = new Image();
+  temp.onload = () => {
+    viewerImg.src = flatGallery[currentIndex].src;
+    viewerImg.style.opacity = 1;
+    imageCounter.textContent = `${currentIndex+1} / ${flatGallery.length}`;
+    imageLocation.textContent = flatGallery[currentIndex].location;
+  };
+  temp.src = flatGallery[currentIndex].src;
+}
+
+// Navigation Buttons
+prevBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  currentIndex = (currentIndex-1+flatGallery.length)%flatGallery.length;
+  updateViewer();
+});
+nextBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  currentIndex = (currentIndex+1)%flatGallery.length;
+  updateViewer();
+});
+
+// Close viewer
+closeBtn.addEventListener('click', ()=>viewer.classList.remove('active'));
+viewer.addEventListener('click', e=>{if(e.target===viewer)viewer.classList.remove('active');});
+
+// Keyboard navigation
+document.addEventListener('keydown', e=>{
+  if(!viewer.classList.contains('active')) return;
+  if(e.key==='ArrowRight') nextBtn.click();
+  if(e.key==='ArrowLeft') prevBtn.click();
+  if(e.key==='Escape') closeBtn.click();
+});
+
+// Swipe navigation
+let startTouchX=0,endTouchX=0;
+viewer.addEventListener('touchstart', e=>startTouchX=e.touches[0].clientX);
+viewer.addEventListener('touchmove', e=>endTouchX=e.touches[0].clientX);
+viewer.addEventListener('touchend', ()=>{
+  if(startTouchX-endTouchX>40) nextBtn.click();
+  else if(endTouchX-startTouchX>40) prevBtn.click();
+});
+
+const quotes = [
+  { text: "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.", author: "— Dr. A.P.J. Abdul Kalam" },
+  { text: "Arise, awake, and stop not until the goal is reached.", author: "— Swami Vivekananda" },
+  { text: "The highest education is that which does not merely give us information but makes our life in harmony with all existence.", author: "— Rabindranath Tagore" },
+  { text: "Live as if you were to die tomorrow. Learn as if you were to live forever.", author: "— Mahatma Gandhi" },
+  { text: "True knowledge is not attained by thinking. It is what you are; it is what you become.", author: "— Sri Aurobindo" },
+  { text: "Cultivation of mind should be the ultimate aim of human existence.", author: "— B. R. Ambedkar" },
+  { text: "The end-product of education should be a free creative man, who can battle against historical circumstances and adversities of nature.", author: "— S. Radhakrishnan" },
+  { text: "Educationists should build the capacities of the spirit of inquiry, creativity, entrepreneurial and moral leadership among students.", author: "— Dr. A.P.J. Abdul Kalam" }
+];
+
+// DOM elements
+const quoteText = document.querySelector(".quote-box blockquote p");
+const quoteAuthor = document.querySelector(".quote-box blockquote footer");
+const blockquote = document.querySelector(".quote-box blockquote");
+
+let index = 0;
+
+// Timings
+const HOLD_DELAY = 6000;  
+const FADE_TIME = 700;    // match your CSS fade duration
+
+/* ====================================================================
+        PREMIUM iOS-STYLE TRANSITION — FADE OUT → UPDATE → FADE IN
+==================================================================== */
 function showQuote(i) {
-  // Start fade-out
+
+  // Soft “iOS depth pulse”
+  blockquote.style.transition = "box-shadow 0.6s cubic-bezier(.22,.61,.36,1)";
+  blockquote.style.boxShadow = `
+    0 2px 6px rgba(0,0,0,0.05),
+    0 12px 28px rgba(0,128,128,0.12)
+  `;
+  setTimeout(() => {
+    blockquote.style.boxShadow = `
+      0 1px 3px rgba(0,0,0,0.06),
+      0 8px 18px rgba(0,0,0,0.09)
+    `;
+  }, 600);
+
+  // 1) Fade out
   quoteText.classList.remove("fade-in");
   quoteAuthor.classList.remove("fade-in");
+
   quoteText.classList.add("fade-out");
   quoteAuthor.classList.add("fade-out");
 
-  // After fade-out, change content and fade-in
+  // 2) After fade-out, change content
   setTimeout(() => {
-    quoteText.textContent = `“${quotes[i].text}”`;
+    quoteText.textContent = quotes[i].text;
     quoteAuthor.textContent = quotes[i].author;
 
     quoteText.classList.remove("fade-out");
     quoteAuthor.classList.remove("fade-out");
 
-    quoteText.classList.add("fade-in");
-    quoteAuthor.classList.add("fade-in");
-  }, 500); // match CSS fade-out duration
+    // 3) Fade in (iOS smooth upward motion)
+    requestAnimationFrame(() => {
+      quoteText.classList.add("fade-in");
+      quoteAuthor.classList.add("fade-in");
+    });
+
+    // 4) Continue loop
+    setTimeout(() => {
+      index = (index + 1) % quotes.length;
+      showQuote(index);
+    }, HOLD_DELAY);
+
+  }, FADE_TIME);
 }
 
-// Initial load
+// Start
+quoteText.classList.add("fade-in");
+quoteAuthor.classList.add("fade-in");
+
 showQuote(index);
-
-// Auto change every 7s
-setInterval(() => {
-  index = (index + 1) % quotes.length;
-  showQuote(index);
-}, 7000);
-
 document.addEventListener('DOMContentLoaded', () => {
     // --- Select all required DOM elements ---
     const slideContainer = document.querySelector('.slide-container');
@@ -1333,9 +1043,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const projects = [
     {
       id: "p1",
-      title: "Hospital Management System",
-      team: "Ramandeep Sinmgh",
-      stack: "HTML , CSS , JS",
+      title: "Hospital Management System (In Development Stage)",
+      team: "Ramandeep Singh",
+      stack: "HTML 5 , CSS 3 , Javascript ES6+",
       image: "assets/Projects/header.png",
       excerpt: "A Digital Transformation Initiative Hospital Management System  ",
     },
@@ -1477,3 +1187,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     };
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.main-nav');
+
+  // Safety check
+  if (!hamburger || !nav) {
+    console.error("❌ Hamburger or nav element not found.");
+    return;
+  }
+
+  hamburger.addEventListener('click', () => {
+
+    // If menu is open → close it
+    if (nav.classList.contains('nav-active')) {
+      nav.classList.remove('nav-active');
+      nav.classList.add('nav-closing');
+
+      // remove closing class after animation ends
+      const duration = 400; // must match your CSS duration
+      setTimeout(() => nav.classList.remove('nav-closing'), duration);
+
+    } else {
+      // If menu is closed → open it
+      nav.classList.add('nav-active');
+    }
+
+    hamburger.classList.toggle('active');
+  });
+});
+

@@ -32,3 +32,20 @@ document.addEventListener("keydown", function(e) {
         e.preventDefault();
       }
       });
+      // Prevent Ctrl/Cmd + '+' / '-' / mousewheel zoom
+document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && ['+', '-', '='].includes(e.key)) {
+        e.preventDefault();
+    }
+});
+
+// Prevent pinch zoom (touch gesture) on mobile
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+});
